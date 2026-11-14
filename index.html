@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="India Trade" />
+  <meta name="apple-mobile-web-app-title" content="India Pulse" />
   <meta id="metaThemeColor" name="theme-color" content="#0b1120" />
-  <title>India Trade Pulse — Monthly, Quarterly & Annual EXIM Dashboard</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+  <link rel="icon" type="image/png" href="./apple-touch-icon.png" />
+  <title>India Economy &amp; Trade Pulse</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -20,12 +22,7 @@
         extend: {
           fontFamily: { sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'] },
           colors: {
-            surface: {
-              950: '#070b14',
-              900: '#0b1120',
-              850: '#111827',
-              800: '#162033'
-            }
+            surface: { 950: '#070b14', 900: '#0b1120', 850: '#111827', 800: '#162033' }
           }
         }
       }
@@ -43,52 +40,47 @@
     }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    .pb-safe { padding-bottom: calc(5.5rem + var(--safe-bottom)); }
     .header-safe { padding-top: var(--safe-top); }
+    .pb-safe { padding-bottom: calc(5.5rem + var(--safe-bottom)); }
     .bottom-nav-safe { padding-bottom: calc(0.5rem + var(--safe-bottom)); }
-    .glass-header {
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
+    .glass-header { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-900 dark:bg-surface-950 dark:text-slate-100 min-h-screen antialiased transition-colors duration-200">
 
-  <!-- Sticky Mobile-First Top Bar -->
   <header class="sticky top-0 z-30 glass-header header-safe bg-white/85 dark:bg-surface-900/85 border-b border-slate-200/80 dark:border-slate-800/80">
     <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
-      <div class="flex items-center gap-2.5 min-w-0">
+      <button id="btnSectorMenu" type="button" aria-label="Open Sector Menu" class="flex items-center gap-2.5 min-w-0 text-left active:scale-[0.98] transition">
         <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-sm shrink-0">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
         </div>
         <div class="min-w-0">
-          <div class="flex items-center gap-2">
-            <h1 class="text-base sm:text-lg font-bold tracking-tight truncate">India Trade Pulse</h1>
+          <div class="flex items-center gap-1.5">
+            <h1 id="appHeaderTitle" class="text-base sm:text-lg font-bold tracking-tight truncate">India Trade Pulse</h1>
+            <svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
             <span id="latestBadge" class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">Oct 2026 • PIB</span>
           </div>
-          <p class="text-[11px] text-slate-500 dark:text-slate-400 truncate">Merchandise &amp; Services EXIM (US$ Bn)</p>
+          <p id="appHeaderSub" class="text-[11px] text-slate-500 dark:text-slate-400 truncate">Merchandise &amp; Services EXIM (US$ Bn)</p>
         </div>
-      </div>
+      </button>
 
       <div class="flex items-center gap-1.5 shrink-0">
         <button id="btnRefreshLive" type="button" title="Refresh from Authentic Sources" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white shadow-sm transition">
           <svg id="refreshIcon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
           <span>Refresh</span>
         </button>
-
       </div>
     </div>
 
-    <!-- Segmented Controls: Timeframe & Segment -->
     <div class="max-w-5xl mx-auto px-4 pb-3 space-y-2">
       <div class="grid grid-cols-3 gap-1 p-1 rounded-2xl bg-slate-100 dark:bg-surface-850 border border-slate-200/70 dark:border-slate-800">
         <button data-tf="monthly" class="tf-btn py-2 px-3 rounded-xl text-xs sm:text-sm font-semibold transition">Monthly</button>
         <button data-tf="quarterly" class="tf-btn py-2 px-3 rounded-xl text-xs sm:text-sm font-semibold transition">Quarterly</button>
         <button data-tf="annual" class="tf-btn py-2 px-3 rounded-xl text-xs sm:text-sm font-semibold transition">Annual</button>
       </div>
-      <div class="grid grid-cols-4 gap-1.5 pb-0.5">
+      <div id="tradeSegmentBar" class="grid grid-cols-4 gap-1.5 pb-0.5">
         <button data-seg="total" class="seg-btn py-1.5 px-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition text-center truncate">All (M+S)</button>
         <button data-seg="merchandise" class="seg-btn py-1.5 px-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition text-center truncate">Goods</button>
         <button data-seg="services" class="seg-btn py-1.5 px-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition text-center truncate">Services</button>
@@ -97,49 +89,26 @@
     </div>
   </header>
 
-  <!-- Main Content -->
   <main class="max-w-5xl mx-auto px-4 pt-4 pb-safe space-y-5">
-
-    <!-- TAB 1: OVERVIEW -->
     <section id="view-overview" class="tab-view space-y-4">
-      <!-- Period Selector Pills -->
-      <div class="flex items-center justify-between gap-2">
-        <div id="periodPills" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 flex-1"></div>
-      </div>
-
-      <!-- KPI Grid -->
+      <div id="periodPills" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5"></div>
       <div id="kpiGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-3"></div>
-
-      <!-- Primary Chart Card -->
       <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm">
         <div class="flex items-center justify-between gap-2 mb-3">
-          <div>
-            <h2 id="mainChartTitle" class="text-sm sm:text-base font-bold">Exports vs Imports Trend</h2>
-            <p id="mainChartSub" class="text-xs text-slate-500 dark:text-slate-400">US$ Billion • Tap bars for details</p>
-          </div>
-          <span id="chartSourceTag" class="text-[11px] font-medium px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">PIB / MoC&amp;I</span>
+          <div><h2 class="text-sm sm:text-base font-bold">Exports vs Imports Trend</h2><p class="text-xs text-slate-500 dark:text-slate-400">US$ Billion • Tap bars for details</p></div>
+          <span class="text-[11px] font-medium px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">PIB / MoC&amp;I</span>
         </div>
-        <div class="relative h-64 sm:h-72 w-full">
-          <canvas id="mainTradeChart"></canvas>
-        </div>
+        <div class="relative h-64 sm:h-72 w-full"><canvas id="mainTradeChart"></canvas></div>
       </div>
-
-      <!-- Trade Balance & YoY Breakdown -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm">
           <h3 class="text-sm font-bold mb-1">Trade Balance Trajectory</h3>
           <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Surplus (+) or Deficit (-) in US$ Billion</p>
-          <div class="relative h-56 w-full">
-            <canvas id="balanceChart"></canvas>
-          </div>
+          <div class="relative h-56 w-full"><canvas id="balanceChart"></canvas></div>
         </div>
-
         <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm">
           <div class="flex items-center justify-between mb-2">
-            <div>
-              <h3 class="text-sm font-bold">Period Snapshot</h3>
-              <p id="snapshotPeriodLabel" class="text-xs text-slate-500 dark:text-slate-400">Selected Period Breakdown</p>
-            </div>
+            <div><h3 class="text-sm font-bold">Period Snapshot</h3><p id="snapshotPeriodLabel" class="text-xs text-slate-500 dark:text-slate-400">Selected Period Breakdown</p></div>
             <button id="btnExportCsv" type="button" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition">Export CSV</button>
           </div>
           <div id="snapshotBreakdown" class="space-y-2.5 mt-3"></div>
@@ -147,195 +116,127 @@
       </div>
     </section>
 
-    <!-- TAB 2: TRENDS & FULL TABLE -->
     <section id="view-trends" class="tab-view hidden space-y-4">
       <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm">
         <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-          <div>
-            <h2 class="text-sm sm:text-base font-bold">Complete Data Ledger</h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400">Tap any row to inspect in Overview • Scroll horizontally on small screens if needed</p>
-          </div>
+          <div><h2 class="text-sm sm:text-base font-bold">Complete Data Ledger</h2><p class="text-xs text-slate-500 dark:text-slate-400">Tap any row to inspect in Overview</p></div>
           <span id="tableCountBadge" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400"></span>
         </div>
         <div class="overflow-x-auto -mx-4 px-4">
           <table class="w-full text-left border-collapse text-xs sm:text-sm">
-            <thead>
-              <tr class="border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-[11px] uppercase tracking-wider">
-                <th class="py-2.5 pr-3 font-semibold">Period</th>
-                <th class="py-2.5 px-2 font-semibold text-right">Exports</th>
-                <th class="py-2.5 px-2 font-semibold text-right">Imports</th>
-                <th class="py-2.5 px-2 font-semibold text-right">Balance</th>
-                <th class="py-2.5 pl-2 font-semibold text-right">YoY Exp</th>
-              </tr>
-            </thead>
+            <thead><tr class="border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-[11px] uppercase tracking-wider"><th class="py-2.5 pr-3 font-semibold">Period</th><th class="py-2.5 px-2 font-semibold text-right">Exports</th><th class="py-2.5 px-2 font-semibold text-right">Imports</th><th class="py-2.5 px-2 font-semibold text-right">Balance</th><th class="py-2.5 pl-2 font-semibold text-right">YoY Exp</th></tr></thead>
             <tbody id="dataTableBody" class="divide-y divide-slate-100 dark:divide-slate-800/70"></tbody>
           </table>
         </div>
       </div>
-
-      <!-- Merchandise vs Services Split Chart -->
       <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm">
         <h3 class="text-sm font-bold mb-1">Merchandise Deficit vs Services Surplus</h3>
         <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">How services exports cushion India's goods trade deficit (US$ Bn)</p>
-        <div class="relative h-64 w-full">
-          <canvas id="cushionChart"></canvas>
-        </div>
+        <div class="relative h-64 w-full"><canvas id="cushionChart"></canvas></div>
       </div>
     </section>
 
-    <!-- TAB 3: DRIVERS & PARTNERS -->
     <section id="view-drivers" class="tab-view hidden space-y-4">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <!-- Oct 2026 Top Drivers -->
         <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm">
-          <div class="flex items-center justify-between mb-3">
-            <div>
-              <h2 class="text-sm sm:text-base font-bold">Oct 2026 Export Surge Drivers</h2>
-              <p class="text-xs text-slate-500 dark:text-slate-400">PIB Release Nov 13, 2026 (US$ Bn &amp; YoY %)</p>
-            </div>
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-500">Fresh</span>
-          </div>
+          <div class="flex items-center justify-between mb-3"><div><h2 class="text-sm sm:text-base font-bold">Oct 2026 Export Surge Drivers</h2><p class="text-xs text-slate-500 dark:text-slate-400">PIB Release Nov 13, 2026 (US$ Bn &amp; YoY %)</p></div><span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-500">Fresh</span></div>
           <div id="octDriversList" class="space-y-3"></div>
         </div>
-
-        <!-- FY 2025-26 Top Export Categories -->
         <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm">
           <h2 class="text-sm sm:text-base font-bold mb-1">FY 2025-26 Top Export Categories</h2>
           <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Annual Merchandise Basket (Total: US$ 441.78 Bn)</p>
-          <div class="relative h-64 w-full">
-            <canvas id="commodityChart"></canvas>
-          </div>
+          <div class="relative h-64 w-full"><canvas id="commodityChart"></canvas></div>
         </div>
       </div>
-
-      <!-- Trading Partners -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm">
-          <h3 class="text-sm font-bold mb-1">Top Export Destinations</h3>
-          <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Share in India's exports &amp; Apr–Oct 2026-27 YoY growth</p>
-          <div id="exportPartnersList" class="space-y-2.5"></div>
-        </div>
-        <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm">
-          <h3 class="text-sm font-bold mb-1">Fastest-Growing Import Sources</h3>
-          <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Apr–Oct 2026-27 YoY growth (PIB PRID 2335914)</p>
-          <div id="importPartnersList" class="space-y-2.5"></div>
-        </div>
+        <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm"><h3 class="text-sm font-bold mb-1">Top Export Destinations</h3><p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Share in India's exports &amp; Apr–Oct 2026-27 YoY growth</p><div id="exportPartnersList" class="space-y-2.5"></div></div>
+        <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm"><h3 class="text-sm font-bold mb-1">Fastest-Growing Import Sources</h3><p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Apr–Oct 2026-27 YoY growth (PIB PRID 2335914)</p><div id="importPartnersList" class="space-y-2.5"></div></div>
       </div>
     </section>
 
-    <!-- TAB 4: FRESH DATA & LIVE SYNC -->
     <section id="view-sources" class="tab-view hidden space-y-4">
       <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm space-y-3">
-        <div class="flex items-start justify-between gap-3">
-          <div>
-            <h2 class="text-sm sm:text-base font-bold">Keep Data Fresh Every Month</h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">India's Ministry of Commerce releases monthly Quick Estimates around the 15th of every month. Use the official feeds below or sync World Bank annual indicators.</p>
-          </div>
-        </div>
-
+        <div><h2 class="text-sm sm:text-base font-bold">Official Release Feeds</h2><p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">India's Ministry of Commerce releases monthly Quick Estimates around the 15th of every month.</p></div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
-          <a href="https://www.pib.gov.in/PressReleaseDetail.aspx?PRID=2335914" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-surface-850 border border-slate-200/70 dark:border-slate-800 hover:border-emerald-500/50 transition">
-            <div>
-              <p class="text-xs font-bold">PIB Latest Release (Oct 2026)</p>
-              <p class="text-[11px] text-slate-500 dark:text-slate-400">Published Nov 13, 2026 • PRID 2335914</p>
-            </div>
-            <span class="text-emerald-500 text-xs font-semibold">Open ↗</span>
-          </a>
-          <a href="https://tradestat.commerce.gov.in/" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-surface-850 border border-slate-200/70 dark:border-slate-800 hover:border-emerald-500/50 transition">
-            <div>
-              <p class="text-xs font-bold">TRADESTAT (DGCI&amp;S Data Bank)</p>
-              <p class="text-[11px] text-slate-500 dark:text-slate-400">HS-Code &amp; Country-wise Official Portal</p>
-            </div>
-            <span class="text-emerald-500 text-xs font-semibold">Open ↗</span>
-          </a>
-          <a href="https://trade-analytics.commerce.gov.in/public/indiaTrade" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-surface-850 border border-slate-200/70 dark:border-slate-800 hover:border-emerald-500/50 transition">
-            <div>
-              <p class="text-xs font-bold">Trade Intelligence &amp; Analytics</p>
-              <p class="text-[11px] text-slate-500 dark:text-slate-400">Department of Commerce Port &amp; State Data</p>
-            </div>
-            <span class="text-emerald-500 text-xs font-semibold">Open ↗</span>
-          </a>
-          <a href="https://niryat.gov.in/" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-surface-850 border border-slate-200/70 dark:border-slate-800 hover:border-emerald-500/50 transition">
-            <div>
-              <p class="text-xs font-bold">NIRYAT Portal</p>
-              <p class="text-[11px] text-slate-500 dark:text-slate-400">National Import-Export Yearly Analysis</p>
-            </div>
-            <span class="text-emerald-500 text-xs font-semibold">Open ↗</span>
-          </a>
+          <a href="https://www.pib.gov.in/PressReleaseDetail.aspx?PRID=2335914" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-surface-850 border border-slate-200/70 dark:border-slate-800 hover:border-emerald-500/50 transition"><div><p class="text-xs font-bold">PIB Latest Release (Oct 2026)</p><p class="text-[11px] text-slate-500 dark:text-slate-400">Published Nov 13, 2026 • PRID 2335914</p></div><span class="text-emerald-500 text-xs font-semibold">Open ↗</span></a>
+          <a href="https://tradestat.commerce.gov.in/" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-surface-850 border border-slate-200/70 dark:border-slate-800 hover:border-emerald-500/50 transition"><div><p class="text-xs font-bold">TRADESTAT (DGCI&amp;S Data Bank)</p><p class="text-[11px] text-slate-500 dark:text-slate-400">HS-Code &amp; Country-wise Official Portal</p></div><span class="text-emerald-500 text-xs font-semibold">Open ↗</span></a>
+          <a href="https://trade-analytics.commerce.gov.in/public/indiaTrade" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-surface-850 border border-slate-200/70 dark:border-slate-800 hover:border-emerald-500/50 transition"><div><p class="text-xs font-bold">Trade Intelligence &amp; Analytics</p><p class="text-[11px] text-slate-500 dark:text-slate-400">Department of Commerce Port &amp; State Data</p></div><span class="text-emerald-500 text-xs font-semibold">Open ↗</span></a>
+          <a href="https://niryat.gov.in/" target="_blank" rel="noopener" class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-surface-850 border border-slate-200/70 dark:border-slate-800 hover:border-emerald-500/50 transition"><div><p class="text-xs font-bold">NIRYAT Portal</p><p class="text-[11px] text-slate-500 dark:text-slate-400">National Import-Export Yearly Analysis</p></div><span class="text-emerald-500 text-xs font-semibold">Open ↗</span></a>
         </div>
       </div>
-
-      <!-- World Bank Live API Sync -->
       <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm space-y-3">
-        <div class="flex items-center justify-between gap-2">
-          <div>
-            <h3 class="text-sm font-bold">World Bank Live Annual Feed (India)</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400">Fetches live Goods &amp; Services Exports/Imports (BoP, US$ Bn) via public World Bank API</p>
-          </div>
-          <button id="btnSyncWb" type="button" class="shrink-0 px-3 py-2 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white transition">Fetch Live</button>
-        </div>
+        <div class="flex items-center justify-between gap-2"><div><h3 class="text-sm font-bold">World Bank Live Annual Feed (India)</h3><p class="text-xs text-slate-500 dark:text-slate-400">Fetches live Goods &amp; Services Exports/Imports (US$ Bn) via World Bank API</p></div><button id="btnSyncWb" type="button" class="shrink-0 px-3 py-2 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white transition">Fetch Live</button></div>
         <div id="wbStatus" class="text-xs text-slate-500 dark:text-slate-400">Tap "Fetch Live" to pull historical World Bank annual benchmarks.</div>
         <div id="wbResults" class="hidden grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1"></div>
       </div>
+    </section>
 
-
+    <section id="view-sector" class="hidden space-y-4">
+      <div id="sectorPeriodPills" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5"></div>
+      <div id="sectorKpiGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-3"></div>
+      <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm">
+        <div class="flex items-center justify-between gap-2 mb-3"><div><h2 id="sectorChartTitle" class="text-sm sm:text-base font-bold">Sector Trend</h2><p id="sectorChartSub" class="text-xs text-slate-500 dark:text-slate-400"></p></div><span id="sectorSourceTag" class="text-[11px] font-medium px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300"></span></div>
+        <div class="relative h-64 sm:h-72 w-full"><canvas id="sectorMainChart"></canvas></div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm">
+          <div class="flex items-center justify-between mb-2"><div><h3 id="sectorBreakdownTitle" class="text-sm font-bold">Breakdown</h3><p id="sectorBreakdownSub" class="text-xs text-slate-500 dark:text-slate-400"></p></div></div>
+          <div id="sectorBreakdownList" class="space-y-2.5 mt-3"></div>
+        </div>
+        <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-4 shadow-sm">
+          <div class="flex items-center justify-between mb-2"><div><h3 class="text-sm font-bold">Period Ledger</h3><p class="text-xs text-slate-500 dark:text-slate-400">Tap any row to inspect</p></div><button id="btnSectorCsv" type="button" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition">Export CSV</button></div>
+          <div class="overflow-x-auto -mx-4 px-4"><table class="w-full text-left border-collapse text-xs sm:text-sm"><thead id="sectorTableHead"></thead><tbody id="sectorTableBody" class="divide-y divide-slate-100 dark:divide-slate-800/70"></tbody></table></div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <!-- Fixed Bottom Navigation Bar (iPhone Thumb-Friendly) -->
-  <nav class="fixed bottom-0 inset-x-0 z-30 glass-header bg-white/90 dark:bg-surface-900/90 border-t border-slate-200/80 dark:border-slate-800/80 bottom-nav-safe">
+  <nav id="tradeBottomNav" class="fixed bottom-0 inset-x-0 z-30 glass-header bg-white/90 dark:bg-surface-900/90 border-t border-slate-200/80 dark:border-slate-800/80 bottom-nav-safe">
     <div class="max-w-5xl mx-auto px-2 pt-1.5 grid grid-cols-4 gap-1">
-      <button data-tab="overview" class="nav-tab flex flex-col items-center py-1.5 rounded-xl text-[11px] font-semibold transition">
-        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
-        Overview
-      </button>
-      <button data-tab="trends" class="nav-tab flex flex-col items-center py-1.5 rounded-xl text-[11px] font-semibold transition">
-        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg>
-        Ledger
-      </button>
-      <button data-tab="drivers" class="nav-tab flex flex-col items-center py-1.5 rounded-xl text-[11px] font-semibold transition">
-        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582"/></svg>
-        Drivers
-      </button>
-      <button data-tab="sources" class="nav-tab flex flex-col items-center py-1.5 rounded-xl text-[11px] font-semibold transition">
-        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
-        Fresh Data
-      </button>
+      <button data-tab="overview" class="nav-tab flex flex-col items-center py-1.5 rounded-xl text-[11px] font-semibold transition"><svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>Overview</button>
+      <button data-tab="trends" class="nav-tab flex flex-col items-center py-1.5 rounded-xl text-[11px] font-semibold transition"><svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg>Ledger</button>
+      <button data-tab="drivers" class="nav-tab flex flex-col items-center py-1.5 rounded-xl text-[11px] font-semibold transition"><svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582"/></svg>Drivers</button>
+      <button data-tab="sources" class="nav-tab flex flex-col items-center py-1.5 rounded-xl text-[11px] font-semibold transition"><svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>Fresh Data</button>
     </div>
   </nav>
 
-  <!-- Toast Notification -->
+  <div id="sectorDrawer" class="fixed inset-0 z-50 hidden">
+    <div id="sectorDrawerBackdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+    <aside class="relative w-72 max-w-[82vw] h-full bg-white dark:bg-surface-900 border-r border-slate-200 dark:border-slate-800 shadow-2xl flex flex-col header-safe">
+      <div class="px-4 py-4 border-b border-slate-200/80 dark:border-slate-800 flex items-center justify-between">
+        <div><h2 class="text-base font-bold">India Economy Pulse</h2><p class="text-[11px] text-slate-500 dark:text-slate-400">Select Sector</p></div>
+        <button id="closeSectorDrawer" type="button" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-sm font-bold">✕</button>
+      </div>
+      <div id="sectorMenuList" class="p-3 space-y-1.5 overflow-y-auto flex-1"></div>
+      <div class="p-4 border-t border-slate-200/80 dark:border-slate-800 text-[11px] text-slate-500 dark:text-slate-400">Official Sources: PIB, SIAM, NPCI, GSTN, NASSCOM, MoAFW</div>
+    </aside>
+  </div>
+
   <div id="toast" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 hidden px-4 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-semibold shadow-lg"></div>
 
   <script>
-    // =========================================================================
-    // 1. VERIFIED OFFICIAL DATA (PIB Ministry of Commerce & Industry, NITI Aayog)
-    // =========================================================================
     const BASE_MONTHLY = [
-      { id: '2026-03', label: 'Mar 2026', merchExp: 38.92, merchImp: 59.59, servExp: 35.20, servImp: 16.96, totalExp: 74.11, totalImp: 76.55, balance: -2.44, yoyExp: -4.58, coreExp: 31.69, coreImp: 41.87, prevTotalExp: 77.67, prevTotalImp: 81.22, source: 'PIB PRID 2252272' },
-      { id: '2026-04', label: 'Apr 2026', merchExp: 43.56, merchImp: 71.94, servExp: 37.24, servImp: 16.66, totalExp: 80.80, totalImp: 88.61, balance: -7.81, yoyExp: 13.59, coreExp: 31.64, coreImp: 45.87, prevTotalExp: 71.13, prevTotalImp: 82.29, source: 'PIB PRID 2261383' },
-      { id: '2026-05', label: 'May 2026', merchExp: 45.20, merchImp: 73.41, servExp: 36.76, servImp: 19.06, totalExp: 81.96, totalImp: 92.47, balance: -10.51, yoyExp: 15.83, coreExp: 34.24, coreImp: 46.09, prevTotalExp: 70.76, prevTotalImp: 77.55, source: 'PIB PRID 2273044' },
-      { id: '2026-06', label: 'Jun 2026', merchExp: 40.41, merchImp: 70.84, servExp: 33.03, servImp: 17.92, totalExp: 73.45, totalImp: 88.76, balance: -15.32, yoyExp: 9.48, coreExp: 33.13, coreImp: 48.25, prevTotalExp: 67.09, prevTotalImp: 69.98, source: 'PIB PRID 2284139' },
-      { id: '2026-07', label: 'Jul 2026', merchExp: 44.24, merchImp: 76.22, servExp: 35.89, servImp: 18.94, totalExp: 80.14, totalImp: 95.16, balance: -15.03, yoyExp: 13.31, coreExp: 35.00, coreImp: 51.82, prevTotalExp: 70.72, prevTotalImp: 82.16, source: 'PIB PRID 2298878' },
-      { id: '2026-08', label: 'Aug 2026', merchExp: 43.81, merchImp: 70.67, servExp: 38.87, servImp: 21.42, totalExp: 82.68, totalImp: 92.09, balance: -9.41, yoyExp: 25.41, coreExp: 34.68, coreImp: 49.22, prevTotalExp: 65.93, prevTotalImp: 77.55, source: 'PIB PRID 2310636' },
-      { id: '2026-09', label: 'Sep 2026', merchExp: 44.40, merchImp: 74.61, servExp: 36.35, servImp: 19.44, totalExp: 80.75, totalImp: 94.05, balance: -13.30, yoyExp: 10.99, coreExp: 34.81, coreImp: 51.64, prevTotalExp: 72.76, prevTotalImp: 86.93, source: 'PIB PRID 2323944' },
-      { id: '2026-10', label: 'Oct 2026', merchExp: 49.47, merchImp: 89.35, servExp: 40.51, servImp: 20.72, totalExp: 89.99, totalImp: 110.07, balance: -20.09, yoyExp: 29.90, coreExp: 37.38, coreImp: 57.37, prevTotalExp: 69.27, prevTotalImp: 94.42, source: 'PIB PRID 2335914' }
+      { id: '2026-03', label: 'Mar 2026', merchExp: 38.92, merchImp: 59.59, servExp: 35.20, servImp: 16.96, totalExp: 74.11, totalImp: 76.55, balance: -2.44, yoyExp: -4.58, coreExp: 31.69, coreImp: 41.87, source: 'PIB PRID 2252272' },
+      { id: '2026-04', label: 'Apr 2026', merchExp: 43.56, merchImp: 71.94, servExp: 37.24, servImp: 16.66, totalExp: 80.80, totalImp: 88.61, balance: -7.81, yoyExp: 13.59, coreExp: 31.64, coreImp: 45.87, source: 'PIB PRID 2261383' },
+      { id: '2026-05', label: 'May 2026', merchExp: 45.20, merchImp: 73.41, servExp: 36.76, servImp: 19.06, totalExp: 81.96, totalImp: 92.47, balance: -10.51, yoyExp: 15.83, coreExp: 34.24, coreImp: 46.09, source: 'PIB PRID 2273044' },
+      { id: '2026-06', label: 'Jun 2026', merchExp: 40.41, merchImp: 70.84, servExp: 33.03, servImp: 17.92, totalExp: 73.45, totalImp: 88.76, balance: -15.32, yoyExp: 9.48, coreExp: 33.13, coreImp: 48.25, source: 'PIB PRID 2284139' },
+      { id: '2026-07', label: 'Jul 2026', merchExp: 44.24, merchImp: 76.22, servExp: 35.89, servImp: 18.94, totalExp: 80.14, totalImp: 95.16, balance: -15.03, yoyExp: 13.31, coreExp: 35.00, coreImp: 51.82, source: 'PIB PRID 2298878' },
+      { id: '2026-08', label: 'Aug 2026', merchExp: 43.81, merchImp: 70.67, servExp: 38.87, servImp: 21.42, totalExp: 82.68, totalImp: 92.09, balance: -9.41, yoyExp: 25.41, coreExp: 34.68, coreImp: 49.22, source: 'PIB PRID 2310636' },
+      { id: '2026-09', label: 'Sep 2026', merchExp: 44.40, merchImp: 74.61, servExp: 36.35, servImp: 19.44, totalExp: 80.75, totalImp: 94.05, balance: -13.30, yoyExp: 10.99, coreExp: 34.81, coreImp: 51.64, source: 'PIB PRID 2323944' },
+      { id: '2026-10', label: 'Oct 2026', merchExp: 49.47, merchImp: 89.35, servExp: 40.51, servImp: 20.72, totalExp: 89.99, totalImp: 110.07, balance: -20.09, yoyExp: 29.90, coreExp: 37.38, coreImp: 57.37, source: 'PIB PRID 2335914' }
     ];
-
     const QUARTERLY_DATA = [
       { id: 'FY26-Q3', label: 'Q3 FY25-26', sub: 'Oct–Dec 2025', merchExp: 110.48, merchImp: 202.33, servExp: 111.20, servImp: 53.70, totalExp: 221.68, totalImp: 256.03, balance: -34.35, yoyExp: 5.60, coreExp: null, coreImp: null, source: 'NITI Aayog Q3' },
-      { id: 'FY26-Q4', label: 'Q4 FY25-26', sub: 'Jan–Mar 2026', merchExp: 112.03, merchImp: 195.56, servExp: 111.10, servImp: 50.70, totalExp: 223.13, totalImp: 246.26, balance: -23.10, yoyExp: 2.90, coreExp: null, coreImp: null, source: 'NITI Aayog Q4 / DGCI&S' },
-      { id: 'FY27-Q1', label: 'Q1 FY26-27', sub: 'Apr–Jun 2026', merchExp: 129.32, merchImp: 216.18, servExp: 103.41, servImp: 53.97, totalExp: 232.73, totalImp: 270.15, balance: -37.42, yoyExp: 11.37, coreExp: 99.04, coreImp: 140.22, prevTotalExp: 208.98, prevTotalImp: 229.82, source: 'PIB PRID 2284139' },
-      { id: 'FY27-Q2', label: 'Q2 FY26-27', sub: 'Jul–Sep 2026', merchExp: 130.57, merchImp: 221.35, servExp: 112.90, servImp: 59.63, totalExp: 243.47, totalImp: 280.98, balance: -37.51, yoyExp: 16.31, coreExp: 104.37, coreImp: 152.66, prevTotalExp: 209.33, prevTotalImp: 246.60, source: 'PIB H1 minus Q1' },
-      { id: 'FY27-H1', label: 'H1 FY26-27', sub: 'Apr–Sep 2026', merchExp: 259.89, merchImp: 437.53, servExp: 216.31, servImp: 113.60, totalExp: 476.20, totalImp: 551.13, balance: -74.93, yoyExp: 13.84, coreExp: 203.41, coreImp: 292.88, prevTotalExp: 418.31, prevTotalImp: 476.42, source: 'PIB PRID 2323944' }
+      { id: 'FY26-Q4', label: 'Q4 FY25-26', sub: 'Jan–Mar 2026', merchExp: 112.03, merchImp: 195.56, servExp: 111.10, servImp: 50.70, totalExp: 223.13, totalImp: 246.26, balance: -23.10, yoyExp: 2.90, coreExp: null, coreImp: null, source: 'NITI Aayog Q4' },
+      { id: 'FY27-Q1', label: 'Q1 FY26-27', sub: 'Apr–Jun 2026', merchExp: 129.32, merchImp: 216.18, servExp: 103.41, servImp: 53.97, totalExp: 232.73, totalImp: 270.15, balance: -37.42, yoyExp: 11.37, coreExp: 99.04, coreImp: 140.22, source: 'PIB PRID 2284139' },
+      { id: 'FY27-Q2', label: 'Q2 FY26-27', sub: 'Jul–Sep 2026', merchExp: 130.57, merchImp: 221.35, servExp: 112.90, servImp: 59.63, totalExp: 243.47, totalImp: 280.98, balance: -37.51, yoyExp: 16.31, coreExp: 104.37, coreImp: 152.66, source: 'PIB H1 minus Q1' },
+      { id: 'FY27-H1', label: 'H1 FY26-27', sub: 'Apr–Sep 2026', merchExp: 259.89, merchImp: 437.53, servExp: 216.31, servImp: 113.60, totalExp: 476.20, totalImp: 551.13, balance: -74.93, yoyExp: 13.84, coreExp: 203.41, coreImp: 292.88, source: 'PIB PRID 2323944' }
     ];
-
     const ANNUAL_DATA = [
       { id: 'FY24-25', label: 'FY 2024-25', sub: 'Apr 24–Mar 25', merchExp: 437.70, merchImp: 721.20, servExp: 387.55, servImp: 198.72, totalExp: 825.26, totalImp: 919.92, balance: -94.66, yoyExp: null, coreExp: 344.50, coreImp: 454.59, source: 'PIB PRID 2252272' },
-      { id: 'FY25-26', label: 'FY 2025-26', sub: 'Apr 25–Mar 26', merchExp: 441.78, merchImp: 774.98, servExp: 418.31, servImp: 204.42, totalExp: 860.09, totalImp: 979.40, balance: -119.30, yoyExp: 4.22, coreExp: 359.67, coreImp: 498.56, prevTotalExp: 825.26, prevTotalImp: 919.92, source: 'PIB PRID 2252272' },
-      { id: 'FY26-27-YTD', label: 'FY27 YTD', sub: 'Apr–Oct 2026', merchExp: 309.06, merchImp: 527.21, servExp: 259.78, servImp: 134.98, totalExp: 568.84, totalImp: 662.19, balance: -93.35, yoyExp: 16.66, coreExp: 240.73, coreImp: 350.58, prevTotalExp: 487.59, prevTotalImp: 570.84, source: 'PIB PRID 2335914' }
+      { id: 'FY25-26', label: 'FY 2025-26', sub: 'Apr 25–Mar 26', merchExp: 441.78, merchImp: 774.98, servExp: 418.31, servImp: 204.42, totalExp: 860.09, totalImp: 979.40, balance: -119.30, yoyExp: 4.22, coreExp: 359.67, coreImp: 498.56, source: 'PIB PRID 2252272' },
+      { id: 'FY26-27-YTD', label: 'FY27 YTD', sub: 'Apr–Oct 2026', merchExp: 309.06, merchImp: 527.21, servExp: 259.78, servImp: 134.98, totalExp: 568.84, totalImp: 662.19, balance: -93.35, yoyExp: 16.66, coreExp: 240.73, coreImp: 350.58, source: 'PIB PRID 2335914' }
     ];
-
     const OCT_DRIVERS = [
       { name: 'Engineering Goods', val: 12.74, yoy: 36.01 },
       { name: 'Petroleum Products', val: 8.89, yoy: 140.21 },
@@ -343,15 +244,13 @@
       { name: 'Gems & Jewellery', val: 3.21, yoy: 40.06 },
       { name: 'Organic & Inorganic Chemicals', val: 2.89, yoy: 36.20 }
     ];
-
     const FY26_COMMODITIES = [
-      { name: 'Engineering Goods', val: 122.40, yoy: 4.9 },
-      { name: 'Electronic Goods', val: 47.96, yoy: 24.4 },
-      { name: 'Drugs & Pharma', val: 31.12, yoy: 2.1 },
-      { name: 'Chemicals', val: 28.67, yoy: -0.1 },
-      { name: 'Gems & Jewellery', val: 28.21, yoy: -5.4 }
+      { name: 'Engineering Goods', val: 122.40 },
+      { name: 'Electronic Goods', val: 47.96 },
+      { name: 'Drugs & Pharma', val: 31.12 },
+      { name: 'Chemicals', val: 28.67 },
+      { name: 'Gems & Jewellery', val: 28.21 }
     ];
-
     const EXPORT_PARTNERS = [
       { country: 'United States', share: '20.8%', growth: '+14.48% (Apr–Oct)' },
       { country: 'United Arab Emirates', share: '8.7%', growth: 'Top Regional Hub' },
@@ -360,7 +259,6 @@
       { country: 'United Kingdom', share: '3.1%', growth: 'Major Pharma/Textiles' },
       { country: 'Singapore', share: 'Fastest Growth', growth: '+107.50% (Apr–Oct)' }
     ];
-
     const IMPORT_PARTNERS = [
       { country: 'China P Rp', note: 'Top Import Source', growth: '+30.62% (Apr–Oct)' },
       { country: 'Russia', note: 'Crude & Energy', growth: '+54.83% (Apr–Oct)' },
@@ -369,38 +267,181 @@
       { country: 'Brazil', note: 'Agri & Commodities', growth: '+144.54% (Apr–Oct)' }
     ];
 
-    // =========================================================================
-    // 2. STATE & STORAGE
-    // =========================================================================
-    const STORAGE_KEY = 'india_trade_pulse_custom_v1';
-    let customMonths = [];
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) customMonths = JSON.parse(saved);
-    } catch (_) {}
+    const SECTORS = [
+      { id: 'trade', name: 'Trade', sub: 'Merchandise & Services EXIM (US$ Bn)' },
+      { id: 'automobile', name: 'Automobile', sub: 'Production, Sales & Revenue (SIAM / IBEF)' },
+      { id: 'textile', name: 'Textile', sub: 'Production, Market & Exports (MoT / PIB)' },
+      { id: 'agriculture', name: 'Agriculture', sub: 'Foodgrain Output & Agri Exports (MoAFW / PIB)' },
+      { id: 'it', name: 'IT', sub: 'Tech Industry & Q2 FY27 Majors (NASSCOM)' },
+      { id: 'gst', name: 'GST', sub: 'Gross & Net Collections (₹ Lakh Cr • GSTN)' },
+      { id: 'upi', name: 'UPI', sub: 'Transaction Volume & Value (NPCI)' }
+    ];
 
-    const state = {
-      timeframe: 'monthly',
-      segment: 'total',
-      activeTab: 'overview',
-      selectedPeriodId: '2026-10'
+    const SECTOR_DATA = {
+      automobile: {
+        source: 'SIAM / IBEF / IMARC', chartTitle: 'Automobile Volume & Market Trend', chartSub: 'Monthly/Quarterly Units (Lakh) & Annual Production (Million Units)', primaryLabel: 'Units / Output', secondaryLabel: 'YoY Growth (%)',
+        breakdownTitle: 'Company-Wise Performance (Oct 2026 PVs)', breakdownSub: 'Domestic Passenger Vehicle dispatches & growth',
+        breakdown: [
+          { name: 'Maruti Suzuki', primary: '2,12,384 PVs', secondary: '2,76,120 total (+25% YoY)' },
+          { name: 'Tata Motors', primary: '73,894 PVs', secondary: 'No. 2 • +75% EV growth' },
+          { name: 'Mahindra & Mahindra', primary: '73,338 PVs', secondary: 'Strong SUV demand' },
+          { name: 'Hyundai Motor India', primary: '62,799 PVs', secondary: 'All-time festive high' }
+        ],
+        monthly: [{ id: '2026-10', label: 'Oct 2026', k1Label: 'PV Dispatches', k1: '5.19L', k2Label: '2W Dispatches', k2: '25.78L', k3Label: 'PV YoY', k3: '+12.4%', k4Label: 'EV Share', k4: '8.6%', v1: 5.19, v2: 12.4, col1: '5.19L PV', col2: '25.78L 2W', col3: '+12.4%' }],
+        quarterly: [
+          { id: 'FY26-Q3', label: 'Q3 FY25-26', k1Label: 'PV Sales', k1: '12.76L', k2Label: 'PV YoY', k2: '+20.6%', k3Label: 'Segment', k3: 'Festive Peak', k4Label: 'Source', k4: 'SIAM', v1: 12.76, v2: 20.6, col1: '12.76L PV', col2: 'Record Q3', col3: '+20.6%' },
+          { id: 'FY26-Q4', label: 'Q4 FY25-26', k1Label: 'PV Sales', k1: '13.16L', k2Label: '2W Sales', k2: '57.73L', k3Label: 'CV / 3W', k3: '3.25L / 2.27L', k4Label: 'PV YoY', k4: '+13.2%', v1: 13.16, v2: 13.2, col1: '13.16L PV', col2: '57.73L 2W', col3: '+13.2%' },
+          { id: 'FY27-Q1', label: 'Q1 FY26-27', k1Label: 'Total Prod.', k1: '9.36M', k2Label: 'PV Sales', k2: '12.70L', k3Label: '2W Sales', k3: '56.30L', k4Label: 'EV Sales', k4: '8.67L', v1: 12.70, v2: 25.9, col1: '12.70L PV', col2: '56.30L 2W', col3: '+25.9%' },
+          { id: 'FY27-Q2', label: 'Q2 FY26-27', k1Label: 'PV Sales', k1: '13.60L', k2Label: '9M CY26 Auto', k2: '23.44M', k3Label: '9M YoY', k3: '+21.0%', k4Label: 'Source', k4: 'SIAM', v1: 13.60, v2: 21.0, col1: '13.60L PV', col2: '23.44M (9M)', col3: '+21.0%' }
+        ],
+        annual: [
+          { id: 'FY24-25', label: 'FY 2024-25', k1Label: 'Total Prod.', k1: '31.03M', k2Label: 'Market Size', k2: '$143.0B', k3Label: 'EV Sales', k3: '2.05M', k4Label: 'GDP Growth', k4: '6.5%', v1: 31.03, v2: 143.0, col1: '31.03M units', col2: '$143.0B', col3: '2.05M EV' },
+          { id: 'FY25-26', label: 'FY 2025-26', k1Label: 'Total Prod.', k1: '34.71M', k2Label: 'Market (2026E)', k2: '$158.5B', k3Label: 'Dom. Sales', k3: '28.26M', k4Label: 'Exports', k4: '6.65M', v1: 34.71, v2: 158.5, col1: '34.71M units', col2: '₹22.75L Cr', col3: '+10.4%' }
+        ]
+      },
+      textile: {
+        source: 'Ministry of Textiles / PIB', chartTitle: 'Textile & Apparel Exports', chartSub: 'RMG & Cotton Yarn / Handloom Exports (US$ Billion)', primaryLabel: 'Cotton/Handloom ($B)', secondaryLabel: 'YoY Growth (%)',
+        breakdownTitle: 'Sector Structure & Key Pillars', breakdownSub: 'India Textile & Apparel Industry (US$ 179B)',
+        breakdown: [
+          { name: 'Industry Market Size', primary: 'US$ 179 Bn', secondary: '2.3% of India GDP' },
+          { name: 'FY 2025-26 T&A Exports', primary: '₹3,25,339 Cr', secondary: '+2.1% YoY • 4.5% CAGR' },
+          { name: 'Industrial Share', primary: '13% Output', secondary: '12% of total exports' },
+          { name: 'Oct 2026 Momentum', primary: '+29.96% Cotton', secondary: '+20.33% RMG Textiles' }
+        ],
+        monthly: [
+          { id: '2026-07', label: 'Jul 2026', k1Label: 'Cotton/Handloom', k1: '$1.11B', k2Label: 'YoY Growth', k2: '+8.40%', k3Label: 'Industry Size', k3: '$179B', k4Label: 'Source', k4: 'PIB', v1: 1.11, v2: 8.40, col1: '$1.11B', col2: '+8.40%', col3: 'PIB Jul' },
+          { id: '2026-08', label: 'Aug 2026', k1Label: 'Cotton/Handloom', k1: '$1.12B', k2Label: 'YoY Growth', k2: '+13.79%', k3Label: 'MMF Yarn', k3: '+9.92%', k4Label: 'Source', k4: 'PIB', v1: 1.12, v2: 13.79, col1: '$1.12B', col2: '+13.79%', col3: 'PIB Aug' },
+          { id: '2026-09', label: 'Sep 2026', k1Label: 'Cotton/Handloom', k1: '$1.12B', k2Label: 'YoY Growth', k2: '+20.76%', k3Label: 'RMG Textiles', k3: '+13.68%', k4Label: 'Source', k4: 'PIB', v1: 1.12, v2: 20.76, col1: '$1.12B', col2: '+20.76%', col3: 'PIB Sep' },
+          { id: '2026-10', label: 'Oct 2026', k1Label: 'Cotton YoY', k1: '+29.96%', k2Label: 'RMG YoY', k2: '+20.33%', k3Label: 'MMF YoY', k3: '+23.89%', k4Label: 'Carpet YoY', k4: '+20.64%', v1: 1.25, v2: 29.96, col1: '+29.96% YoY', col2: '+20.33% RMG', col3: 'PIB Oct' }
+        ],
+        quarterly: [
+          { id: 'FY26-Q1', label: 'Q1 FY25-26', k1Label: 'RMG Exports', k1: '$4.19B', k2Label: 'Cotton/Handloom', k2: '$2.86B', k3Label: 'Combined', k3: '$7.05B', k4Label: 'Source', k4: 'DGCI&S', v1: 7.05, v2: 12.6, col1: '$4.19B RMG', col2: '$2.86B Cotton', col3: '$7.05B' },
+          { id: 'FY26-Q2', label: 'Q2 FY25-26', k1Label: 'RMG Exports', k1: '$3.57B', k2Label: 'Cotton/Handloom', k2: '$2.94B', k3Label: 'Combined', k3: '$6.51B', k4Label: 'Source', k4: 'DGCI&S', v1: 6.51, v2: 9.8, col1: '$3.57B RMG', col2: '$2.94B Cotton', col3: '$6.51B' },
+          { id: 'FY26-Q4', label: 'Q4 FY25-26', k1Label: 'RMG Exports', k1: '$4.19B', k2Label: 'Cotton/Handloom', k2: '$2.97B', k3Label: 'Combined', k3: '$7.16B', k4Label: 'Source', k4: 'DGCI&S', v1: 7.16, v2: 10.5, col1: '$4.19B RMG', col2: '$2.97B Cotton', col3: '$7.16B' }
+        ],
+        annual: [
+          { id: 'FY20', label: 'FY 2019-20', k1Label: 'T&A Exports', k1: '₹2,49,250 Cr', k2Label: 'CAGR Base', k2: '4.5%', k3Label: 'GDP Share', k3: '2.3%', k4Label: 'Source', k4: 'DGCI&S', v1: 2.49, v2: 4.5, col1: '₹2.49L Cr', col2: 'Base Year', col3: 'DGCI&S' },
+          { id: 'FY26', label: 'FY 2025-26', k1Label: 'T&A Exports', k1: '₹3,25,339 Cr', k2Label: 'YoY Growth', k2: '+2.1%', k3Label: 'Market Size', k3: '$179B', k4Label: 'Export Share', k4: '12%', v1: 3.25, v2: 2.1, col1: '₹3.25L Cr', col2: '$179B Mkt', col3: '+2.1%' }
+        ]
+      },
+      agriculture: {
+        source: 'MoAFW / PIB', chartTitle: 'Foodgrain Output & Agri Exports', chartSub: 'Production (MMT) & Key Agri Export Growth', primaryLabel: 'Output / Exports', secondaryLabel: 'YoY Growth (%)',
+        breakdownTitle: 'Key Agri Commodities & Benchmarks', breakdownSub: 'Latest PIB Crop Estimates & EXIM Releases',
+        breakdown: [
+          { name: 'Foodgrain (AY 2025-26)', primary: '376.56 MMT', secondary: '+5.3% YoY (Record 3rd AE)' },
+          { name: 'Foodgrain (AY 2024-25)', primary: '357.73 MMT', secondary: 'Horticulture: 362.08 MMT' },
+          { name: 'Oct 2026 Rice & Dairy', primary: '+18.39% Rice', secondary: '+34.87% Meat/Dairy/Poultry' },
+          { name: 'Oct 2026 Marine & Spices', primary: '+13.76% Marine', secondary: '+9.11% Spices • +8.51% Coffee' }
+        ],
+        monthly: [
+          { id: '2026-06', label: 'Jun 2026', k1Label: 'Rice Exports', k1: '$1.00B', k2Label: 'Rice YoY', k2: '+16.48%', k3Label: 'Meat/Dairy YoY', k3: '+54.63%', k4Label: 'Marine YoY', k4: '+14.48%', v1: 1.00, v2: 16.48, col1: '$1.00B Rice', col2: '+16.48%', col3: 'PIB Jun' },
+          { id: '2026-08', label: 'Aug 2026', k1Label: 'Rice YoY', k1: '+4.12%', k2Label: 'Meat/Dairy YoY', k2: '+37.08%', k3Label: 'Marine YoY', k3: '+27.76%', k4Label: 'Coffee YoY', k4: '+17.08%', v1: 1.05, v2: 4.12, col1: '+4.12% Rice', col2: '+27.76% Marine', col3: 'PIB Aug' },
+          { id: '2026-09', label: 'Sep 2026', k1Label: 'Rice YoY', k1: '+4.21%', k2Label: 'Meat/Dairy YoY', k2: '+35.18%', k3Label: 'Spices YoY', k3: '+4.01%', k4Label: 'Coffee YoY', k4: '+10.17%', v1: 1.06, v2: 4.21, col1: '+4.21% Rice', col2: '+35.18% Dairy', col3: 'PIB Sep' },
+          { id: '2026-10', label: 'Oct 2026', k1Label: 'Rice YoY', k1: '+18.39%', k2Label: 'Meat/Dairy YoY', k2: '+34.87%', k3Label: 'Marine YoY', k3: '+13.76%', k4Label: 'Cereals YoY', k4: '+87.47%', v1: 1.18, v2: 18.39, col1: '+18.39% Rice', col2: '+13.76% Marine', col3: 'PIB Oct' }
+        ],
+        quarterly: [
+          { id: 'FY26-Q1', label: 'Q1 FY25-26', k1Label: 'Rice Exports', k1: '$2.91B', k2Label: 'Source', k2: 'DGCI&S', k3Label: 'AY26 Output', k3: '376.56 MMT', k4Label: 'YoY Crop', k4: '+5.3%', v1: 2.91, v2: 5.3, col1: '$2.91B Rice', col2: '376.56 MMT', col3: '+5.3%' },
+          { id: 'FY26-Q2', label: 'Q2 FY25-26', k1Label: 'Rice Exports', k1: '$2.73B', k2Label: 'Source', k2: 'DGCI&S', k3Label: 'AY26 Output', k3: '376.56 MMT', k4Label: 'YoY Crop', k4: '+5.3%', v1: 2.73, v2: 5.3, col1: '$2.73B Rice', col2: '376.56 MMT', col3: '+5.3%' },
+          { id: 'FY26-Q4', label: 'Q4 FY25-26', k1Label: 'Rice Exports', k1: '$3.23B', k2Label: 'Source', k2: 'DGCI&S', k3Label: 'AY26 Output', k3: '376.56 MMT', k4Label: 'YoY Crop', k4: '+5.3%', v1: 3.23, v2: 5.3, col1: '$3.23B Rice', col2: '376.56 MMT', col3: '+5.3%' }
+        ],
+        annual: [
+          { id: 'AY25', label: 'AY 2024-25', k1Label: 'Foodgrain', k1: '357.73 MMT', k2Label: 'Horticulture', k2: '362.08 MMT', k3Label: 'Source', k3: 'MoAFW', k4Label: 'Status', k4: 'Final/Rev', v1: 357.73, v2: 362.08, col1: '357.73 MMT', col2: '362.08 MMT', col3: 'MoAFW' },
+          { id: 'AY26', label: 'AY 2025-26', k1Label: 'Foodgrain', k1: '376.56 MMT', k2Label: 'YoY Growth', k2: '+5.3%', k3Label: 'Estimate', k3: '3rd AE', k4Label: 'Source', k4: 'PIB', v1: 376.56, v2: 5.3, col1: '376.56 MMT', col2: '+5.3% YoY', col3: '3rd AE' }
+        ]
+      },
+      it: {
+        source: 'NASSCOM / Q2 FY27 Filings', chartTitle: 'IT & Services Exports / Revenue', chartSub: 'Monthly Services Exports ($B) & Annual Industry Revenue ($B)', primaryLabel: 'Revenue / Exports ($B)', secondaryLabel: 'Net Surplus / YoY',
+        breakdownTitle: 'Top IT Majors — Q2 FY27 Results', breakdownSub: 'Quarter ended Sep 30, 2026',
+        breakdown: [
+          { name: 'TCS', primary: '$7.64B', secondary: '+2.4% YoY • 24.0% OPM • $9.6B TCV' },
+          { name: 'Infosys', primary: '₹49,244 Cr ($5.15B)', secondary: '+10.7% YoY • 21.0% OPM • $5.2B TCV' },
+          { name: 'HCLTech', primary: '₹35,620 Cr', secondary: '+11.5% YoY • 18.2% EBIT • $3.3B TCV' },
+          { name: 'Wipro', primary: '₹24,750 Cr', secondary: '+9.1% YoY • 16.5% IT EBIT' },
+          { name: 'Tech Mahindra', primary: '₹16,180 Cr', secondary: '+15.6% YoY • 14.8% EBIT' }
+        ],
+        monthly: [
+          { id: '2026-06', label: 'Jun 2026', k1Label: 'Services Exp.', k1: '$33.03B', k2Label: 'Services Imp.', k2: '$17.92B', k3Label: 'Net Surplus', k3: '$15.11B', k4Label: 'Source', k4: 'RBI/PIB', v1: 33.03, v2: 15.11, col1: '$33.03B', col2: '$17.92B', col3: '+$15.11B' },
+          { id: '2026-07', label: 'Jul 2026', k1Label: 'Services Exp.', k1: '$35.89B', k2Label: 'Services Imp.', k2: '$18.94B', k3Label: 'Net Surplus', k3: '$16.95B', k4Label: 'Source', k4: 'RBI/PIB', v1: 35.89, v2: 16.95, col1: '$35.89B', col2: '$18.94B', col3: '+$16.95B' },
+          { id: '2026-08', label: 'Aug 2026', k1Label: 'Services Exp.', k1: '$38.87B', k2Label: 'Services Imp.', k2: '$21.42B', k3Label: 'Net Surplus', k3: '$17.45B', k4Label: 'Source', k4: 'RBI/PIB', v1: 38.87, v2: 17.45, col1: '$38.87B', col2: '$21.42B', col3: '+$17.45B' },
+          { id: '2026-09', label: 'Sep 2026', k1Label: 'Services Exp.', k1: '$36.35B', k2Label: 'Services Imp.', k2: '$19.44B', k3Label: 'Net Surplus', k3: '$16.91B', k4Label: 'Source', k4: 'RBI/PIB', v1: 36.35, v2: 16.91, col1: '$36.35B', col2: '$19.44B', col3: '+$16.91B' },
+          { id: '2026-10', label: 'Oct 2026', k1Label: 'Services Exp.', k1: '$40.51B', k2Label: 'Services Imp.', k2: '$20.72B', k3Label: 'Net Surplus', k3: '$19.79B', k4Label: 'Source', k4: 'PIB Est.', v1: 40.51, v2: 19.79, col1: '$40.51B', col2: '$20.72B', col3: '+$19.79B' }
+        ],
+        quarterly: [
+          { id: 'FY27-Q1', label: 'Q1 FY26-27', k1Label: 'Services Exp.', k1: '$103.41B', k2Label: 'Services Imp.', k2: '$53.97B', k3Label: 'Surplus', k3: '$49.43B', k4Label: 'YoY Exp', k4: '+6.16%', v1: 103.41, v2: 6.16, col1: '$103.41B', col2: '$49.43B Surp.', col3: '+6.16%' },
+          { id: 'FY27-Q2', label: 'Q2 FY26-27', k1Label: 'Services Exp.', k1: '$112.90B', k2Label: 'TCS + Infy', k2: '$12.79B', k3Label: 'Surplus', k3: '$53.27B', k4Label: 'AI Surge', k4: '+29% Infy', v1: 112.90, v2: 11.2, col1: '$112.90B', col2: '5 Majors Rep.', col3: '+10.7% Infy' }
+        ],
+        annual: [
+          { id: 'FY25', label: 'FY 2024-25', k1Label: 'Tech Revenue', k1: '$282.6B', k2Label: 'YoY Growth', k2: '+5.1%', k3Label: 'Services Exp.', k3: '$387.55B', k4Label: 'Source', k4: 'NASSCOM', v1: 282.6, v2: 5.1, col1: '$282.6B', col2: '+5.1%', col3: 'NASSCOM' },
+          { id: 'FY26', label: 'FY 2025-26', k1Label: 'Tech Revenue', k1: '$315.0B', k2Label: 'YoY Growth', k2: '+6.1%', k3Label: 'Services Exp.', k3: '$418.31B', k4Label: 'Source', k4: 'NASSCOM', v1: 315.0, v2: 6.1, col1: '$315.0B', col2: '+6.1%', col3: 'NASSCOM' }
+        ]
+      },
+      gst: {
+        source: 'GSTN / Ministry of Finance', chartTitle: 'Gross GST Collection Trend', chartSub: '₹ Lakh Crore (Monthly, Quarterly & Annual)', primaryLabel: 'Gross GST (₹L Cr)', secondaryLabel: 'YoY Growth (%)',
+        breakdownTitle: 'FY 2026-27 (Apr–Oct) GST Mix', breakdownSub: 'Cumulative 7M Gross: ₹14.78L Cr (+13.2% YoY)',
+        breakdown: [
+          { name: 'Net GST (Apr–Oct 2026)', primary: '₹12,69,486 Cr', secondary: '+12.6% YoY after refunds' },
+          { name: 'Import GST Share', primary: '30.1% of Gross', secondary: '+29.3% YoY (58% of gain)' },
+          { name: 'Domestic GST Growth', primary: '+7.4% YoY', secondary: 'Sep Dom: ₹1.38L Cr (+10.1%)' },
+          { name: 'Active GSTINs (Oct 31)', primary: '1.72 Crore', secondary: '1,72,38,566 active taxpayers' }
+        ],
+        monthly: [
+          { id: '2026-03', label: 'Mar 2026', k1Label: 'Gross GST', k1: '₹2.00L Cr', k2Label: 'FY26 Close', k2: '₹22.27L Cr', k3Label: 'Status', k3: 'Final', k4Label: 'Source', k4: 'GSTN', v1: 2.00, v2: 8.3, col1: '₹2.00L Cr', col2: 'FY26 Close', col3: 'GSTN' },
+          { id: '2026-04', label: 'Apr 2026', k1Label: 'Gross GST', k1: '₹2.43L Cr', k2Label: 'Exact', k2: '₹2,43,286 Cr', k3Label: 'YoY Growth', k3: '+12.6%', k4Label: 'Note', k4: 'All-time high', v1: 2.43, v2: 12.6, col1: '₹2.43L Cr', col2: '+12.6%', col3: 'Record' },
+          { id: '2026-05', label: 'May 2026', k1Label: 'Gross GST', k1: '₹1.95L Cr', k2Label: 'Exact', k2: '₹1,94,811 Cr', k3Label: 'YoY Growth', k3: '+16.4%', k4Label: 'Source', k4: 'GSTN', v1: 1.95, v2: 16.4, col1: '₹1.95L Cr', col2: '+16.4%', col3: 'GSTN' },
+          { id: '2026-06', label: 'Jun 2026', k1Label: 'Gross GST', k1: '₹1.95L Cr', k2Label: 'Exact', k2: '₹1,94,812 Cr', k3Label: 'YoY Growth', k3: '+13.9%', k4Label: 'Source', k4: 'GSTN', v1: 1.95, v2: 13.9, col1: '₹1.95L Cr', col2: '+13.9%', col3: 'GSTN' },
+          { id: '2026-07', label: 'Jul 2026', k1Label: 'Gross GST', k1: '₹2.11L Cr', k2Label: 'Net GST', k2: '₹1,81,237 Cr', k3Label: 'YoY Growth', k3: '+15.4%', k4Label: 'Imports YoY', k4: '+28.8%', v1: 2.11, v2: 15.4, col1: '₹2.11L Cr', col2: '+15.4%', col3: 'Net ₹1.81L Cr' },
+          { id: '2026-08', label: 'Aug 2026', k1Label: 'Gross GST', k1: '₹2.00L Cr', k2Label: 'Exact', k2: '₹1,99,853 Cr', k3Label: 'YoY Growth', k3: '+14.8%', k4Label: 'Source', k4: 'GSTN', v1: 2.00, v2: 14.8, col1: '₹2.00L Cr', col2: '+14.8%', col3: 'GSTN' },
+          { id: '2026-09', label: 'Sep 2026', k1Label: 'Gross GST', k1: '₹2.04L Cr', k2Label: 'Exact', k2: '₹2,03,521 Cr', k3Label: 'YoY Growth', k3: '+14.7%', k4Label: 'Domestic', k4: '₹1.38L Cr', v1: 2.04, v2: 14.7, col1: '₹2.04L Cr', col2: '+14.7%', col3: 'GSTN' },
+          { id: '2026-10', label: 'Oct 2026', k1Label: 'Gross GST', k1: '₹2.31L Cr', k2Label: 'Exact', k2: '₹2,31,290 Cr', k3Label: 'YoY Growth', k3: '+22.9%', k4Label: 'E-Way Bills', k4: '156.21M', v1: 2.31, v2: 22.9, col1: '₹2.31L Cr', col2: '+22.9%', col3: '156.2M EWB' }
+        ],
+        quarterly: [
+          { id: 'FY27-Q1', label: 'Q1 FY26-27', k1Label: 'Gross GST', k1: '₹6.33L Cr', k2Label: 'Monthly Avg', k2: '₹2.11L Cr', k3Label: 'Peak Month', k3: 'Apr ₹2.43L Cr', k4Label: 'Source', k4: 'GSTN', v1: 6.33, v2: 14.3, col1: '₹6.33L Cr', col2: '₹2.11L/mo', col3: '+14.3%' },
+          { id: 'FY27-Q2', label: 'Q2 FY26-27', k1Label: 'Gross GST', k1: '₹6.15L Cr', k2Label: 'Monthly Avg', k2: '₹2.05L Cr', k3Label: 'Peak Month', k3: 'Jul ₹2.11L Cr', k4Label: 'Source', k4: 'GSTN', v1: 6.15, v2: 15.0, col1: '₹6.15L Cr', col2: '₹2.05L/mo', col3: '+15.0%' }
+        ],
+        annual: [
+          { id: 'FY25', label: 'FY 2024-25', k1Label: 'Gross GST', k1: '₹22.08L Cr', k2Label: 'YoY Growth', k2: '+9.4%', k3Label: 'Source', k3: 'PIB', k4Label: 'Status', k4: 'Full Year', v1: 22.08, v2: 9.4, col1: '₹22.08L Cr', col2: '+9.4%', col3: 'Full FY25' },
+          { id: 'FY26', label: 'FY 2025-26', k1Label: 'Gross (ex-cess)', k1: '₹22.27L Cr', k2Label: 'Incl. Cess', k2: '₹23.32L Cr', k3Label: 'YoY Growth', k3: '+8.3%', k4Label: 'Source', k4: 'PIB/GSTN', v1: 22.27, v2: 8.3, col1: '₹22.27L Cr', col2: '₹23.32L Cr', col3: '+8.3%' },
+          { id: 'FY27-YTD', label: 'FY27 (7M)', k1Label: 'Gross (Apr–Oct)', k1: '₹14.78L Cr', k2Label: 'Net GST', k2: '₹12.69L Cr', k3Label: 'YoY Growth', k3: '+13.2%', k4Label: 'Import Share', k4: '30.1%', v1: 14.78, v2: 13.2, col1: '₹14.78L Cr', col2: '₹12.69L Cr', col3: '+13.2%' }
+        ]
+      },
+      upi: {
+        source: 'NPCI Official Statistics', chartTitle: 'UPI Transaction Volume & Value', chartSub: 'Volume (Billions) & Value (₹ Lakh Crore)', primaryLabel: 'Volume (Bn)', secondaryLabel: 'Value (₹L Cr)',
+        breakdownTitle: 'UPI Ecosystem & App Market Share', breakdownSub: 'Oct 2026: 758 Live Banks • 55.49 Cr+ Users',
+        breakdown: [
+          { name: 'PhonePe', primary: '46.26% Value Share', secondary: 'Market leader' },
+          { name: 'Google Pay', primary: '32.75% Value Share', secondary: 'No. 2 UPI app' },
+          { name: 'Paytm', primary: '7.91% Value Share', secondary: 'No. 3 UPI app' },
+          { name: 'Other Apps (Navi/CRED/BHIM)', primary: '13.08% Combined', secondary: '30% volume cap policy' }
+        ],
+        monthly: [
+          { id: '2026-04', label: 'Apr 2026', k1Label: 'Volume', k1: '22.35 Bn', k2Label: 'Value', k2: '₹29.03L Cr', k3Label: 'Live Banks', k3: '713', k4Label: 'Avg Ticket', k4: '₹1,299', v1: 22.35, v2: 29.03, col1: '22.35 Bn', col2: '₹29.03L Cr', col3: '713 Banks' },
+          { id: '2026-05', label: 'May 2026', k1Label: 'Volume', k1: '23.20 Bn', k2Label: 'Value', k2: '₹29.90L Cr', k3Label: 'Live Banks', k3: '720', k4Label: 'Avg Ticket', k4: '₹1,289', v1: 23.20, v2: 29.90, col1: '23.20 Bn', col2: '₹29.90L Cr', col3: '720 Banks' },
+          { id: '2026-06', label: 'Jun 2026', k1Label: 'Volume', k1: '22.72 Bn', k2Label: 'Value', k2: '₹28.92L Cr', k3Label: 'Live Banks', k3: '731', k4Label: 'Users', k4: '55.49 Cr', v1: 22.72, v2: 28.92, col1: '22.72 Bn', col2: '₹28.92L Cr', col3: '731 Banks' },
+          { id: '2026-07', label: 'Jul 2026', k1Label: 'Volume', k1: '23.66 Bn', k2Label: 'Value', k2: '₹29.88L Cr', k3Label: 'Live Banks', k3: '741', k4Label: 'Daily Avg', k4: '763M/day', v1: 23.66, v2: 29.88, col1: '23.66 Bn', col2: '₹29.88L Cr', col3: '741 Banks' },
+          { id: '2026-08', label: 'Aug 2026', k1Label: 'Volume', k1: '24.51 Bn', k2Label: 'Value', k2: '₹29.82L Cr', k3Label: 'Live Banks', k3: '752', k4Label: 'Avg Ticket', k4: '₹1,217', v1: 24.51, v2: 29.82, col1: '24.51 Bn', col2: '₹29.82L Cr', col3: '752 Banks' },
+          { id: '2026-09', label: 'Sep 2026', k1Label: 'Volume', k1: '24.07 Bn', k2Label: 'Value', k2: '₹29.37L Cr', k3Label: 'Live Banks', k3: '756', k4Label: 'Daily Avg', k4: '802M/day', v1: 24.07, v2: 29.37, col1: '24.07 Bn', col2: '₹29.37L Cr', col3: '756 Banks' },
+          { id: '2026-10', label: 'Oct 2026', k1Label: 'Volume', k1: '25.47 Bn', k2Label: 'Value', k2: '₹31.53L Cr', k3Label: 'Live Banks', k3: '758', k4Label: 'Milestone', k4: '>₹30T/mo', v1: 25.47, v2: 31.53, col1: '25.47 Bn', col2: '₹31.53L Cr', col3: '758 Banks' }
+        ],
+        quarterly: [
+          { id: 'FY27-Q1', label: 'Q1 FY26-27', k1Label: 'Volume', k1: '68.26 Bn', k2Label: 'Value', k2: '₹87.86L Cr', k3Label: 'Avg/Month', k3: '22.75 Bn', k4Label: 'Banks (Jun)', k4: '731', v1: 68.26, v2: 87.86, col1: '68.26 Bn', col2: '₹87.86L Cr', col3: 'Q1 FY27' },
+          { id: 'FY27-Q2', label: 'Q2 FY26-27', k1Label: 'Volume', k1: '72.24 Bn', k2Label: 'Value', k2: '₹89.08L Cr', k3Label: 'Avg/Month', k3: '24.08 Bn', k4Label: 'Banks (Sep)', k4: '756', v1: 72.24, v2: 89.08, col1: '72.24 Bn', col2: '₹89.08L Cr', col3: 'Q2 FY27' },
+          { id: 'FY27-H1', label: 'H1 FY26-27', k1Label: 'Volume', k1: '140.50 Bn', k2Label: 'Value', k2: '₹176.93L Cr', k3Label: 'Avg/Month', k3: '23.42 Bn', k4Label: 'Source', k4: 'NPCI', v1: 140.50, v2: 176.93, col1: '140.50 Bn', col2: '₹176.93L Cr', col3: 'H1 FY27' }
+        ],
+        annual: [
+          { id: 'FY26', label: 'FY 2025-26', k1Label: 'Total Volume', k1: '241.62 Bn', k2Label: 'Total Value', k2: '₹314.23L Cr', k3Label: 'Throughput', k3: '~7,600/sec', k4Label: 'Source', k4: 'NPCI / Lok Sabha', v1: 241.62, v2: 314.23, col1: '241.62 Bn', col2: '₹314.23L Cr', col3: 'Full FY26' },
+          { id: 'FY27-YTD', label: 'FY27 (7M)', k1Label: 'Apr–Oct Vol', k1: '165.97 Bn', k2Label: 'Apr–Oct Val', k2: '₹208.46L Cr', k3Label: 'Live Banks', k3: '758', k4Label: 'Source', k4: 'NPCI', v1: 165.97, v2: 208.46, col1: '165.97 Bn', col2: '₹208.46L Cr', col3: 'Apr–Oct' }
+        ]
+      }
     };
 
-    let charts = { main: null, balance: null, cushion: null, commodity: null };
+    let hostedMonths = [];
+    const state = { activeSector: 'trade', timeframe: 'monthly', segment: 'total', activeTab: 'overview', selectedPeriodId: '2026-10', sectorPeriodId: null };
+    let charts = { main: null, balance: null, cushion: null, commodity: null, sector: null };
 
     function getSeries() {
       if (state.timeframe === 'monthly') {
         const merged = [...BASE_MONTHLY];
-        hostedMonths.forEach(hm => {
-          const idx = merged.findIndex(m => m.id === hm.id);
-          if (idx >= 0) merged[idx] = hm;
-          else merged.push(hm);
-        });
-        customMonths.forEach(cm => {
-          const idx = merged.findIndex(m => m.id === cm.id);
-          if (idx >= 0) merged[idx] = cm;
-          else merged.push(cm);
-        });
+        hostedMonths.forEach(hm => { const idx = merged.findIndex(m => m.id === hm.id); if (idx >= 0) merged[idx] = hm; else merged.push(hm); });
         return merged.sort((a, b) => a.id.localeCompare(b.id));
       }
       if (state.timeframe === 'quarterly') return QUARTERLY_DATA;
@@ -408,510 +449,210 @@
     }
 
     function getMetricsForRow(row) {
-      if (state.segment === 'merchandise') {
-        return { exp: row.merchExp, imp: row.merchImp, bal: +(row.merchExp - row.merchImp).toFixed(2), yoyExp: row.yoyExp };
-      }
-      if (state.segment === 'services') {
-        return { exp: row.servExp, imp: row.servImp, bal: +(row.servExp - row.servImp).toFixed(2), yoyExp: row.yoyExp };
-      }
-      if (state.segment === 'core') {
-        const ce = row.coreExp ?? null;
-        const ci = row.coreImp ?? null;
-        return { exp: ce, imp: ci, bal: (ce !== null && ci !== null) ? +(ce - ci).toFixed(2) : null, yoyExp: null };
-      }
+      if (state.segment === 'merchandise') return { exp: row.merchExp, imp: row.merchImp, bal: +(row.merchExp - row.merchImp).toFixed(2), yoyExp: row.yoyExp };
+      if (state.segment === 'services') return { exp: row.servExp, imp: row.servImp, bal: +(row.servExp - row.servImp).toFixed(2), yoyExp: row.yoyExp };
+      if (state.segment === 'core') { const ce = row.coreExp ?? null; const ci = row.coreImp ?? null; return { exp: ce, imp: ci, bal: (ce !== null && ci !== null) ? +(ce - ci).toFixed(2) : null, yoyExp: null }; }
       return { exp: row.totalExp, imp: row.totalImp, bal: row.balance, yoyExp: row.yoyExp };
     }
 
-    function fmtB(val) {
-      if (val === null || val === undefined || Number.isNaN(val)) return 'N/A';
-      const sign = val < 0 ? '-' : '';
-      return `${sign}$${Math.abs(val).toFixed(2)}B`;
-    }
+    function fmtB(val) { return (val === null || val === undefined || Number.isNaN(val)) ? 'N/A' : `${val < 0 ? '-' : ''}$${Math.abs(val).toFixed(2)}B`; }
+    function showToast(msg) { const el = document.getElementById('toast'); el.textContent = msg; el.classList.remove('hidden'); setTimeout(() => el.classList.add('hidden'), 2600); }
+    function getChartColors() { const dark = document.documentElement.classList.contains('dark'); return { grid: dark ? 'rgba(148, 163, 184, 0.12)' : 'rgba(15, 23, 42, 0.08)', tick: dark ? '#94a3b8' : '#64748b' }; }
 
-    function showToast(msg) {
-      const el = document.getElementById('toast');
-      el.textContent = msg;
-      el.classList.remove('hidden');
-      setTimeout(() => el.classList.add('hidden'), 2600);
-    }
-
-    // =========================================================================
-    // 3. RENDERING
-    // =========================================================================
     function renderControls() {
-      document.querySelectorAll('.tf-btn').forEach(btn => {
-        const active = btn.dataset.tf === state.timeframe;
-        btn.className = `tf-btn py-2 px-3 rounded-xl text-xs sm:text-sm font-semibold transition ${
-          active ? 'bg-white dark:bg-surface-800 text-emerald-600 dark:text-emerald-400 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
-        }`;
-      });
+      document.querySelectorAll('.tf-btn').forEach(btn => { const active = btn.dataset.tf === state.timeframe; btn.className = `tf-btn py-2 px-3 rounded-xl text-xs sm:text-sm font-semibold transition ${active ? 'bg-white dark:bg-surface-800 text-emerald-600 dark:text-emerald-400 shadow-sm' : 'text-slate-600 dark:text-slate-400'}`; });
+      document.querySelectorAll('.seg-btn').forEach(btn => { const active = btn.dataset.seg === state.segment; btn.className = `seg-btn py-1.5 px-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition text-center truncate border ${active ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm' : 'bg-white dark:bg-surface-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800'}`; });
+      document.querySelectorAll('.nav-tab').forEach(btn => { const active = btn.dataset.tab === state.activeTab; btn.className = `nav-tab flex flex-col items-center py-1.5 rounded-xl text-[11px] font-semibold transition ${active ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400'}`; });
+    }
 
-      document.querySelectorAll('.seg-btn').forEach(btn => {
-        const active = btn.dataset.seg === state.segment;
-        btn.className = `seg-btn py-1.5 px-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition text-center truncate border ${
-          active ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm' : 'bg-white dark:bg-surface-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800'
-        }`;
-      });
-
-      document.querySelectorAll('.nav-tab').forEach(btn => {
-        const active = btn.dataset.tab === state.activeTab;
-        btn.className = `nav-tab flex flex-col items-center py-1.5 rounded-xl text-[11px] font-semibold transition ${
-          active ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400'
-        }`;
-      });
-
-      document.querySelectorAll('.tab-view').forEach(sec => {
-        sec.classList.toggle('hidden', sec.id !== `view-${state.activeTab}`);
-      });
+    function renderSectorMenu() {
+      document.getElementById('sectorMenuList').innerHTML = SECTORS.map((s, idx) => {
+        const active = s.id === state.activeSector;
+        return `<button data-sector="${s.id}" class="sector-menu-item w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-left transition ${active ? 'bg-emerald-600 text-white shadow-sm' : 'hover:bg-slate-100 dark:hover:bg-surface-850 text-slate-800 dark:text-slate-100'}"><div class="flex items-center gap-3"><span class="w-6 h-6 rounded-lg text-xs font-bold flex items-center justify-center ${active ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-surface-800 text-slate-500 dark:text-slate-400'}">${idx + 1}</span><div><p class="text-sm font-bold leading-tight">${s.name}</p><p class="text-[11px] ${active ? 'text-emerald-100' : 'text-slate-500 dark:text-slate-400'}">${s.sub}</p></div></div>${active ? '<span class="text-xs font-bold">●</span>' : ''}</button>`;
+      }).join('');
     }
 
     function renderOverview() {
       const series = getSeries();
-      if (!series.some(r => r.id === state.selectedPeriodId)) {
-        state.selectedPeriodId = series[series.length - 1].id;
-      }
+      if (!series.some(r => r.id === state.selectedPeriodId)) state.selectedPeriodId = series[series.length - 1].id;
       const selected = series.find(r => r.id === state.selectedPeriodId) || series[series.length - 1];
       const m = getMetricsForRow(selected);
-
-      // Period pills
-      const pillsEl = document.getElementById('periodPills');
-      pillsEl.innerHTML = series.map(r => {
-        const active = r.id === selected.id;
-        return `<button data-pid="${r.id}" class="pid-btn shrink-0 px-3 py-1.5 rounded-xl text-xs font-semibold transition border ${
-          active ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-transparent shadow-sm' : 'bg-white dark:bg-surface-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800'
-        }">${r.label}</button>`;
-      }).join('');
-
-      // KPI Cards
+      document.getElementById('periodPills').innerHTML = series.map(r => `<button data-pid="${r.id}" class="pid-btn shrink-0 px-3 py-1.5 rounded-xl text-xs font-semibold transition border ${r.id === selected.id ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-transparent shadow-sm' : 'bg-white dark:bg-surface-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800'}">${r.label}</button>`).join('');
       const balColor = m.bal === null ? 'text-slate-400' : (m.bal >= 0 ? 'text-emerald-500' : 'text-rose-500');
-      const yoyBadge = m.yoyExp !== null && m.yoyExp !== undefined
-        ? `<span class="text-[11px] font-semibold px-1.5 py-0.5 rounded-md ${m.yoyExp >= 0 ? 'bg-emerald-500/15 text-emerald-500' : 'bg-rose-500/15 text-rose-500'}">${m.yoyExp >= 0 ? '+' : ''}${m.yoyExp.toFixed(2)}% YoY</span>`
-        : `<span class="text-[11px] text-slate-400">${selected.sub || selected.source}</span>`;
-
+      const yoyBadge = m.yoyExp !== null && m.yoyExp !== undefined ? `<span class="text-[11px] font-semibold px-1.5 py-0.5 rounded-md ${m.yoyExp >= 0 ? 'bg-emerald-500/15 text-emerald-500' : 'bg-rose-500/15 text-rose-500'}">${m.yoyExp >= 0 ? '+' : ''}${m.yoyExp.toFixed(2)}% YoY</span>` : `<span class="text-[11px] text-slate-400">${selected.sub || selected.source}</span>`;
       const totalVol = (m.exp !== null && m.imp !== null) ? +(m.exp + m.imp).toFixed(2) : null;
-
       document.getElementById('kpiGrid').innerHTML = `
-        <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-3.5 shadow-sm">
-          <div class="flex items-center justify-between gap-1 mb-1">
-            <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Exports</span>
-            ${yoyBadge}
-          </div>
-          <p class="text-xl sm:text-2xl font-extrabold text-emerald-600 dark:text-emerald-400">${fmtB(m.exp)}</p>
-          <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">${selected.label} • ${selected.source}</p>
-        </div>
-        <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-3.5 shadow-sm">
-          <div class="flex items-center justify-between gap-1 mb-1">
-            <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Imports</span>
-          </div>
-          <p class="text-xl sm:text-2xl font-extrabold text-amber-600 dark:text-amber-400">${fmtB(m.imp)}</p>
-          <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">Inward flow (${state.segment})</p>
-        </div>
-        <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-3.5 shadow-sm">
-          <div class="flex items-center justify-between gap-1 mb-1">
-            <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Trade Balance</span>
-          </div>
-          <p class="text-xl sm:text-2xl font-extrabold ${balColor}">${fmtB(m.bal)}</p>
-          <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">${m.bal !== null && m.bal >= 0 ? 'Net Surplus' : 'Net Deficit'}</p>
-        </div>
-        <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-3.5 shadow-sm">
-          <div class="flex items-center justify-between gap-1 mb-1">
-            <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Volume</span>
-          </div>
-          <p class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">${fmtB(totalVol)}</p>
-          <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">Exports + Imports</p>
-        </div>
-      `;
-
-      // Snapshot Breakdown
+        <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-3.5 shadow-sm"><div class="flex items-center justify-between gap-1 mb-1"><span class="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Exports</span>${yoyBadge}</div><p class="text-xl sm:text-2xl font-extrabold text-emerald-600 dark:text-emerald-400">${fmtB(m.exp)}</p><p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">${selected.label} • ${selected.source}</p></div>
+        <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-3.5 shadow-sm"><div class="flex items-center justify-between gap-1 mb-1"><span class="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Imports</span></div><p class="text-xl sm:text-2xl font-extrabold text-amber-600 dark:text-amber-400">${fmtB(m.imp)}</p><p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">Inward flow (${state.segment})</p></div>
+        <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-3.5 shadow-sm"><div class="flex items-center justify-between gap-1 mb-1"><span class="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Trade Balance</span></div><p class="text-xl sm:text-2xl font-extrabold ${balColor}">${fmtB(m.bal)}</p><p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">${m.bal !== null && m.bal >= 0 ? 'Net Surplus' : 'Net Deficit'}</p></div>
+        <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-3.5 shadow-sm"><div class="flex items-center justify-between gap-1 mb-1"><span class="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Volume</span></div><p class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">${fmtB(totalVol)}</p><p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">Exports + Imports</p></div>`;
       document.getElementById('snapshotPeriodLabel').textContent = `${selected.label} (${selected.sub || selected.source})`;
       const merchBal = +(selected.merchExp - selected.merchImp).toFixed(2);
       const servBal = +(selected.servExp - selected.servImp).toFixed(2);
       document.getElementById('snapshotBreakdown').innerHTML = `
-        <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-surface-850">
-          <span class="text-xs font-semibold">Merchandise Exports / Imports</span>
-          <span class="text-xs font-bold">${fmtB(selected.merchExp)} / ${fmtB(selected.merchImp)}</span>
-        </div>
-        <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-surface-850">
-          <span class="text-xs font-semibold">Merchandise Balance</span>
-          <span class="text-xs font-bold text-rose-500">${fmtB(merchBal)}</span>
-        </div>
-        <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-surface-850">
-          <span class="text-xs font-semibold">Services Exports / Imports</span>
-          <span class="text-xs font-bold">${fmtB(selected.servExp)} / ${fmtB(selected.servImp)}</span>
-        </div>
-        <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-surface-850">
-          <span class="text-xs font-semibold">Services Surplus</span>
-          <span class="text-xs font-bold text-emerald-500">+${fmtB(servBal)}</span>
-        </div>
-      `;
-
-      // Charts
-      renderOverviewCharts(series);
-    }
-
-    function getChartColors() {
-      const dark = document.documentElement.classList.contains('dark');
-      return {
-        grid: dark ? 'rgba(148, 163, 184, 0.12)' : 'rgba(15, 23, 42, 0.08)',
-        tick: dark ? '#94a3b8' : '#64748b'
-      };
-    }
-
-    function renderOverviewCharts(series) {
-      const colors = getChartColors();
-      const labels = series.map(r => r.label);
-      const expData = series.map(r => getMetricsForRow(r).exp);
-      const impData = series.map(r => getMetricsForRow(r).imp);
-      const balData = series.map(r => getMetricsForRow(r).bal);
-
+        <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-surface-850"><span class="text-xs font-semibold">Merchandise Exports / Imports</span><span class="text-xs font-bold">${fmtB(selected.merchExp)} / ${fmtB(selected.merchImp)}</span></div>
+        <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-surface-850"><span class="text-xs font-semibold">Merchandise Balance</span><span class="text-xs font-bold text-rose-500">${fmtB(merchBal)}</span></div>
+        <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-surface-850"><span class="text-xs font-semibold">Services Exports / Imports</span><span class="text-xs font-bold">${fmtB(selected.servExp)} / ${fmtB(selected.servImp)}</span></div>
+        <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-surface-850"><span class="text-xs font-semibold">Services Surplus</span><span class="text-xs font-bold text-emerald-500">+${fmtB(servBal)}</span></div>`;
+      const colors = getChartColors(), labels = series.map(r => r.label);
       if (charts.main) charts.main.destroy();
       charts.main = new Chart(document.getElementById('mainTradeChart'), {
         type: 'bar',
-        data: {
-          labels,
-          datasets: [
-            { label: 'Exports ($B)', data: expData, backgroundColor: '#10b981', borderRadius: 6, barPercentage: 0.72 },
-            { label: 'Imports ($B)', data: impData, backgroundColor: '#f59e0b', borderRadius: 6, barPercentage: 0.72 }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          onClick: (_, els) => {
-            if (els.length > 0) {
-              state.selectedPeriodId = series[els[0].index].id;
-              renderOverview();
-            }
-          },
-          plugins: { legend: { labels: { color: colors.tick, boxWidth: 12, font: { size: 11 } } } },
-          scales: {
-            x: { grid: { display: false }, ticks: { color: colors.tick, font: { size: 11 } } },
-            y: { grid: { color: colors.grid }, ticks: { color: colors.tick, font: { size: 11 }, callback: v => `$${v}B` } }
-          }
-        }
+        data: { labels, datasets: [{ label: 'Exports ($B)', data: series.map(r => getMetricsForRow(r).exp), backgroundColor: '#10b981', borderRadius: 6, barPercentage: 0.72 }, { label: 'Imports ($B)', data: series.map(r => getMetricsForRow(r).imp), backgroundColor: '#f59e0b', borderRadius: 6, barPercentage: 0.72 }] },
+        options: { responsive: true, maintainAspectRatio: false, onClick: (_, els) => { if (els.length > 0) { state.selectedPeriodId = series[els[0].index].id; renderOverview(); } }, plugins: { legend: { labels: { color: colors.tick, boxWidth: 12, font: { size: 11 } } } }, scales: { x: { grid: { display: false }, ticks: { color: colors.tick, font: { size: 11 } } }, y: { grid: { color: colors.grid }, ticks: { color: colors.tick, font: { size: 11 }, callback: v => `$${v}B` } } } }
       });
-
       if (charts.balance) charts.balance.destroy();
       charts.balance = new Chart(document.getElementById('balanceChart'), {
         type: 'line',
-        data: {
-          labels,
-          datasets: [{
-            label: 'Trade Balance ($B)',
-            data: balData,
-            borderColor: state.segment === 'services' ? '#10b981' : '#f43f5e',
-            backgroundColor: state.segment === 'services' ? 'rgba(16,185,129,0.15)' : 'rgba(244,63,94,0.15)',
-            fill: true,
-            tension: 0.32,
-            pointRadius: 4
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
-          scales: {
-            x: { grid: { display: false }, ticks: { color: colors.tick, font: { size: 11 } } },
-            y: { grid: { color: colors.grid }, ticks: { color: colors.tick, font: { size: 11 }, callback: v => `$${v}B` } }
-          }
-        }
+        data: { labels, datasets: [{ label: 'Trade Balance ($B)', data: series.map(r => getMetricsForRow(r).bal), borderColor: state.segment === 'services' ? '#10b981' : '#f43f5e', backgroundColor: state.segment === 'services' ? 'rgba(16,185,129,0.15)' : 'rgba(244,63,94,0.15)', fill: true, tension: 0.32, pointRadius: 4 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false }, ticks: { color: colors.tick, font: { size: 11 } } }, y: { grid: { color: colors.grid }, ticks: { color: colors.tick, font: { size: 11 }, callback: v => `$${v}B` } } } }
       });
     }
 
     function renderLedger() {
       const series = getSeries();
       document.getElementById('tableCountBadge').textContent = `${series.length} Periods`;
-      const tbody = document.getElementById('dataTableBody');
-      tbody.innerHTML = [...series].reverse().map(r => {
+      document.getElementById('dataTableBody').innerHTML = [...series].reverse().map(r => {
         const m = getMetricsForRow(r);
         const balCls = m.bal === null ? 'text-slate-400' : (m.bal >= 0 ? 'text-emerald-500' : 'text-rose-500');
         const yoyStr = m.yoyExp !== null && m.yoyExp !== undefined ? `${m.yoyExp >= 0 ? '+' : ''}${m.yoyExp.toFixed(1)}%` : '—';
-        return `
-          <tr data-row-id="${r.id}" class="ledger-row cursor-pointer hover:bg-slate-50 dark:hover:bg-surface-850 transition">
-            <td class="py-2.5 pr-3 font-semibold">${r.label}<div class="text-[10px] font-normal text-slate-400">${r.source}</div></td>
-            <td class="py-2.5 px-2 text-right font-semibold text-emerald-600 dark:text-emerald-400">${fmtB(m.exp)}</td>
-            <td class="py-2.5 px-2 text-right font-semibold text-amber-600 dark:text-amber-400">${fmtB(m.imp)}</td>
-            <td class="py-2.5 px-2 text-right font-bold ${balCls}">${fmtB(m.bal)}</td>
-            <td class="py-2.5 pl-2 text-right text-xs font-medium">${yoyStr}</td>
-          </tr>
-        `;
+        return `<tr data-row-id="${r.id}" class="ledger-row cursor-pointer hover:bg-slate-50 dark:hover:bg-surface-850 transition"><td class="py-2.5 pr-3 font-semibold">${r.label}<div class="text-[10px] font-normal text-slate-400">${r.source}</div></td><td class="py-2.5 px-2 text-right font-semibold text-emerald-600 dark:text-emerald-400">${fmtB(m.exp)}</td><td class="py-2.5 px-2 text-right font-semibold text-amber-600 dark:text-amber-400">${fmtB(m.imp)}</td><td class="py-2.5 px-2 text-right font-bold ${balCls}">${fmtB(m.bal)}</td><td class="py-2.5 pl-2 text-right text-xs font-medium">${yoyStr}</td></tr>`;
       }).join('');
-
       const colors = getChartColors();
       if (charts.cushion) charts.cushion.destroy();
       charts.cushion = new Chart(document.getElementById('cushionChart'), {
         type: 'bar',
-        data: {
-          labels: series.map(r => r.label),
-          datasets: [
-            { label: 'Merchandise Balance', data: series.map(r => +(r.merchExp - r.merchImp).toFixed(2)), backgroundColor: '#f43f5e', borderRadius: 4 },
-            { label: 'Services Surplus', data: series.map(r => +(r.servExp - r.servImp).toFixed(2)), backgroundColor: '#10b981', borderRadius: 4 }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { labels: { color: colors.tick, boxWidth: 12, font: { size: 11 } } } },
-          scales: {
-            x: { grid: { display: false }, ticks: { color: colors.tick, font: { size: 11 } } },
-            y: { grid: { color: colors.grid }, ticks: { color: colors.tick, font: { size: 11 }, callback: v => `$${v}B` } }
-          }
-        }
+        data: { labels: series.map(r => r.label), datasets: [{ label: 'Merchandise Balance', data: series.map(r => +(r.merchExp - r.merchImp).toFixed(2)), backgroundColor: '#f43f5e', borderRadius: 4 }, { label: 'Services Surplus', data: series.map(r => +(r.servExp - r.servImp).toFixed(2)), backgroundColor: '#10b981', borderRadius: 4 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: colors.tick, boxWidth: 12, font: { size: 11 } } } }, scales: { x: { grid: { display: false }, ticks: { color: colors.tick, font: { size: 11 } } }, y: { grid: { color: colors.grid }, ticks: { color: colors.tick, font: { size: 11 }, callback: v => `$${v}B` } } } }
       });
     }
 
     function renderDrivers() {
-      document.getElementById('octDriversList').innerHTML = OCT_DRIVERS.map(d => {
-        const pctWidth = Math.min(100, Math.round((d.val / 13) * 100));
-        return `
-          <div>
-            <div class="flex items-center justify-between text-xs mb-1">
-              <span class="font-semibold">${d.name}</span>
-              <span><strong>$${d.val.toFixed(2)}B</strong> <span class="text-emerald-500 font-semibold">(+${d.yoy.toFixed(1)}%)</span></span>
-            </div>
-            <div class="w-full h-2 rounded-full bg-slate-100 dark:bg-surface-850 overflow-hidden">
-              <div class="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400" style="width:${pctWidth}%"></div>
-            </div>
-          </div>
-        `;
-      }).join('');
-
-      document.getElementById('exportPartnersList').innerHTML = EXPORT_PARTNERS.map(p => `
-        <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-surface-850">
-          <div>
-            <p class="text-xs font-bold">${p.country}</p>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400">Share: ${p.share}</p>
-          </div>
-          <span class="text-xs font-semibold text-emerald-500">${p.growth}</span>
-        </div>
-      `).join('');
-
-      document.getElementById('importPartnersList').innerHTML = IMPORT_PARTNERS.map(p => `
-        <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-surface-850">
-          <div>
-            <p class="text-xs font-bold">${p.country}</p>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400">${p.note}</p>
-          </div>
-          <span class="text-xs font-semibold text-amber-500">${p.growth}</span>
-        </div>
-      `).join('');
-
+      document.getElementById('octDriversList').innerHTML = OCT_DRIVERS.map(d => `<div><div class="flex items-center justify-between text-xs mb-1"><span class="font-semibold">${d.name}</span><span><strong>$${d.val.toFixed(2)}B</strong> <span class="text-emerald-500 font-semibold">(+${d.yoy.toFixed(1)}%)</span></span></div><div class="w-full h-2 rounded-full bg-slate-100 dark:bg-surface-850 overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400" style="width:${Math.min(100, Math.round((d.val / 13) * 100))}%"></div></div></div>`).join('');
+      document.getElementById('exportPartnersList').innerHTML = EXPORT_PARTNERS.map(p => `<div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-surface-850"><div><p class="text-xs font-bold">${p.country}</p><p class="text-[11px] text-slate-500 dark:text-slate-400">Share: ${p.share}</p></div><span class="text-xs font-semibold text-emerald-500">${p.growth}</span></div>`).join('');
+      document.getElementById('importPartnersList').innerHTML = IMPORT_PARTNERS.map(p => `<div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-surface-850"><div><p class="text-xs font-bold">${p.country}</p><p class="text-[11px] text-slate-500 dark:text-slate-400">${p.note}</p></div><span class="text-xs font-semibold text-amber-500">${p.growth}</span></div>`).join('');
       const colors = getChartColors();
       if (charts.commodity) charts.commodity.destroy();
       charts.commodity = new Chart(document.getElementById('commodityChart'), {
         type: 'bar',
-        data: {
-          labels: FY26_COMMODITIES.map(c => c.name),
-          datasets: [{ label: 'FY 2025-26 Exports ($B)', data: FY26_COMMODITIES.map(c => c.val), backgroundColor: ['#10b981', '#06b6d4', '#6366f1', '#f59e0b', '#ec4899'], borderRadius: 6 }]
-        },
-        options: {
-          indexAxis: 'y',
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
-          scales: {
-            x: { grid: { color: colors.grid }, ticks: { color: colors.tick, font: { size: 11 }, callback: v => `$${v}B` } },
-            y: { grid: { display: false }, ticks: { color: colors.tick, font: { size: 11 } } }
-          }
-        }
+        data: { labels: FY26_COMMODITIES.map(c => c.name), datasets: [{ label: 'FY 2025-26 Exports ($B)', data: FY26_COMMODITIES.map(c => c.val), backgroundColor: ['#10b981', '#06b6d4', '#6366f1', '#f59e0b', '#ec4899'], borderRadius: 6 }] },
+        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { color: colors.grid }, ticks: { color: colors.tick, font: { size: 11 }, callback: v => `$${v}B` } }, y: { grid: { display: false }, ticks: { color: colors.tick, font: { size: 11 } } } } }
       });
+    }
+
+    function renderActiveSector() {
+      const secMeta = SECTORS.find(s => s.id === state.activeSector) || SECTORS[0];
+      document.getElementById('appHeaderTitle').textContent = state.activeSector === 'trade' ? 'India Trade Pulse' : `India ${secMeta.name} Pulse`;
+      document.getElementById('appHeaderSub').textContent = secMeta.sub;
+      const isTrade = state.activeSector === 'trade';
+      document.getElementById('tradeSegmentBar').classList.toggle('hidden', !isTrade);
+      document.getElementById('tradeBottomNav').classList.toggle('hidden', !isTrade);
+      document.getElementById('view-sector').classList.toggle('hidden', isTrade);
+      if (isTrade) { document.querySelectorAll('.tab-view').forEach(sec => sec.classList.toggle('hidden', sec.id !== `view-${state.activeTab}`)); return; }
+      document.querySelectorAll('.tab-view').forEach(sec => sec.classList.add('hidden'));
+      const cfg = SECTOR_DATA[state.activeSector], rows = cfg[state.timeframe] || cfg.monthly;
+      if (!rows.some(r => r.id === state.sectorPeriodId)) state.sectorPeriodId = rows[rows.length - 1].id;
+      const sel = rows.find(r => r.id === state.sectorPeriodId) || rows[rows.length - 1];
+      document.getElementById('latestBadge').textContent = `${sel.label} • ${secMeta.name}`;
+      document.getElementById('sectorPeriodPills').innerHTML = rows.map(r => `<button data-spid="${r.id}" class="spid-btn shrink-0 px-3 py-1.5 rounded-xl text-xs font-semibold transition border ${r.id === sel.id ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-transparent shadow-sm' : 'bg-white dark:bg-surface-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800'}">${r.label}</button>`).join('');
+      document.getElementById('sectorKpiGrid').innerHTML = `
+        <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-3.5 shadow-sm"><span class="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">${sel.k1Label}</span><p class="text-xl sm:text-2xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-1">${sel.k1}</p><p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">${sel.label}</p></div>
+        <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-3.5 shadow-sm"><span class="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">${sel.k2Label}</span><p class="text-xl sm:text-2xl font-extrabold text-amber-600 dark:text-amber-400 mt-1">${sel.k2}</p><p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">${cfg.source}</p></div>
+        <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-3.5 shadow-sm"><span class="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">${sel.k3Label}</span><p class="text-xl sm:text-2xl font-extrabold text-indigo-500 mt-1">${sel.k3}</p><p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">Selected Period</p></div>
+        <div class="rounded-2xl bg-white dark:bg-surface-900 border border-slate-200/80 dark:border-slate-800 p-3.5 shadow-sm"><span class="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">${sel.k4Label}</span><p class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-1">${sel.k4}</p><p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">Verified Metric</p></div>`;
+      document.getElementById('sectorChartTitle').textContent = cfg.chartTitle;
+      document.getElementById('sectorChartSub').textContent = cfg.chartSub;
+      document.getElementById('sectorSourceTag').textContent = cfg.source;
+      const colors = getChartColors();
+      if (charts.sector) charts.sector.destroy();
+      charts.sector = new Chart(document.getElementById('sectorMainChart'), {
+        type: 'bar',
+        data: { labels: rows.map(r => r.label), datasets: [{ label: cfg.primaryLabel, data: rows.map(r => r.v1), backgroundColor: '#10b981', borderRadius: 6, yAxisID: 'y' }, { label: cfg.secondaryLabel, data: rows.map(r => r.v2), type: 'line', borderColor: '#f59e0b', backgroundColor: '#f59e0b', tension: 0.3, pointRadius: 4, yAxisID: 'y1' }] },
+        options: { responsive: true, maintainAspectRatio: false, onClick: (_, els) => { if (els.length > 0) { state.sectorPeriodId = rows[els[0].index].id; renderActiveSector(); } }, plugins: { legend: { labels: { color: colors.tick, boxWidth: 12, font: { size: 11 } } } }, scales: { x: { grid: { display: false }, ticks: { color: colors.tick, font: { size: 11 } } }, y: { position: 'left', grid: { color: colors.grid }, ticks: { color: colors.tick, font: { size: 11 } } }, y1: { position: 'right', grid: { display: false }, ticks: { color: colors.tick, font: { size: 11 } } } } }
+      });
+      document.getElementById('sectorBreakdownTitle').textContent = cfg.breakdownTitle;
+      document.getElementById('sectorBreakdownSub').textContent = cfg.breakdownSub;
+      document.getElementById('sectorBreakdownList').innerHTML = cfg.breakdown.map(b => `<div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-surface-850"><div><p class="text-xs font-bold">${b.name}</p><p class="text-[11px] text-slate-500 dark:text-slate-400">${b.secondary}</p></div><span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">${b.primary}</span></div>`).join('');
+      document.getElementById('sectorTableHead').innerHTML = `<tr class="border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-[11px] uppercase"><th class="py-2 pr-2 font-semibold">Period</th><th class="py-2 px-2 font-semibold text-right">Primary</th><th class="py-2 px-2 font-semibold text-right">Secondary</th><th class="py-2 pl-2 font-semibold text-right">Highlight</th></tr>`;
+      document.getElementById('sectorTableBody').innerHTML = [...rows].reverse().map(r => `<tr data-srow="${r.id}" class="srow cursor-pointer hover:bg-slate-50 dark:hover:bg-surface-850"><td class="py-2 pr-2 font-semibold">${r.label}</td><td class="py-2 px-2 text-right font-semibold text-emerald-600 dark:text-emerald-400">${r.col1}</td><td class="py-2 px-2 text-right text-amber-600 dark:text-amber-400 font-semibold">${r.col2}</td><td class="py-2 pl-2 text-right text-xs">${r.col3}</td></tr>`).join('');
     }
 
     function renderAll() {
       renderControls();
+      renderActiveSector();
+      if (state.activeSector !== 'trade') return;
       if (state.activeTab === 'overview') renderOverview();
       else if (state.activeTab === 'trends') renderLedger();
       else if (state.activeTab === 'drivers') renderDrivers();
       const latest = getSeries()[getSeries().length - 1];
       document.getElementById('latestBadge').textContent = `${latest.label} • PIB`;
       const activePill = document.querySelector('.pid-btn[data-pid="' + state.selectedPeriodId + '"]');
-      if (activePill && activePill.scrollIntoView) {
-        activePill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      }
+      if (activePill && activePill.scrollIntoView) activePill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     }
 
-    // =========================================================================
-    // 4. EVENT LISTENERS & INTERACTIVITY
-    // =========================================================================
-    document.querySelectorAll('.tf-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        state.timeframe = btn.dataset.tf;
-        const s = getSeries();
-        state.selectedPeriodId = s[s.length - 1].id;
-        renderAll();
-      });
-    });
+    document.querySelectorAll('.tf-btn').forEach(btn => btn.addEventListener('click', () => { state.timeframe = btn.dataset.tf; if (state.activeSector === 'trade') { const s = getSeries(); state.selectedPeriodId = s[s.length - 1].id; } else state.sectorPeriodId = null; renderAll(); }));
+    document.querySelectorAll('.seg-btn').forEach(btn => btn.addEventListener('click', () => { state.segment = btn.dataset.seg; renderAll(); }));
+    document.querySelectorAll('.nav-tab').forEach(btn => btn.addEventListener('click', () => { state.activeTab = btn.dataset.tab; renderAll(); window.scrollTo({ top: 0, behavior: 'smooth' }); }));
+    document.getElementById('periodPills').addEventListener('click', e => { const btn = e.target.closest('.pid-btn'); if (btn) { state.selectedPeriodId = btn.dataset.pid; renderOverview(); } });
+    document.getElementById('dataTableBody').addEventListener('click', e => { const row = e.target.closest('.ledger-row'); if (row) { state.selectedPeriodId = row.dataset.rowId; state.activeTab = 'overview'; renderAll(); } });
 
-    document.querySelectorAll('.seg-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        state.segment = btn.dataset.seg;
-        renderAll();
-      });
-    });
+    const drawer = document.getElementById('sectorDrawer');
+    const openDrawer = () => { renderSectorMenu(); drawer.classList.remove('hidden'); };
+    const closeDrawer = () => { drawer.classList.add('hidden'); };
+    document.getElementById('btnSectorMenu').addEventListener('click', openDrawer);
+    document.getElementById('closeSectorDrawer').addEventListener('click', closeDrawer);
+    document.getElementById('sectorDrawerBackdrop').addEventListener('click', closeDrawer);
+    document.getElementById('sectorMenuList').addEventListener('click', e => { const btn = e.target.closest('.sector-menu-item'); if (!btn) return; state.activeSector = btn.dataset.sector; state.sectorPeriodId = null; closeDrawer(); renderAll(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    document.getElementById('sectorPeriodPills').addEventListener('click', e => { const btn = e.target.closest('.spid-btn'); if (btn) { state.sectorPeriodId = btn.dataset.spid; renderActiveSector(); } });
+    document.getElementById('sectorTableBody').addEventListener('click', e => { const row = e.target.closest('.srow'); if (row) { state.sectorPeriodId = row.dataset.srow; renderActiveSector(); } });
 
-    document.querySelectorAll('.nav-tab').forEach(btn => {
-      btn.addEventListener('click', () => {
-        state.activeTab = btn.dataset.tab;
-        renderAll();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    });
-
-    document.getElementById('periodPills').addEventListener('click', e => {
-      const btn = e.target.closest('.pid-btn');
-      if (!btn) return;
-      state.selectedPeriodId = btn.dataset.pid;
-      renderOverview();
-    });
-
-    document.getElementById('dataTableBody').addEventListener('click', e => {
-      const row = e.target.closest('.ledger-row');
-      if (!row) return;
-      state.selectedPeriodId = row.dataset.rowId;
-      state.activeTab = 'overview';
-      renderAll();
-    });
-
-    // Sync theme with iOS / OS system settings
-    const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    function applySystemTheme(isDark) {
-      document.documentElement.classList.toggle('dark', isDark);
-      const meta = document.getElementById('metaThemeColor');
-      if (meta) meta.setAttribute('content', isDark ? '#0b1120' : '#ffffff');
-    }
-    applySystemTheme(colorSchemeQuery.matches);
-    colorSchemeQuery.addEventListener('change', e => {
-      applySystemTheme(e.matches);
-      renderAll();
-    });
-
-
-
-    // Export CSV
     document.getElementById('btnExportCsv').addEventListener('click', () => {
       const series = getSeries();
       const header = 'Period,Merchandise_Exports_B,Merchandise_Imports_B,Services_Exports_B,Services_Imports_B,Total_Exports_B,Total_Imports_B,Trade_Balance_B,Source\n';
       const rows = series.map(r => `${r.label},${r.merchExp},${r.merchImp},${r.servExp},${r.servImp},${r.totalExp},${r.totalImp},${r.balance},"${r.source}"`).join('\n');
       const blob = new Blob([header + rows], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `india_trade_${state.timeframe}.csv`;
-      a.click();
-      URL.revokeObjectURL(url);
-      showToast('CSV downloaded');
+      const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `india_trade_${state.timeframe}.csv`; a.click(); URL.revokeObjectURL(url); showToast('CSV downloaded');
+    });
+    document.getElementById('btnSectorCsv').addEventListener('click', () => {
+      if (state.activeSector === 'trade') return;
+      const cfg = SECTOR_DATA[state.activeSector], rows = cfg[state.timeframe] || cfg.monthly;
+      const header = 'Period,Primary,Secondary,Highlight\n', body = rows.map(r => `"${r.label}","${r.col1}","${r.col2}","${r.col3}"`).join('\n');
+      const blob = new Blob([header + body], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `india_${state.activeSector}_${state.timeframe}.csv`; a.click(); URL.revokeObjectURL(url); showToast('CSV downloaded');
     });
 
-    let hostedMonths = [];
+    const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    function applySystemTheme(isDark) { document.documentElement.classList.toggle('dark', isDark); const meta = document.getElementById('metaThemeColor'); if (meta) meta.setAttribute('content', isDark ? '#0b1120' : '#ffffff'); }
+    applySystemTheme(colorSchemeQuery.matches);
+    colorSchemeQuery.addEventListener('change', e => { applySystemTheme(e.matches); renderAll(); });
 
-    // Unified Live Refresh (Hosted PIB JSON Feed + World Bank Authentic Annual API)
     async function refreshFromAuthenticSources(silent = false) {
-      const icon = document.getElementById('refreshIcon');
-      const statusEl = document.getElementById('wbStatus');
-      const resEl = document.getElementById('wbResults');
+      const icon = document.getElementById('refreshIcon'), statusEl = document.getElementById('wbStatus'), resEl = document.getElementById('wbResults');
       if (icon) icon.classList.add('animate-spin');
       statusEl.textContent = 'Fetching live annual trade series from World Bank API...';
-      let pibSynced = false;
-      let wbSynced = false;
+      let pibSynced = false, wbSynced = false;
       const nowStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
+      try { const pibRes = await fetch('./data/trade_data.json?t=' + Date.now()); if (pibRes.ok) { const pibJson = await pibRes.json(); if (Array.isArray(pibJson.monthly) && pibJson.monthly.length) { hostedMonths = pibJson.monthly; pibSynced = true; renderAll(); } } } catch (_) {}
       try {
-        const pibRes = await fetch('./data/trade_data.json?t=' + Date.now());
-        if (pibRes.ok) {
-          const pibJson = await pibRes.json();
-          if (Array.isArray(pibJson.monthly) && pibJson.monthly.length) {
-            hostedMonths = pibJson.monthly;
-            pibSynced = true;
-            renderAll();
-          }
-        }
-      } catch (_) {}
-
-      try {
-        const [expRes, impRes] = await Promise.all([
-          fetch('https://api.worldbank.org/v2/country/IND/indicator/NE.EXP.GNFS.CD?format=json&mrv=4'),
-          fetch('https://api.worldbank.org/v2/country/IND/indicator/NE.IMP.GNFS.CD?format=json&mrv=4')
-        ]);
+        const [expRes, impRes] = await Promise.all([fetch('https://api.worldbank.org/v2/country/IND/indicator/NE.EXP.GNFS.CD?format=json&mrv=4'), fetch('https://api.worldbank.org/v2/country/IND/indicator/NE.IMP.GNFS.CD?format=json&mrv=4')]);
         if (!expRes.ok || !impRes.ok) throw new Error('HTTP ' + expRes.status);
-        const expJson = await expRes.json();
-        const impJson = await impRes.json();
+        const expJson = await expRes.json(), impJson = await impRes.json();
         const expRows = (expJson[1] || []).filter(d => d.value !== null).slice(0, 4);
         const impMap = Object.fromEntries((impJson[1] || []).filter(d => d.value !== null).map(d => [d.date, d.value]));
         if (!expRows.length) throw new Error('No recent values');
-        resEl.innerHTML = expRows.map(d => {
-          const eVal = (d.value / 1e9).toFixed(1);
-          const iVal = impMap[d.date] ? (impMap[d.date] / 1e9).toFixed(1) : 'N/A';
-          return `
-            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-surface-850 border border-slate-200/70 dark:border-slate-800">
-              <p class="text-[11px] font-bold text-slate-500">FY/CY ${d.date}</p>
-              <p class="text-xs font-bold text-emerald-500">Exp: $${eVal}B</p>
-              <p class="text-xs font-bold text-amber-500">Imp: $${iVal}B</p>
-            </div>
-          `;
-        }).join('');
-        resEl.classList.remove('hidden');
-        wbSynced = true;
-      } catch (err) {
-        wbSynced = false;
-      }
-
-      if (pibSynced && wbSynced) {
-        statusEl.textContent = `Synced hosted PIB monthly feed & World Bank annual data at ${nowStr}.`;
-        if (!silent) showToast(`Synced PIB + World Bank (${nowStr})`);
-      } else if (pibSynced) {
-        statusEl.textContent = `Synced hosted PIB monthly feed at ${nowStr}. World Bank API is currently unreachable.`;
-        if (!silent) showToast(`Synced PIB feed (${nowStr})`);
-      } else if (wbSynced) {
-        statusEl.textContent = `Synced World Bank annual data at ${nowStr}. Official PIB data active.`;
-        if (!silent) showToast(`Synced World Bank (${nowStr})`);
-      } else {
-        statusEl.textContent = 'Unable to reach World Bank API right now; official PIB data remains active.';
-        if (!silent) showToast('Live sync unavailable; showing verified PIB data');
-      }
+        resEl.innerHTML = expRows.map(d => `<div class="p-2.5 rounded-xl bg-slate-50 dark:bg-surface-850 border border-slate-200/70 dark:border-slate-800"><p class="text-[11px] font-bold text-slate-500">FY/CY ${d.date}</p><p class="text-xs font-bold text-emerald-500">Exp: $${(d.value / 1e9).toFixed(1)}B</p><p class="text-xs font-bold text-amber-500">Imp: $${impMap[d.date] ? (impMap[d.date] / 1e9).toFixed(1) : 'N/A'}B</p></div>`).join('');
+        resEl.classList.remove('hidden'); wbSynced = true;
+      } catch (_) { wbSynced = false; }
+      if (pibSynced && wbSynced) { statusEl.textContent = `Synced hosted PIB monthly feed & World Bank annual data at ${nowStr}.`; if (!silent) showToast(`Synced PIB + World Bank (${nowStr})`); }
+      else if (pibSynced) { statusEl.textContent = `Synced hosted PIB monthly feed at ${nowStr}. World Bank API is currently unreachable.`; if (!silent) showToast(`Synced PIB feed (${nowStr})`); }
+      else if (wbSynced) { statusEl.textContent = `Synced World Bank annual data at ${nowStr}. Official PIB data active.`; if (!silent) showToast(`Synced World Bank (${nowStr})`); }
+      else { statusEl.textContent = 'Unable to reach World Bank API right now; official PIB data remains active.'; if (!silent) showToast('Live sync unavailable; showing verified PIB data'); }
       if (icon) icon.classList.remove('animate-spin');
     }
 
     document.getElementById('btnRefreshLive').addEventListener('click', () => refreshFromAuthenticSources(false));
     document.getElementById('btnSyncWb').addEventListener('click', () => refreshFromAuthenticSources(false));
-
-    // Legacy listener placeholder removed below
-    if (false) document.getElementById('btnSyncWb').addEventListener('click', async () => {
-      const statusEl = document.getElementById('wbStatus');
-      const resEl = document.getElementById('wbResults');
-      statusEl.textContent = 'Fetching live annual trade series from World Bank API...';
-      try {
-        const [expRes, impRes] = await Promise.all([
-          fetch('https://api.worldbank.org/v2/country/IND/indicator/BX.GSR.GNFS.CD?format=json&per_page=6'),
-          fetch('https://api.worldbank.org/v2/country/IND/indicator/BM.GSR.GNFS.CD?format=json&per_page=6')
-        ]);
-        const expJson = await expRes.json();
-        const impJson = await impRes.json();
-        const expRows = (expJson[1] || []).filter(d => d.value !== null).slice(0, 4);
-        const impMap = Object.fromEntries((impJson[1] || []).filter(d => d.value !== null).map(d => [d.date, d.value]));
-        if (!expRows.length) throw new Error('No data');
-        resEl.innerHTML = expRows.map(d => {
-          const eVal = (d.value / 1e9).toFixed(1);
-          const iVal = impMap[d.date] ? (impMap[d.date] / 1e9).toFixed(1) : 'N/A';
-          return `
-            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-surface-850 border border-slate-200/70 dark:border-slate-800">
-              <p class="text-[11px] font-bold text-slate-500">CY ${d.date}</p>
-              <p class="text-xs font-bold text-emerald-500">Exp: $${eVal}B</p>
-              <p class="text-xs font-bold text-amber-500">Imp: $${iVal}B</p>
-            </div>
-          `;
-        }).join('');
-        resEl.classList.remove('hidden');
-        statusEl.textContent = 'Live World Bank BoP annual Goods & Services data synced.';
-      } catch (err) {
-        statusEl.textContent = 'Unable to reach World Bank API right now; official PIB data remains active.';
-      }
-    });
-
-    // Init
-    window.addEventListener('DOMContentLoaded', () => {
-      renderAll();
-      refreshFromAuthenticSources(true);
-    });
+    window.addEventListener('DOMContentLoaded', () => { renderAll(); refreshFromAuthenticSources(true); });
   </script>
 </body>
 </html>
