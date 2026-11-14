@@ -466,9 +466,16 @@
     }
 
     function renderSectorMenu() {
-      document.getElementById('sectorMenuList').innerHTML = SECTORS.map((s, idx) => {
+      document.getElementById('sectorMenuList').innerHTML = SECTORS.map(s => {
         const active = s.id === state.activeSector;
-        return `<button data-sector="${s.id}" class="sector-menu-item w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-left transition ${active ? 'bg-emerald-600 text-white shadow-sm' : 'hover:bg-slate-100 dark:hover:bg-surface-850 text-slate-800 dark:text-slate-100'}"><div class="flex items-center gap-3"><span class="w-6 h-6 rounded-lg text-xs font-bold flex items-center justify-center ${active ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-surface-800 text-slate-500 dark:text-slate-400'}">${idx + 1}</span><div><p class="text-sm font-bold leading-tight">${s.name}</p><p class="text-[11px] ${active ? 'text-emerald-100' : 'text-slate-500 dark:text-slate-400'}">${s.sub}</p></div></div>${active ? '<span class="text-xs font-bold">●</span>' : ''}</button>`;
+        return `<button data-sector="${s.id}" class="sector-menu-item w-full flex items-center justify-between px-4 py-3 rounded-xl text-left transition ${
+          active
+            ? 'bg-emerald-600 text-white shadow-sm'
+            : 'hover:bg-slate-100 dark:hover:bg-surface-850 text-slate-800 dark:text-slate-100'
+        }">
+          <span class="text-sm font-semibold">${s.name}</span>
+          ${active ? '<span class="text-xs font-bold">●</span>' : ''}
+        </button>`;
       }).join('');
     }
 
