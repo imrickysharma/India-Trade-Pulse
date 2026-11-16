@@ -56,9 +56,7 @@
       border-bottom: 1px solid var(--border);
       padding: max(12px, env(safe-area-inset-top)) 14px 10px;
     }
-    .header-top {
-      display: flex; align-items: center; justify-content: space-between; gap: 10px;
-    }
+    .header-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
     .menu-trigger {
       display: flex; align-items: center; gap: 10px;
       background: transparent; border: none; color: var(--text);
@@ -108,20 +106,14 @@
       padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 600;
       cursor: pointer;
     }
-    .pill.active {
-      background: var(--accent); color: #fff; border-color: var(--accent);
-    }
-    .pill.dark-active.active {
-      background: var(--text); color: var(--bg); border-color: var(--text);
-    }
+    .pill.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .pill.dark-active.active { background: var(--text); color: var(--bg); border-color: var(--text); }
 
     main {
       padding: 12px 14px calc(86px + env(safe-area-inset-bottom));
       max-width: 720px; margin: 0 auto;
     }
-    .kpi-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px;
-    }
+    .kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
     .card {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 16px; padding: 13px; box-shadow: var(--shadow);
@@ -136,35 +128,26 @@
       background: rgba(16, 185, 129, 0.14); color: var(--accent);
     }
     .badge.neg { background: rgba(239, 68, 68, 0.14); color: var(--danger); }
-    .badge.warn { background: rgba(245, 158, 11, 0.16); color: var(--warn); }
-    .kpi-val {
-      font-size: 21px; font-weight: 800; letter-spacing: -0.02em; margin: 5px 0 2px;
-    }
+    .kpi-val { font-size: 21px; font-weight: 800; letter-spacing: -0.02em; margin: 5px 0 2px; }
     .kpi-val.green { color: var(--accent); }
     .kpi-val.amber { color: var(--warn); }
     .kpi-val.red { color: var(--danger); }
     .kpi-sub { font-size: 11px; color: var(--muted); }
 
     .section-card { margin-top: 12px; }
-    .section-head {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      gap: 8px; margin-bottom: 10px;
-    }
+    .section-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
     .section-title { font-size: 14px; font-weight: 700; }
     .section-sub { font-size: 11px; color: var(--muted); }
     .source-tag {
       font-size: 10px; font-weight: 600; color: var(--muted);
-      background: var(--surface-2); padding: 4px 8px; border-radius: 8px;
-      white-space: nowrap;
+      background: var(--surface-2); padding: 4px 8px; border-radius: 8px; white-space: nowrap;
     }
     .chart-wrap { width: 100%; overflow-x: auto; }
     .chart-legend {
       display: flex; gap: 14px; justify-content: center;
       font-size: 11px; color: var(--muted); margin-bottom: 6px; flex-wrap: wrap;
     }
-    .legend-dot {
-      display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px;
-    }
+    .legend-dot { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px; }
     .tooltip-box {
       margin-top: 8px; padding: 8px 10px; border-radius: 10px;
       background: var(--surface-2); font-size: 12px; color: var(--text);
@@ -172,9 +155,7 @@
     }
 
     table { width: 100%; border-collapse: collapse; font-size: 12px; }
-    th, td {
-      text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--border);
-    }
+    th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--border); }
     th { font-size: 10px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em; }
     td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 
@@ -183,10 +164,7 @@
       padding: 9px 0; border-bottom: 1px solid var(--border);
     }
     .driver-row:last-child { border-bottom: none; }
-    .bar-track {
-      height: 6px; background: var(--surface-2); border-radius: 999px;
-      overflow: hidden; margin-top: 4px;
-    }
+    .bar-track { height: 6px; background: var(--surface-2); border-radius: 999px; overflow: hidden; margin-top: 4px; }
     .bar-fill { height: 100%; border-radius: 999px; background: var(--accent); }
 
     .feed-item {
@@ -196,17 +174,12 @@
     }
     .feed-title { font-size: 13px; font-weight: 700; }
     .feed-sub { font-size: 11px; color: var(--muted); }
-    .feed-link {
-      color: var(--accent); font-size: 12px; font-weight: 700;
-      text-decoration: none; white-space: nowrap;
-    }
+    .feed-link { color: var(--accent); font-size: 12px; font-weight: 700; text-decoration: none; white-space: nowrap; }
     .notice-box {
       padding: 10px 12px; border-radius: 12px; background: var(--surface-2);
-      border: 1px dashed var(--border); font-size: 12px; color: var(--muted);
-      margin-top: 10px;
+      border: 1px dashed var(--border); font-size: 12px; color: var(--muted); margin-top: 10px;
     }
 
-    /* Bottom Navigation */
     .bottom-nav {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 40;
       background: var(--nav-bg);
@@ -222,7 +195,6 @@
     }
     .nav-btn.active { color: var(--accent); }
 
-    /* Left Slide-Out Menu Drawer */
     .drawer-backdrop {
       position: fixed; inset: 0; background: rgba(0,0,0,0.45);
       z-index: 60; opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
@@ -251,13 +223,8 @@
       background: transparent; color: var(--text);
       font-size: 14px; font-weight: 600; text-align: left; cursor: pointer;
     }
-    .sector-item.active {
-      background: rgba(16, 185, 129, 0.14); color: var(--accent);
-    }
-    .status-banner {
-      font-size: 11px; color: var(--muted); margin-top: 6px;
-      display: flex; justify-content: space-between; align-items: center;
-    }
+    .sector-item.active { background: rgba(16, 185, 129, 0.14); color: var(--accent); }
+    .status-banner { font-size: 11px; color: var(--muted); margin-top: 6px; }
   </style>
 </head>
 <body>
@@ -266,7 +233,7 @@
 <aside class="drawer" id="sectorDrawer" aria-label="Sectors Menu">
   <div class="drawer-head">
     <span class="drawer-title">India Macro Pulse</span>
-    <button class="drawer-close" id="btnCloseDrawer" aria-label="Close menu">&times;</button>
+    <button class="drawer-close" id="btnCloseDrawer" aria-label="Close menu">×</button>
   </div>
   <div id="sectorList"></div>
 </aside>
@@ -274,7 +241,7 @@
 <header class="app-header">
   <div class="header-top">
     <button class="menu-trigger" id="btnOpenDrawer" aria-label="Open sector menu">
-      <div class="brand-icon" id="brandIcon">
+      <div class="brand-icon">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="14" y2="18"/></svg>
       </div>
       <div>
@@ -287,7 +254,6 @@
       <span>Refresh</span>
     </button>
   </div>
-
   <div class="seg-bar" id="timeframeBar"></div>
   <div class="pill-row" id="scopeBar"></div>
 </header>
@@ -348,21 +314,21 @@ const DATA = {
       { period: 'FY27E', realInr: 346.06, nomInr: 381.00, realG: 7.0, nomUsd: 4.06, pcUsd: 2750, pppUsd: 19.19, pcPpp: 13000, tag: 'IMF Oct 2026 / RBI 7.1%' }
     ],
     states: [
-      { state: 'Maharashtra', gsdp: 45.32, year: '2024-25', share: 13.7 },
-      { state: 'Tamil Nadu', gsdp: 31.19, year: '2024-25', share: 9.4 },
-      { state: 'Uttar Pradesh', gsdp: 29.78, year: '2024-25', share: 9.0 },
-      { state: 'Karnataka', gsdp: 28.84, year: '2024-25', share: 8.7 },
-      { state: 'Gujarat', gsdp: 22.03, year: '2022-23*', share: 7.3 },
-      { state: 'West Bengal', gsdp: 18.15, year: '2024-25', share: 5.5 },
-      { state: 'Rajasthan', gsdp: 17.04, year: '2024-25', share: 5.2 },
-      { state: 'Telangana', gsdp: 16.41, year: '2024-25', share: 5.0 },
-      { state: 'Andhra Pradesh', gsdp: 15.93, year: '2024-25', share: 4.8 },
-      { state: 'Madhya Pradesh', gsdp: 15.03, year: '2024-25', share: 4.5 },
-      { state: 'Kerala', gsdp: 12.49, year: '2024-25', share: 3.8 },
-      { state: 'Delhi', gsdp: 12.15, year: '2024-25', share: 3.7 },
-      { state: 'Haryana', gsdp: 12.14, year: '2024-25', share: 3.7 },
-      { state: 'Bihar', gsdp: 9.92, year: '2024-25', share: 3.0 },
-      { state: 'Odisha', gsdp: 8.90, year: '2024-25', share: 2.7 }
+      { state: 'Maharashtra', gsdp: 45.32, year: '2024-25' },
+      { state: 'Tamil Nadu', gsdp: 31.19, year: '2024-25' },
+      { state: 'Uttar Pradesh', gsdp: 29.78, year: '2024-25' },
+      { state: 'Karnataka', gsdp: 28.84, year: '2024-25' },
+      { state: 'Gujarat', gsdp: 22.03, year: '2022-23*' },
+      { state: 'West Bengal', gsdp: 18.15, year: '2024-25' },
+      { state: 'Rajasthan', gsdp: 17.04, year: '2024-25' },
+      { state: 'Telangana', gsdp: 16.41, year: '2024-25' },
+      { state: 'Andhra Pradesh', gsdp: 15.93, year: '2024-25' },
+      { state: 'Madhya Pradesh', gsdp: 15.03, year: '2024-25' },
+      { state: 'Kerala', gsdp: 12.49, year: '2024-25' },
+      { state: 'Delhi', gsdp: 12.15, year: '2024-25' },
+      { state: 'Haryana', gsdp: 12.14, year: '2024-25' },
+      { state: 'Bihar', gsdp: 9.92, year: '2024-25' },
+      { state: 'Odisha', gsdp: 8.90, year: '2024-25' }
     ],
     drivers: [
       { name: 'Tertiary (Services) GVA — Q1 FY27', val: '+10.0%', pct: 100 },
@@ -377,11 +343,11 @@ const DATA = {
       { agency: 'RBI SPF (Oct 2026)', fy27: '7.1%', fy28: '7.0%', url: 'https://www.rbi.org.in/Scripts/PublicationsView.aspx?id=24086' },
       { agency: 'IMF WEO (Oct 2026)', fy27: '7.0% (2026)', fy28: '$4.06T Nom / $19.19T PPP', url: 'https://www.imf.org/external/datamapper/profile/IND' },
       { agency: 'World Bank (WDI)', fy27: '7.6% (2025)', fy28: '$3.96T Nom / $17.20T PPP', url: 'https://data.worldbank.org/country/india' },
-      { agency: 'MoSPI National Accounts', fy27: '7.8% (Q1 FY27)', fy28: 'Base Year 2022-23', url: 'https://www.pib.gov.in/FactsheetDetails.aspx?Id=150991&reg=5&lang=1' }
+      { agency: 'MoSPI National Accounts', fy27: '7.8% (Q1 FY27)', fy28: 'Base Year 2022-23', url: 'https://www.pib.gov.in/FactsheetDetails.aspx?Id=150991®=5&lang=1' }
     ],
     feeds: [
-      { name: 'MoSPI / PIB GDP Factsheet (Q1 FY27)', sub: 'Official Base 2022-23 Real & Nominal GDP', url: 'https://www.pib.gov.in/FactsheetDetails.aspx?Id=150991&reg=5&lang=1' },
-      { name: 'PIB Q1 FY27 GDP Release (PRID 2305422)', sub: 'Quarterly & Sectoral GVA Estimates', url: 'https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2305422&lang=1&reg=3' },
+      { name: 'MoSPI / PIB GDP Factsheet (Q1 FY27)', sub: 'Official Base 2022-23 Real & Nominal GDP', url: 'https://www.pib.gov.in/FactsheetDetails.aspx?Id=150991®=5&lang=1' },
+      { name: 'PIB Q1 FY27 GDP Release (PRID 2305422)', sub: 'Quarterly & Sectoral GVA Estimates', url: 'https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2305422&lang=1®=3' },
       { name: 'RBI Handbook — State-wise GSDP (Table 21)', sub: 'Official State/UT GSDP (MoSPI NSO)', url: 'https://m.rbi.org.in/scripts/PublicationsView.aspx?id=23470' },
       { name: 'MoSPI District Domestic Product Guidelines', sub: 'Regional Accounts Framework (Base 2022-23)', url: 'https://www.mospi.gov.in/uploads/documents/documents/1780482526678-Guideline_for_compilation_of_DDP_estimates.pdf' },
       { name: 'IMF DataMapper — India (WEO Oct 2026)', sub: 'Nominal, PPP, Per Capita & Forecasts', url: 'https://www.imf.org/external/datamapper/profile/IND' },
@@ -409,7 +375,7 @@ const DATA = {
     annual: [
       { period: 'FY24-25', exp: 825.26, imp: 919.92, yoy: 6.1, pr: 'PIB PRID 2252272' },
       { period: 'FY25-26', exp: 860.09, imp: 979.40, yoy: 4.22, pr: 'PIB PRID 2252272' },
-      { period: 'FY27 YTD (Apr-Oct)', exp: 568.84, imp: 662.19, yoy: 16.66, pr: 'PIB PRID 2335914' }
+      { period: 'FY27 YTD', exp: 568.84, imp: 662.19, yoy: 16.66, pr: 'PIB PRID 2335914' }
     ],
     drivers: [
       { name: 'Engineering Goods (Oct 2026)', val: '$12.74B (+36.0%)', pct: 100 },
@@ -427,116 +393,364 @@ const DATA = {
   },
 
   automobile: {
+    chartTitle: 'Quarterly Passenger Vehicle Sales (Lakh Units)',
+    chartSub: 'SIAM Official Quarterly Dispatches',
+    sourceTag: 'SIAM',
+    labelA: 'PV Sales (Lakhs)', suffix: 'L',
+    chartData: [
+      { period: 'Q3 FY26', valA: 12.76 },
+      { period: 'Q4 FY26', valA: 13.16 },
+      { period: 'Q1 FY27', valA: 12.70 },
+      { period: 'Q2 FY27', valA: 13.60 }
+    ],
+    kpis: {
+      monthly: [
+        { label: 'Passenger Vehicles', val: '5.19L', sub: 'Oct 2026 Domestic', badge: '+12.4% YoY', tone: 'green' },
+        { label: 'Two-Wheelers', val: '25.78L', sub: 'Oct 2026 Wholesale', tone: 'amber' },
+        { label: 'Maruti Suzuki', val: '2,12,384', sub: '2,76,120 Total (+25%)', tone: 'green' },
+        { label: 'Tata Motors', val: '73,894', sub: 'EV Sales +75% YoY' }
+      ],
+      quarterly: [
+        { label: 'Q2 FY27 PV Sales', val: '13.60L', sub: 'SIAM Quarterly', tone: 'green' },
+        { label: 'Q1 FY27 Production', val: '9.36M', sub: '8.67L EVs · +25.9% PV', tone: 'amber' },
+        { label: 'Q4 FY26 Total', val: '57.73L 2W', sub: '3.25L CV · 2.27L 3W' },
+        { label: '9M CY26 Total', val: '23.44M', sub: '+21% YoY Volume', tone: 'green' }
+      ],
+      annual: [
+        { label: 'FY26 Production', val: '34.71M', sub: 'vs 31.03M in FY25', tone: 'green' },
+        { label: 'FY26 Revenue / GDP', val: '₹22.75L Cr', sub: '$158.5B (2026E Market)', tone: 'amber' },
+        { label: 'FY26 Domestic Sales', val: '28.26M', sub: 'All vehicle segments' },
+        { label: 'FY26 Exports', val: '6.65M', sub: '2.05M EVs in FY25' }
+      ]
+    },
+    ledgerHeaders: ['Period', 'Production / PVs', 'Sales / Exports'],
     monthly: [
-      { period: 'Oct 2026', kpi1: '5.19L PVs (+12.4%)', kpi2: '25.78L 2-Wheelers', yoy: 12.4, note: 'SIAM / OEM Oct 2026' }
+      { period: 'Oct 2026', col1: '5.19L PVs (+12.4%)', col2: '25.78L 2-Wheelers' },
+      { period: 'Maruti (Oct 26)', col1: '2,12,384 Dom. PVs', col2: '2,76,120 Total (+25%)' },
+      { period: 'Tata Motors', col1: '73,894 PVs', col2: '+75% EV Growth' },
+      { period: 'Mahindra', col1: '73,338 SUVs/PVs', col2: 'Utility Vehicles' },
+      { period: 'Hyundai India', col1: '62,799 PVs', col2: 'Domestic Dispatches' }
     ],
     quarterly: [
-      { period: 'Q3 FY26', pv: '12.76L (+20.6%)', total: '—', note: 'SIAM' },
-      { period: 'Q4 FY26', pv: '13.16L (+13.2%)', total: '57.73L 2W · 3.25L CV', note: 'SIAM' },
-      { period: 'Q1 FY27', pv: '12.70L (+25.9%)', total: '9.36M Produced · 8.67L EV', note: 'SIAM' },
-      { period: 'Q2 FY27', pv: '13.60L', total: '9M CY26: 23.44M (+21%)', note: 'SIAM' }
+      { period: 'Q3 FY26', col1: '12.76L PVs (+20.6%)', col2: 'Festive Demand' },
+      { period: 'Q4 FY26', col1: '13.16L PVs (+13.2%)', col2: '57.73L 2W · 3.25L CV' },
+      { period: 'Q1 FY27', col1: '12.70L PVs (+25.9%)', col2: '9.36M Prod · 8.67L EV' },
+      { period: 'Q2 FY27', col1: '13.60L PVs', col2: '9M CY26: 23.44M (+21%)' }
     ],
     annual: [
-      { period: 'FY24-25', prod: '31.03M Units', rev: '$143.0B Market', ev: '2.05M EVs' },
-      { period: 'FY25-26', prod: '34.71M Units', rev: '₹22.75L Cr / $158.5B (26E)', ev: '6.65M Exports' }
+      { period: 'FY24-25', col1: '31.03M Produced', col2: '$143.0B · 2.05M EVs' },
+      { period: 'FY25-26', col1: '34.71M Produced', col2: '28.26M Dom · 6.65M Exp' }
     ],
-    companies: [
-      { name: 'Maruti Suzuki (Oct 2026)', val: '2,12,384 Dom. (2,76,120 Total, +25%)', pct: 100 },
-      { name: 'Tata Motors (Oct 2026)', val: '73,894 PVs (+75% EV)', pct: 35 },
-      { name: 'Mahindra & Mahindra (Oct 2026)', val: '73,338 SUVs/PVs', pct: 34 },
-      { name: 'Hyundai Motor India (Oct 2026)', val: '62,799 PVs', pct: 30 }
+    driversTitle: 'Company-wise PV Performance (Oct 2026)',
+    driversSub: 'Domestic Passenger Vehicle Dispatches',
+    drivers: [
+      { name: 'Maruti Suzuki', val: '2,12,384 Dom. (2,76,120 Total)', pct: 100 },
+      { name: 'Tata Motors', val: '73,894 PVs (+75% EV)', pct: 35 },
+      { name: 'Mahindra & Mahindra', val: '73,338 SUVs/PVs', pct: 34 },
+      { name: 'Hyundai Motor India', val: '62,799 PVs', pct: 30 }
+    ],
+    feeds: [
+      { name: 'SIAM Press Releases', sub: 'Official Production, Domestic Sales & Exports', url: 'https://www.siam.in/pressrelease-details.aspx?pid=605' },
+      { name: 'IBEF India Automobile Industry', sub: 'Market Size, EV & Export Benchmarks', url: 'https://www.ibef.org/industry/india-automobiles' },
+      { name: 'OEM Oct 2026 Sales Tracker', sub: 'Company-wise PV Dispatches', url: 'https://ticker.finology.in/discover/market-update/india-car-sales-october-2026' }
     ]
   },
 
   textile: {
-    monthly: [
-      { period: 'Jul–Oct 2026', kpi1: 'RMG & Cotton Tracked', kpi2: 'Exports +2.1% FY26', note: 'Ministry of Textiles PIB' }
+    chartTitle: 'T&A + Handicrafts Exports (₹ Lakh Cr)',
+    chartSub: 'Ministry of Textiles PIB Data',
+    sourceTag: 'MoT / PIB',
+    labelA: 'Exports (₹L Cr)', prefix: '₹', suffix: 'L',
+    chartData: [
+      { period: 'FY20', valA: 2.49 },
+      { period: 'FY26', valA: 3.25 }
     ],
-    quarterly: [
-      { period: 'FY25-26 Q1–Q4', kpi1: '₹3,25,339 Cr Exports', kpi2: '4.5% CAGR since FY20', note: 'PIB PRID 2297513 / DGCI&S' }
-    ],
+    kpis: {
+      monthly: [
+        { label: 'Market Size', val: '$179B', sub: 'Domestic + Exports', tone: 'green' },
+        { label: 'FY26 Exports', val: '₹3.25L Cr', sub: '₹3,25,339 Cr (+2.1%)', tone: 'amber' },
+        { label: 'GDP Share', val: '2.3%', sub: '13% Industrial Output' },
+        { label: 'Export Share', val: '12%', sub: 'Total Merchandise Share' }
+      ],
+      quarterly: [
+        { label: 'FY26 T&A Exports', val: '₹3,25,339 Cr', sub: '4.5% CAGR since FY20', tone: 'green' },
+        { label: 'Q1–Q4 Tracked', val: '+2.1% YoY', sub: 'RMG & Cotton Textiles', tone: 'amber' },
+        { label: 'FY20 Baseline', val: '₹2,49,250 Cr', sub: 'Long-term expansion' },
+        { label: 'Industrial Weight', val: '13%', sub: 'Ministry of Textiles' }
+      ],
+      annual: [
+        { label: 'Total Market', val: '$179B', sub: 'Domestic + Export', tone: 'green' },
+        { label: 'FY25-26 Exports', val: '₹3,25,339 Cr', sub: '+2.1% YoY · 4.5% CAGR', tone: 'amber' },
+        { label: 'FY20 Exports', val: '₹2,49,250 Cr', sub: 'Historical Baseline' },
+        { label: 'GDP Contribution', val: '2.3%', sub: '12% of India Exports' }
+      ]
+    },
+    ledgerHeaders: ['Period', 'Output / Market', 'Exports / Growth'],
+    monthly: [{ period: 'Jul–Oct 2026', col1: 'RMG & Cotton Tracked', col2: 'Exports +2.1% FY26' }],
+    quarterly: [{ period: 'FY25-26 Q1–Q4', col1: '₹3,25,339 Cr Exports', col2: '4.5% CAGR since FY20' }],
     annual: [
-      { period: 'FY24-25 / FY25-26', prod: '$179B Market Size', rev: '₹3,25,339 Cr T&A Exports', note: '2.3% GDP · 12% Exports (PIB 2222927)' }
+      { period: 'FY2019-20', col1: 'Baseline Year', col2: '₹2,49,250 Cr Exports' },
+      { period: 'FY2025-26', col1: '$179B Market Size', col2: '₹3,25,339 Cr (+2.1% YoY)' }
+    ],
+    driversTitle: 'Textile Macro Contribution',
+    driversSub: 'Ministry of Textiles Official Shares',
+    drivers: [
+      { name: 'Share of Industrial Production', val: '13.0%', pct: 100 },
+      { name: 'Share of India Total Exports', val: '12.0%', pct: 92 },
+      { name: '5-Year Export CAGR (FY20–FY26)', val: '4.5%', pct: 45 },
+      { name: 'Share of National GDP', val: '2.3%', pct: 23 }
+    ],
+    feeds: [
+      { name: 'Ministry of Textiles PIB (PRID 2297513)', sub: 'T&A & Handicrafts Export Performance', url: 'https://www.pib.gov.in/PressReleasePage.aspx?PRID=2297513®=48&lang=2' },
+      { name: 'Ministry of Textiles Overview (PRID 2222927)', sub: 'Market Size ($179B) & GDP Share', url: 'https://www.pib.gov.in/PressReleasePage.aspx?PRID=2222927' }
     ]
   },
 
   agriculture: {
-    monthly: [
-      { period: 'AY 2025-26', kpi1: '376.56 MMT Foodgrain', kpi2: '+5.3% YoY Record', note: 'MoAFW 3rd Adv. Est. (PRID 2298435)' }
+    chartTitle: 'Total Foodgrain Production (MMT)',
+    chartSub: 'MoAFW Official Estimates',
+    sourceTag: 'MoAFW / PIB',
+    labelA: 'Foodgrain (MMT)', suffix: 'M',
+    chartData: [
+      { period: 'AY24-25', valA: 357.73 },
+      { period: 'AY25-26', valA: 376.56 }
     ],
-    quarterly: [
-      { period: 'Q1 FY27 GVA', kpi1: '+3.6% Real GVA', kpi2: 'Agri & Allied Sector', note: 'MoSPI Q1 FY27' }
-    ],
+    kpis: {
+      monthly: [
+        { label: 'Foodgrain (AY26)', val: '376.56 MMT', sub: '3rd Advance Estimates', badge: '+5.3% YoY', tone: 'green' },
+        { label: 'Horticulture (AY25)', val: '362.08 MMT', sub: 'MoAFW Official', tone: 'amber' },
+        { label: 'Q1 FY27 Agri GVA', val: '+3.6%', sub: 'MoSPI Constant Prices' },
+        { label: 'AY24-25 Foodgrain', val: '357.73 MMT', sub: 'Prior Year Base' }
+      ],
+      quarterly: [
+        { label: 'Q1 FY27 Agri GVA', val: '+3.6%', sub: 'Agri & Allied Real GVA', tone: 'green' },
+        { label: 'Primary Sector GVA', val: '+2.9%', sub: 'Q1 FY27 MoSPI', tone: 'amber' },
+        { label: 'Credit Growth (Jul 26)', val: '+17.0%', sub: 'RBI Agri Bank Credit' },
+        { label: 'MSP Support', val: '14 Kharif', sub: 'Marketing Season 2026-27' }
+      ],
+      annual: [
+        { label: 'AY25-26 Foodgrain', val: '376.56 MMT', sub: 'Record Harvest', badge: '+5.3% YoY', tone: 'green' },
+        { label: 'AY24-25 Foodgrain', val: '357.73 MMT', sub: 'MoAFW Final', tone: 'amber' },
+        { label: 'AY24-25 Horticulture', val: '362.08 MMT', sub: 'Fruits & Vegetables' },
+        { label: 'PM-KISAN Outlay', val: '₹3.15L Cr', sub: 'FY27–FY31 Approved' }
+      ]
+    },
+    ledgerHeaders: ['Period', 'Foodgrain Output', 'Horticulture / GVA'],
+    monthly: [{ period: 'AY 2025-26', col1: '376.56 MMT (3rd Adv.)', col2: '+5.3% YoY Record' }],
+    quarterly: [{ period: 'Q1 FY27', col1: '+3.6% Agri & Allied GVA', col2: '+2.9% Primary Sector' }],
     annual: [
-      { period: 'AY 2024-25', prod: '357.73 MMT Foodgrain', rev: '362.08 MMT Horticulture', note: 'MoAFW PIB PRID 2248987' },
-      { period: 'AY 2025-26', prod: '376.56 MMT Foodgrain', rev: 'Record Harvest (+5.3%)', note: 'MoAFW PIB PRID 2298435' }
+      { period: 'AY 2024-25', col1: '357.73 MMT Foodgrain', col2: '362.08 MMT Horticulture' },
+      { period: 'AY 2025-26', col1: '376.56 MMT Foodgrain', col2: 'Record +5.3% YoY' }
+    ],
+    driversTitle: 'Agricultural Output & Credit Drivers',
+    driversSub: 'MoAFW & RBI Sectoral Indicators',
+    drivers: [
+      { name: 'AY25-26 Record Foodgrain Output', val: '376.56 MMT (+5.3%)', pct: 100 },
+      { name: 'AY24-25 Horticulture Output', val: '362.08 MMT', pct: 96 },
+      { name: 'Agri Bank Credit Growth (Jul 2026)', val: '+17.0% YoY', pct: 75 },
+      { name: 'Q1 FY27 Agri & Allied Real GVA', val: '+3.6% YoY', pct: 45 }
+    ],
+    feeds: [
+      { name: 'MoAFW 3rd Advance Estimates (PRID 2298435)', sub: 'AY 2025-26 Record 376.56 MMT Foodgrain', url: 'https://www.pib.gov.in/PressReleasePage.aspx?PRID=2298435' },
+      { name: 'MoAFW AY 2024-25 Estimates (PRID 2248987)', sub: 'Foodgrain & Horticulture Totals', url: 'https://www.pib.gov.in/PressReleasePage.aspx?PRID=2248987' }
     ]
   },
 
   it: {
+    chartTitle: 'India Tech Industry Revenue (US$ Bn)',
+    chartSub: 'NASSCOM Official Estimates',
+    sourceTag: 'NASSCOM',
+    labelA: 'Revenue ($B)', prefix: '$', suffix: 'B',
+    chartData: [
+      { period: 'FY25', valA: 282.6 },
+      { period: 'FY26', valA: 315.0 }
+    ],
+    kpis: {
+      monthly: [
+        { label: 'Services Exports', val: '$40.51B', sub: 'Oct 2026 (PIB 2335914)', tone: 'green' },
+        { label: 'Services Imports', val: '$20.72B', sub: 'Oct 2026', tone: 'amber' },
+        { label: 'Net Services Surplus', val: '+$19.79B', sub: 'Oct 2026' },
+        { label: 'Fin/IT GVA (Q1 FY27)', val: '+12.1%', sub: 'MoSPI Tertiary Driver' }
+      ],
+      quarterly: [
+        { label: 'TCS (Q2 FY27)', val: '$7,642M', sub: '24.0% OPM · $9.6B TCV', tone: 'green' },
+        { label: 'Infosys (Q2 FY27)', val: '$5,145M', sub: '₹49,244 Cr (+10.7% YoY)', tone: 'amber' },
+        { label: 'HCLTech (Q2 FY27)', val: '₹35,620 Cr', sub: '+11.5% YoY · 18.2% EBIT' },
+        { label: 'Wipro / TechM', val: '₹24.8K / ₹16.2K Cr', sub: '16.5% / 14.8% EBIT' }
+      ],
+      annual: [
+        { label: 'FY26 Tech Revenue', val: '$315.0B', sub: 'NASSCOM Forecast', badge: '+6.1% YoY', tone: 'green' },
+        { label: 'FY25 Tech Revenue', val: '$282.6B', sub: '+5.1% YoY', tone: 'amber' },
+        { label: 'H1 FY27 Serv. Exp', val: '$214.58B', sub: 'PIB PRID 2323944' },
+        { label: 'Q1 FY27 Serv. GVA', val: '+10.0%', sub: 'Tertiary Sector Growth' }
+      ]
+    },
+    ledgerHeaders: ['Company / Period', 'Revenue', 'Margin / Growth'],
     monthly: [
-      { period: 'Oct 2026 Services', kpi1: '$40.51B Services Exp.', kpi2: '$20.72B Services Imp.', note: 'PIB PRID 2335914' }
+      { period: 'Jun 2026 Serv.', col1: '$33.03B Exports', col2: '$17.92B Imports' },
+      { period: 'Jul 2026 Serv.', col1: '$35.89B Exports', col2: '$18.94B Imports' },
+      { period: 'Aug 2026 Serv.', col1: '$38.87B Exports', col2: '$21.42B Imports' },
+      { period: 'Sep 2026 Serv.', col1: '$36.35B Exports', col2: '$19.44B Imports' },
+      { period: 'Oct 2026 Serv.', col1: '$40.51B Exports', col2: '$20.72B Imports' }
     ],
     quarterly: [
-      { period: 'Q2 FY27 Majors', kpi1: 'TCS $7,642M (+2.4%)', kpi2: 'Infosys ₹49,244 Cr (+10.7%)', note: 'Q2 FY27 Filings' }
+      { period: 'TCS (Q2 FY27)', col1: '$7,642M (+2.4%)', col2: '24.0% OPM · $9.6B TCV' },
+      { period: 'Infosys (Q2 FY27)', col1: '₹49,244 Cr ($5,145M)', col2: '+10.7% · 21% OPM · $5.2B TCV' },
+      { period: 'HCLTech (Q2 FY27)', col1: '₹35,620 Cr (+11.5%)', col2: '18.2% EBIT · $3.3B Bookings' },
+      { period: 'Wipro (Q2 FY27)', col1: '₹24,750 Cr (+9.1%)', col2: '16.5% IT EBIT' },
+      { period: 'Tech Mahindra', col1: '₹16,180 Cr (+15.6%)', col2: '14.8% EBIT' }
     ],
     annual: [
-      { period: 'FY24-25', prod: '$282.6B Tech Revenue', rev: '+5.1% YoY', note: 'NASSCOM' },
-      { period: 'FY25-26', prod: '$315.0B Tech Revenue', rev: '+6.1% YoY', note: 'NASSCOM' }
+      { period: 'FY24-25', col1: '$282.6B Tech Rev', col2: '+5.1% YoY (NASSCOM)' },
+      { period: 'FY25-26', col1: '$315.0B Tech Rev', col2: '+6.1% YoY (NASSCOM)' }
     ],
-    companies: [
-      { name: 'TCS (Q2 FY27)', val: '$7,642M · 24.0% OPM · $9.6B TCV', pct: 100 },
-      { name: 'Infosys (Q2 FY27)', val: '₹49,244 Cr ($5,145M) · 21% OPM · $5.2B TCV', pct: 67 },
-      { name: 'HCLTech (Q2 FY27)', val: '₹35,620 Cr (+11.5%) · 18.2% EBIT', pct: 48 },
-      { name: 'Wipro (Q2 FY27)', val: '₹24,750 Cr (+9.1%) · 16.5% IT EBIT', pct: 34 },
-      { name: 'Tech Mahindra (Q2 FY27)', val: '₹16,180 Cr (+15.6%) · 14.8% EBIT', pct: 22 }
+    driversTitle: 'IT Majors — Q2 FY27 Revenue & Margins',
+    driversSub: 'Quarterly Financial Results',
+    drivers: [
+      { name: 'TCS', val: '$7,642M · 24.0% OPM · $9.6B TCV', pct: 100 },
+      { name: 'Infosys', val: '$5,145M · 21.0% OPM · $5.2B TCV', pct: 67 },
+      { name: 'HCLTech', val: '₹35,620 Cr · 18.2% EBIT · $3.3B TCV', pct: 48 },
+      { name: 'Wipro', val: '₹24,750 Cr · 16.5% IT EBIT', pct: 34 },
+      { name: 'Tech Mahindra', val: '₹16,180 Cr · 14.8% EBIT', pct: 22 }
+    ],
+    feeds: [
+      { name: 'NASSCOM FY26 Tech Revenue Outlook', sub: '$315B Industry Revenue (+6.1% YoY)', url: 'https://www.kotakneo.com/news/market-news/indian-tech-industry-revenue-fy26-nasscom-forecast/' },
+      { name: 'TCS & HCLTech Q2 FY27 Results', sub: 'Revenue, Operating Margin & Deal TCV', url: 'https://www.kalkine.co.in/article/technology/tcs-nse-tcs-and-hcltech-nse-hcltech-report-q2-fy27-results-as-infosys-nse-infy-awaits-23-october' },
+      { name: 'Infosys Q2 FY27 Financial Results', sub: '₹49,244 Cr / $5,145M Revenue', url: 'https://www.genvest.ai/results/infosys-q2-fy27' },
+      { name: 'Indian IT Majors Q2 FY27 Comparison', sub: 'TCS, Infosys, HCLTech, Wipro, TechM', url: 'https://finin2min.com/articles/indian-it-results-q2-fy27-tcs-hcltech-techmahindra-wipro-ai-analysis.html' }
     ]
   },
 
   gst: {
+    chartTitle: 'Monthly Gross GST Collection (₹ Thousand Cr)',
+    chartSub: 'Apr–Oct 2026 (FY26-27)',
+    sourceTag: 'GSTN / PIB',
+    labelA: 'Gross GST (₹000 Cr)', prefix: '₹', suffix: 'k',
+    chartData: [
+      { period: 'Apr', valA: 243.3 },
+      { period: 'May', valA: 194.8 },
+      { period: 'Jun', valA: 194.8 },
+      { period: 'Jul', valA: 211.2 },
+      { period: 'Aug', valA: 199.9 },
+      { period: 'Sep', valA: 203.5 },
+      { period: 'Oct', valA: 231.3 }
+    ],
+    kpis: {
+      monthly: [
+        { label: 'Oct 2026 Gross', val: '₹2,31,290 Cr', sub: 'Festive Demand Surge', badge: '+22.9% YoY', tone: 'green' },
+        { label: '7M FY27 Gross', val: '₹14,77,569 Cr', sub: 'Apr–Oct 2026 (+13.2%)', tone: 'amber' },
+        { label: '7M FY27 Net', val: '₹12,69,486 Cr', sub: '+12.6% YoY after refunds' },
+        { label: 'Active GSTINs', val: '1.72 Cr', sub: '1,72,38,566 Registered' }
+      ],
+      quarterly: [
+        { label: 'Q1 FY27 Gross', val: '₹6,32,909 Cr', sub: 'Apr–Jun 2026', badge: '+14.2% YoY', tone: 'green' },
+        { label: 'Q2 FY27 Gross', val: '₹6,14,579 Cr', sub: 'Jul–Sep 2026', badge: '+15.0% YoY', tone: 'amber' },
+        { label: 'Jul 2026 Net', val: '₹1,81,237 Cr', sub: 'Gross ₹2,11,205 Cr' },
+        { label: 'Oct 2026 Start Q3', val: '₹2,31,290 Cr', sub: '+22.9% YoY' }
+      ],
+      annual: [
+        { label: 'FY25-26 Gross', val: '₹23.32L Cr', sub: 'Incl. Cess (₹22.27L Cr ex)', tone: 'green' },
+        { label: 'FY24-25 Gross', val: '₹22.08L Cr', sub: 'Full Fiscal Year', tone: 'amber' },
+        { label: 'FY27 7M Gross', val: '₹14.78L Cr', sub: '+13.2% YoY Pace' },
+        { label: 'FY27 7M Net', val: '₹12.69L Cr', sub: '+12.6% YoY Pace' }
+      ]
+    },
+    ledgerHeaders: ['Period', 'Gross Collection', 'YoY / Net'],
     monthly: [
-      { period: 'Apr 2026', gross: 243286, yoy: 12.6 },
-      { period: 'May 2026', gross: 194811, yoy: 16.4 },
-      { period: 'Jun 2026', gross: 194812, yoy: 13.9 },
-      { period: 'Jul 2026', gross: 211205, yoy: 15.4 },
-      { period: 'Aug 2026', gross: 199853, yoy: 14.8 },
-      { period: 'Sep 2026', gross: 203521, yoy: 14.7 },
-      { period: 'Oct 2026', gross: 231290, yoy: 22.9 }
+      { period: 'Apr 2026', col1: '₹2,43,286 Cr', col2: '+12.6% YoY' },
+      { period: 'May 2026', col1: '₹1,94,811 Cr', col2: '+16.4% YoY' },
+      { period: 'Jun 2026', col1: '₹1,94,812 Cr', col2: '+13.9% YoY' },
+      { period: 'Jul 2026', col1: '₹2,11,205 Cr', col2: '+15.4% (Net ₹1,81,237 Cr)' },
+      { period: 'Aug 2026', col1: '₹1,99,853 Cr', col2: '+14.8% YoY' },
+      { period: 'Sep 2026', col1: '₹2,03,521 Cr', col2: '+14.7% YoY' },
+      { period: 'Oct 2026', col1: '₹2,31,290 Cr', col2: '+22.9% YoY' }
     ],
     quarterly: [
-      { period: 'Q1 FY27', gross: '₹6,32,909 Cr', yoy: '+14.2%' },
-      { period: 'Q2 FY27', gross: '₹6,14,579 Cr', yoy: '+15.0%' }
+      { period: 'Q1 FY27', col1: '₹6,32,909 Cr', col2: '+14.2% YoY' },
+      { period: 'Q2 FY27', col1: '₹6,14,579 Cr', col2: '+15.0% YoY' }
     ],
     annual: [
-      { period: 'FY24-25', gross: '₹22.08L Cr', yoy: '+9.4%' },
-      { period: 'FY25-26', gross: '₹23.32L Cr (incl. cess)', yoy: '₹22.27L Cr ex-cess' },
-      { period: 'FY27 7M (Apr-Oct)', gross: '₹14,77,569 Cr', yoy: 'Net ₹12,69,486 Cr (+12.6%)' }
+      { period: 'FY24-25', col1: '₹22.08L Cr', col2: '+9.4% YoY' },
+      { period: 'FY25-26', col1: '₹23.32L Cr (incl. cess)', col2: '₹22.27L Cr ex-cess' },
+      { period: 'FY27 7M (Apr-Oct)', col1: '₹14,77,569 Cr', col2: 'Net ₹12,69,486 Cr (+12.6%)' }
+    ],
+    driversTitle: 'GST Collection & Compliance Drivers',
+    driversSub: 'FY26-27 Revenue Momentum',
+    drivers: [
+      { name: 'Oct 2026 YoY Growth Surge', val: '+22.9% (₹2,31,290 Cr)', pct: 100 },
+      { name: '7M FY27 Gross Revenue Growth', val: '+13.2% (₹14.78L Cr)', pct: 75 },
+      { name: '7M FY27 Net Revenue Growth', val: '+12.6% (₹12.69L Cr)', pct: 70 },
+      { name: 'Active Registered Taxpayers', val: '1,72,38,566 GSTINs', pct: 88 }
+    ],
+    feeds: [
+      { name: 'PIB Official GST Release (PRID 2279318)', sub: 'Ministry of Finance Revenue Updates', url: 'https://www.pib.gov.in/PressReleasePage.aspx?PRID=2279318®=3&lang=1' },
+      { name: 'India GST Statistics Portal', sub: 'Monthly Gross & Net Collections', url: 'https://www.refrens.com/en-in/gst-statistics' },
+      { name: 'GST Collections Tracker', sub: 'FY26-27 Monthly Breakdown', url: 'https://hellobooks.ai/in/gst-collections' }
     ]
   },
 
   upi: {
+    chartTitle: 'UPI Monthly Volume (Bn) vs Value (₹ Lakh Cr)',
+    chartSub: 'NPCI Official Product Statistics (Apr–Oct 2026)',
+    sourceTag: 'NPCI',
+    labelA: 'Volume (Bn Txns)', labelB: 'Value (₹L Cr)',
+    chartData: [
+      { period: 'Apr', valA: 22.35, valB: 29.03 },
+      { period: 'May', valA: 23.20, valB: 29.90 },
+      { period: 'Jun', valA: 22.72, valB: 28.92 },
+      { period: 'Jul', valA: 23.66, valB: 29.88 },
+      { period: 'Aug', valA: 24.51, valB: 29.82 },
+      { period: 'Sep', valA: 24.07, valB: 29.37 },
+      { period: 'Oct', valA: 25.47, valB: 31.53 }
+    ],
+    kpis: {
+      monthly: [
+        { label: 'Oct 2026 Volume', val: '25.47 Bn', sub: 'Record Monthly Txns', tone: 'green' },
+        { label: 'Oct 2026 Value', val: '₹31.53L Cr', sub: 'NPCI Official', tone: 'amber' },
+        { label: 'Live Banks', val: '758', sub: 'Up from 713 in Apr 26' },
+        { label: '7M FY27 Volume', val: '165.97 Bn', sub: '₹208.46L Cr Total Value' }
+      ],
+      quarterly: [
+        { label: 'Q2 FY27 Volume', val: '72.24 Bn', sub: 'Jul–Sep 2026', tone: 'green' },
+        { label: 'Q2 FY27 Value', val: '₹89.07L Cr', sub: 'NPCI Quarterly', tone: 'amber' },
+        { label: 'Q1 FY27 Volume', val: '68.27 Bn', sub: 'Apr–Jun 2026' },
+        { label: 'Q1 FY27 Value', val: '₹87.85L Cr', sub: 'NPCI Quarterly' }
+      ],
+      annual: [
+        { label: 'FY25-26 Volume', val: '241.62 Bn', sub: 'Full Year Txns', tone: 'green' },
+        { label: 'FY25-26 Value', val: '₹314.23L Cr', sub: 'Full Year Value', tone: 'amber' },
+        { label: 'FY27 7M Volume', val: '165.97 Bn', sub: 'Apr–Oct 2026' },
+        { label: 'FY27 7M Value', val: '₹208.46L Cr', sub: 'Apr–Oct 2026' }
+      ]
+    },
+    ledgerHeaders: ['Period', 'Volume (Txns)', 'Value & Banks'],
     monthly: [
-      { period: 'Apr 2026', vol: 22.35, val: 29.03, banks: 713 },
-      { period: 'May 2026', vol: 23.20, val: 29.90, banks: 720 },
-      { period: 'Jun 2026', vol: 22.72, val: 28.92, banks: 731 },
-      { period: 'Jul 2026', vol: 23.66, val: 29.88, banks: 741 },
-      { period: 'Aug 2026', vol: 24.51, val: 29.82, banks: 752 },
-      { period: 'Sep 2026', vol: 24.07, val: 29.37, banks: 756 },
-      { period: 'Oct 2026', vol: 25.47, val: 31.53, banks: 758 }
+      { period: 'Apr 2026', col1: '22.35 Bn', col2: '₹29.03L Cr · 713 Banks' },
+      { period: 'May 2026', col1: '23.20 Bn', col2: '₹29.90L Cr · 720 Banks' },
+      { period: 'Jun 2026', col1: '22.72 Bn', col2: '₹28.92L Cr · 731 Banks' },
+      { period: 'Jul 2026', col1: '23.66 Bn', col2: '₹29.88L Cr · 741 Banks' },
+      { period: 'Aug 2026', col1: '24.51 Bn', col2: '₹29.82L Cr · 752 Banks' },
+      { period: 'Sep 2026', col1: '24.07 Bn', col2: '₹29.37L Cr · 756 Banks' },
+      { period: 'Oct 2026', col1: '25.47 Bn', col2: '₹31.53L Cr · 758 Banks' }
     ],
     quarterly: [
-      { period: 'Q1 FY27', vol: '68.27 Bn', val: '₹87.85L Cr' },
-      { period: 'Q2 FY27', vol: '72.24 Bn', val: '₹89.07L Cr' }
+      { period: 'Q1 FY27', col1: '68.27 Bn', col2: '₹87.85L Cr' },
+      { period: 'Q2 FY27', col1: '72.24 Bn', col2: '₹89.07L Cr' }
     ],
     annual: [
-      { period: 'FY25-26', vol: '241.62 Bn Txns', val: '₹314.23L Cr' },
-      { period: 'FY27 7M (Apr-Oct)', vol: '165.97 Bn Txns', val: '₹208.46L Cr' }
+      { period: 'FY25-26', col1: '241.62 Bn', col2: '₹314.23L Cr' },
+      { period: 'FY27 7M (Apr-Oct)', col1: '165.97 Bn', col2: '₹208.46L Cr' }
     ],
-    apps: [
+    driversTitle: 'UPI App Market Share',
+    driversSub: 'NPCI Ecosystem Distribution',
+    drivers: [
       { name: 'PhonePe', val: '46.26% Share', pct: 46.26 },
       { name: 'Google Pay', val: '32.75% Share', pct: 32.75 },
-      { name: 'Paytm', val: '7.91% Share', pct: 7.91 },
-      { name: 'Others', val: '13.08% Share', pct: 13.08 }
+      { name: 'Others (Cred, BHIM, Banks)', val: '13.08% Share', pct: 13.08 },
+      { name: 'Paytm', val: '7.91% Share', pct: 7.91 }
+    ],
+    feeds: [
+      { name: 'NPCI Official UPI Product Statistics', sub: 'Monthly Volume, Value & Live Banks', url: 'https://www.npci.org.in/product/upi/product-statistics' }
     ]
   }
 };
@@ -561,12 +775,13 @@ function initDrawer() {
     btn.addEventListener('click', () => {
       state.sector = btn.dataset.sector;
       state.tab = 'overview';
+      state.scope = 'all';
       if (state.sector === 'gdp') {
-        state.timeframe = 'quarterly'; state.scope = 'all'; state.selectedIdx = DATA.gdp.quarterly.length - 1;
+        state.timeframe = 'quarterly'; state.selectedIdx = DATA.gdp.quarterly.length - 1;
       } else if (state.sector === 'trade') {
-        state.timeframe = 'monthly'; state.scope = 'all'; state.selectedIdx = DATA.trade.monthly.length - 1;
+        state.timeframe = 'monthly'; state.selectedIdx = DATA.trade.monthly.length - 1;
       } else {
-        state.timeframe = 'monthly'; state.scope = 'all'; state.selectedIdx = 0;
+        state.timeframe = 'monthly'; state.selectedIdx = Math.max(0, DATA[state.sector].chartData.length - 1);
       }
       closeDrawer();
       render();
@@ -588,10 +803,7 @@ document.getElementById('btnCloseDrawer').addEventListener('click', closeDrawer)
 document.getElementById('drawerBackdrop').addEventListener('click', closeDrawer);
 
 document.getElementById('bottomNav').querySelectorAll('.nav-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    state.tab = btn.dataset.tab;
-    render();
-  });
+  btn.addEventListener('click', () => { state.tab = btn.dataset.tab; render(); });
 });
 
 async function fetchWorldBankLive() {
@@ -610,13 +822,9 @@ async function fetchWorldBankLive() {
       return rows[0] || null;
     };
     const [nom, gr, pc, ppp, pcPpp, exp, imp] = await Promise.all([
-      fetchInd('NY.GDP.MKTP.CD'),
-      fetchInd('NY.GDP.MKTP.KD.ZG'),
-      fetchInd('NY.GDP.PCAP.CD'),
-      fetchInd('NY.GDP.MKTP.PP.CD'),
-      fetchInd('NY.GDP.PCAP.PP.CD'),
-      fetchInd('NE.EXP.GNFS.CD'),
-      fetchInd('NE.IMP.GNFS.CD')
+      fetchInd('NY.GDP.MKTP.CD'), fetchInd('NY.GDP.MKTP.KD.ZG'), fetchInd('NY.GDP.PCAP.CD'),
+      fetchInd('NY.GDP.MKTP.PP.CD'), fetchInd('NY.GDP.PCAP.PP.CD'),
+      fetchInd('NE.EXP.GNFS.CD'), fetchInd('NE.IMP.GNFS.CD')
     ]);
     state.wbLive.gdp = { nom, gr, pc, ppp, pcPpp };
     state.wbLive.trade = { exp, imp };
@@ -632,12 +840,12 @@ async function fetchWorldBankLive() {
 document.getElementById('btnRefresh').addEventListener('click', fetchWorldBankLive);
 
 function buildBarChartSVG(items, seriesA, seriesB, labelA, labelB, colorA, colorB, unitPrefix = '', unitSuffix = '') {
-  const maxVal = Math.max(...items.flatMap(d => [d[seriesA] || 0, d[seriesB] || 0]), 1) * 1.15;
+  const maxVal = Math.max(...items.flatMap(d => [d[seriesA] || 0, seriesB ? (d[seriesB] || 0) : 0]), 1) * 1.15;
   const w = Math.max(320, items.length * 56);
   const h = 180;
   const padB = 26, padT = 12, padL = 36;
   const plotH = h - padB - padT;
-  const barW = 14, gap = 4;
+  const barW = seriesB ? 14 : 22, gap = 4;
   const step = (w - padL) / items.length;
 
   const gridLines = [0, 0.25, 0.5, 0.75, 1].map(f => {
@@ -650,33 +858,25 @@ function buildBarChartSVG(items, seriesA, seriesB, labelA, labelB, colorA, color
   const bars = items.map((d, i) => {
     const cx = padL + i * step + step / 2;
     const vA = d[seriesA] || 0;
-    const vB = d[seriesB] || 0;
+    const vB = seriesB ? (d[seriesB] || 0) : 0;
     const hA = (vA / maxVal) * plotH;
     const hB = (vB / maxVal) * plotH;
+    const xA = seriesB ? cx - barW - gap/2 : cx - barW/2;
     const active = i === state.selectedIdx ? 'opacity="1"' : 'opacity="0.82"';
     return `<g data-idx="${i}" style="cursor:pointer" ${active}>
-      <rect x="${cx - barW - gap/2}" y="${padT + plotH - hA}" width="${barW}" height="${hA}" rx="4" fill="${colorA}"/>
+      <rect x="${xA}" y="${padT + plotH - hA}" width="${barW}" height="${hA}" rx="4" fill="${colorA}"/>
       ${seriesB ? `<rect x="${cx + gap/2}" y="${padT + plotH - hB}" width="${barW}" height="${hB}" rx="4" fill="${colorB}"/>` : ''}
       <text x="${cx}" y="${h - 8}" text-anchor="middle" font-size="9.5" font-weight="${i === state.selectedIdx ? '700' : '500'}" fill="${i === state.selectedIdx ? 'var(--text)' : 'var(--muted)'}">${d.period.replace(' 2026', '')}</text>
     </g>`;
   }).join('');
 
-  return `
-    <div class="chart-legend">
-      <span><i class="legend-dot" style="background:${colorA}"></i>${labelA}</span>
-      ${seriesB ? `<span><i class="legend-dot" style="background:${colorB}"></i>${labelB}</span>` : ''}
-    </div>
-    <div class="chart-wrap">
-      <svg viewBox="0 0 ${w} ${h}" width="100%" height="190" class="interactive-svg">${gridLines}${bars}</svg>
-    </div>`;
+  return `<div class="chart-legend"><span><i class="legend-dot" style="background:${colorA}"></i>${labelA}</span>${seriesB ? `<span><i class="legend-dot" style="background:${colorB}"></i>${labelB}</span>` : ''}</div>
+    <div class="chart-wrap"><svg viewBox="0 0 ${w} ${h}" width="100%" height="190" class="interactive-svg">${gridLines}${bars}</svg></div>`;
 }
 
 function attachChartClicks() {
   document.querySelectorAll('.interactive-svg g[data-idx]').forEach(g => {
-    g.addEventListener('click', () => {
-      state.selectedIdx = Number(g.dataset.idx);
-      render();
-    });
+    g.addEventListener('click', () => { state.selectedIdx = Number(g.dataset.idx); render(); });
   });
 }
 
@@ -691,18 +891,7 @@ function renderGDP(main) {
     state.selectedIdx = arr ? arr.length - 1 : 0;
     render();
   }));
-
-  const scopeBar = document.getElementById('scopeBar');
-  const scopes = [
-    { id: 'all', label: 'All Metrics' },
-    { id: 'real_nom', label: 'Real vs Nominal' },
-    { id: 'ppp_pc', label: 'Per Capita & PPP' },
-    { id: 'est', label: 'FY27 Estimates' }
-  ];
-  scopeBar.innerHTML = scopes.map(s => `<button class="pill ${state.scope === s.id ? 'active' : ''}" data-sc="${s.id}">${s.label}</button>`).join('');
-  scopeBar.querySelectorAll('.pill').forEach(p => p.addEventListener('click', () => {
-    state.scope = p.dataset.sc; render();
-  }));
+  document.getElementById('scopeBar').innerHTML = '';
 
   if (state.tab === 'overview') {
     if (state.timeframe === 'monthly') {
@@ -753,97 +942,41 @@ function renderGDP(main) {
           ${buildBarChartSVG(rows, 'nomUsd', 'pppUsd', 'Nominal GDP ($T)', 'PPP GDP ($T)', '#10b981', '#6366f1', '$', 'T')}
           <div class="tooltip-box"><span><strong>${cur.period}</strong></span><span>Nom $${cur.nomUsd}T · PPP $${cur.pppUsd}T · Real +${cur.realG}%</span></div>
         </div>`;
-    } else if (state.timeframe === 'states') {
-      const top10 = DATA.gdp.states.slice(0, 10);
-      const maxG = top10[0].gsdp;
-      main.innerHTML = `
-        <div class="card">
-          <div class="section-head"><div><div class="section-title">State-wise GSDP (Current Prices, ₹ Lakh Cr)</div><div class="section-sub">RBI Handbook of Statistics on Indian States (Table 21 · MoSPI)</div></div><span class="source-tag">RBI / MoSPI</span></div>
-          ${DATA.gdp.states.map((s, idx) => `
-            <div class="driver-row">
-              <div style="flex:1">
-                <div style="display:flex;justify-content:space-between;font-weight:600;font-size:13px;">
-                  <span>${idx + 1}. ${s.state} <small style="color:var(--muted);font-weight:400">(${s.year})</small></span>
-                  <span>₹${s.gsdp.toFixed(2)}L Cr</span>
-                </div>
-                <div class="bar-track"><div class="bar-fill" style="width:${(s.gsdp / maxG * 100).toFixed(1)}%"></div></div>
-              </div>
-            </div>
-          `).join('')}
-          <div class="notice-box">
-            <strong>*Note on Gujarat &amp; City-wise GDP:</strong> Gujarat's latest reported figure in RBI Table 21 is FY2022-23 (2023-24/2024-25 marked unavailable). Official Indian Government (MoSPI), RBI, IMF, and World Bank databases do not publish a city-wise GDP ranking; MoSPI has published District Domestic Product (DDP) guidelines under Base Year 2022-23.
-          </div>
-        </div>`;
+    } else {
+      const maxG = DATA.gdp.states[0].gsdp;
+      main.innerHTML = `<div class="card">
+        <div class="section-head"><div><div class="section-title">State-wise GSDP (Current Prices, ₹ Lakh Cr)</div><div class="section-sub">RBI Handbook Table 21 · MoSPI NSO</div></div><span class="source-tag">RBI / MoSPI</span></div>
+        ${DATA.gdp.states.map((s, idx) => `<div class="driver-row"><div style="flex:1"><div style="display:flex;justify-content:space-between;font-weight:600;font-size:13px;"><span>${idx + 1}. ${s.state} <small style="color:var(--muted);font-weight:400">(${s.year})</small></span><span>₹${s.gsdp.toFixed(2)}L Cr</span></div><div class="bar-track"><div class="bar-fill" style="width:${(s.gsdp / maxG * 100).toFixed(1)}%"></div></div></div></div>`).join('')}
+        <div class="notice-box"><strong>*Note on Gujarat & City-wise GDP:</strong> Gujarat's latest figure in RBI Table 21 is FY2022-23. Official Indian Government (MoSPI), RBI, IMF, and World Bank databases do not publish a city-wise GDP ranking; MoSPI has published District Domestic Product (DDP) guidelines under Base Year 2022-23.</div>
+      </div>`;
     }
   } else if (state.tab === 'ledger') {
-    main.innerHTML = `
-      <div class="card">
-        <div class="section-head"><div><div class="section-title">Annual GDP & Per Capita Ledger</div><div class="section-sub">MoSPI Base 2022-23 · World Bank · IMF WEO Oct 2026</div></div></div>
-        <div style="overflow-x:auto">
-          <table>
-            <thead><tr><th>Year</th><th class="num">Real %</th><th class="num">Nom ($T)</th><th class="num">PPP ($T)</th><th class="num">Per Cap ($)</th></tr></thead>
-            <tbody>
-              ${DATA.gdp.annual.map(r => `<tr><td><strong>${r.period}</strong><br><small style="color:var(--muted)">${r.tag}</small></td><td class="num">${r.realG}%</td><td class="num">$${r.nomUsd}T</td><td class="num">$${r.pppUsd}T</td><td class="num">$${r.pcUsd.toLocaleString()}</td></tr>`).join('')}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="card section-card">
-        <div class="section-head"><div><div class="section-title">Quarterly GDP Ledger (₹ Lakh Cr)</div><div class="section-sub">MoSPI National Accounts (Base 2022-23)</div></div></div>
-        <table>
-          <thead><tr><th>Quarter</th><th class="num">Real GDP</th><th class="num">Real %</th><th class="num">Nom GDP</th><th class="num">Nom %</th></tr></thead>
-          <tbody>
-            ${DATA.gdp.quarterly.map(q => `<tr><td><strong>${q.period}</strong></td><td class="num">₹${q.real}L</td><td class="num">+${q.realG}%</td><td class="num">₹${q.nom}L</td><td class="num">+${q.nomG}%</td></tr>`).join('')}
-          </tbody>
-        </table>
-      </div>`;
+    main.innerHTML = `<div class="card"><div class="section-head"><div><div class="section-title">Annual GDP & Per Capita Ledger</div><div class="section-sub">MoSPI Base 2022-23 · World Bank · IMF WEO Oct 2026</div></div></div>
+      <table><thead><tr><th>Year</th><th class="num">Real %</th><th class="num">Nom ($T)</th><th class="num">PPP ($T)</th><th class="num">Per Cap ($)</th></tr></thead>
+      <tbody>${DATA.gdp.annual.map(r => `<tr><td><strong>${r.period}</strong><br><small style="color:var(--muted)">${r.tag}</small></td><td class="num">${r.realG}%</td><td class="num">$${r.nomUsd}T</td><td class="num">$${r.pppUsd}T</td><td class="num">$${r.pcUsd.toLocaleString()}</td></tr>`).join('')}</tbody></table></div>
+      <div class="card section-card"><div class="section-head"><div class="section-title">Quarterly GDP Ledger (₹ Lakh Cr)</div></div>
+      <table><thead><tr><th>Quarter</th><th class="num">Real GDP</th><th class="num">Real %</th><th class="num">Nom GDP</th><th class="num">Nom %</th></tr></thead>
+      <tbody>${DATA.gdp.quarterly.map(q => `<tr><td><strong>${q.period}</strong></td><td class="num">₹${q.real}L</td><td class="num">+${q.realG}%</td><td class="num">₹${q.nom}L</td><td class="num">+${q.nomG}%</td></tr>`).join('')}</tbody></table></div>`;
   } else if (state.tab === 'drivers') {
-    main.innerHTML = `
-      <div class="card">
-        <div class="section-head"><div><div class="section-title">Q1 FY2026-27 Growth Drivers</div><div class="section-sub">MoSPI Sectoral GVA & Expenditure Components</div></div></div>
-        ${DATA.gdp.drivers.map(d => `
-          <div class="driver-row">
-            <div style="flex:1">
-              <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600"><span>${d.name}</span><span style="color:var(--accent)">${d.val}</span></div>
-              <div class="bar-track"><div class="bar-fill" style="width:${d.pct}%"></div></div>
-            </div>
-          </div>`).join('')}
-      </div>
-      <div class="card section-card">
-        <div class="section-head"><div><div class="section-title">Official Institutional Forecasts</div><div class="section-sub">Zero media sources — official institutions only</div></div></div>
-        ${DATA.gdp.forecasts.map(f => `
-          <div class="feed-item">
-            <div><div class="feed-title">${f.agency}</div><div class="feed-sub">${f.fy27} · ${f.fy28}</div></div>
-            <a class="feed-link" href="${f.url}" target="_blank" rel="noopener">Open &nearr;</a>
-          </div>`).join('')}
-      </div>`;
-  } else if (state.tab === 'fresh') {
+    main.innerHTML = `<div class="card"><div class="section-head"><div><div class="section-title">Q1 FY2026-27 Growth Drivers</div><div class="section-sub">MoSPI Sectoral GVA & Expenditure Components</div></div></div>
+      ${DATA.gdp.drivers.map(d => `<div class="driver-row"><div style="flex:1"><div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600"><span>${d.name}</span><span style="color:var(--accent)">${d.val}</span></div><div class="bar-track"><div class="bar-fill" style="width:${d.pct}%"></div></div></div></div>`).join('')}</div>
+      <div class="card section-card"><div class="section-head"><div><div class="section-title">Official Institutional Forecasts</div><div class="section-sub">Zero media sources — official institutions only</div></div></div>
+      ${DATA.gdp.forecasts.map(f => `<div class="feed-item"><div><div class="feed-title">${f.agency}</div><div class="feed-sub">${f.fy27} · ${f.fy28}</div></div><a class="feed-link" href="${f.url}" target="_blank" rel="noopener">Open ↗</a></div>`).join('')}</div>`;
+  } else {
     const wb = state.wbLive.gdp;
-    main.innerHTML = `
-      <div class="card">
-        <div class="section-head"><div><div class="section-title">Official GDP & Macroeconomic Feeds</div><div class="section-sub">Indian Government (MoSPI / PIB), RBI, IMF & World Bank</div></div></div>
-        ${DATA.gdp.feeds.map(f => `
-          <div class="feed-item">
-            <div><div class="feed-title">${f.name}</div><div class="feed-sub">${f.sub}</div></div>
-            <a class="feed-link" href="${f.url}" target="_blank" rel="noopener">Open &nearr;</a>
-          </div>`).join('')}
-      </div>
-      <div class="card section-card">
-        <div class="section-head"><div><div class="section-title">World Bank Live API (India GDP)</div><div class="section-sub">Fetches Nominal, Growth, Per Capita & PPP indicators live</div></div><button class="btn-refresh" id="btnInlineFetch">Fetch Live</button></div>
-        <div class="status-banner"><span>${state.wbLive.status}</span></div>
-        ${wb ? `<div class="kpi-grid" style="margin-top:10px">
-          <div class="card"><div class="kpi-label">WB Nominal (${wb.nom?.date || '—'})</div><div class="kpi-val green">$${wb.nom ? (wb.nom.value / 1e12).toFixed(2) + 'T' : '—'}</div></div>
-          <div class="card"><div class="kpi-label">WB Growth (${wb.gr?.date || '—'})</div><div class="kpi-val">${wb.gr ? wb.gr.value.toFixed(1) + '%' : '—'}</div></div>
-          <div class="card"><div class="kpi-label">WB Per Capita</div><div class="kpi-val">$${wb.pc ? Math.round(wb.pc.value).toLocaleString() : '—'}</div></div>
-          <div class="card"><div class="kpi-label">WB PPP GDP</div><div class="kpi-val amber">$${wb.ppp ? (wb.ppp.value / 1e12).toFixed(2) + 'T' : '—'}</div></div>
-        </div>` : ''}
-      </div>`;
+    main.innerHTML = `<div class="card"><div class="section-head"><div><div class="section-title">Official GDP & Macroeconomic Feeds</div><div class="section-sub">Indian Government (MoSPI / PIB), RBI, IMF & World Bank</div></div></div>
+      ${DATA.gdp.feeds.map(f => `<div class="feed-item"><div><div class="feed-title">${f.name}</div><div class="feed-sub">${f.sub}</div></div><a class="feed-link" href="${f.url}" target="_blank" rel="noopener">Open ↗</a></div>`).join('')}</div>
+      <div class="card section-card"><div class="section-head"><div><div class="section-title">World Bank Live API (India GDP)</div><div class="section-sub">Fetches Nominal, Growth, Per Capita & PPP indicators live</div></div><button class="btn-refresh" id="btnInlineFetch">Fetch Live</button></div>
+      <div class="status-banner">${state.wbLive.status}</div>
+      ${wb ? `<div class="kpi-grid" style="margin-top:10px">
+        <div class="card"><div class="kpi-label">WB Nominal (${wb.nom?.date || '—'})</div><div class="kpi-val green">$${wb.nom ? (wb.nom.value / 1e12).toFixed(2) + 'T' : '—'}</div></div>
+        <div class="card"><div class="kpi-label">WB Growth (${wb.gr?.date || '—'})</div><div class="kpi-val">${wb.gr ? wb.gr.value.toFixed(1) + '%' : '—'}</div></div>
+        <div class="card"><div class="kpi-label">WB Per Capita</div><div class="kpi-val">$${wb.pc ? Math.round(wb.pc.value).toLocaleString() : '—'}</div></div>
+        <div class="card"><div class="kpi-label">WB PPP GDP</div><div class="kpi-val amber">$${wb.ppp ? (wb.ppp.value / 1e12).toFixed(2) + 'T' : '—'}</div></div>
+      </div>` : ''}</div>`;
     document.getElementById('btnInlineFetch')?.addEventListener('click', fetchWorldBankLive);
   }
-
-  main.querySelectorAll('.pill[data-idx]').forEach(p => p.addEventListener('click', () => {
-    state.selectedIdx = Number(p.dataset.idx); render();
-  }));
+  main.querySelectorAll('.pill[data-idx]').forEach(p => p.addEventListener('click', () => { state.selectedIdx = Number(p.dataset.idx); render(); }));
   attachChartClicks();
 }
 
@@ -853,77 +986,62 @@ function renderTrade(main) {
     `<button class="seg-btn ${state.timeframe === tf ? 'active' : ''}" data-tf="${tf}">${tf.charAt(0).toUpperCase() + tf.slice(1)}</button>`
   ).join('');
   tfBar.querySelectorAll('.seg-btn').forEach(b => b.addEventListener('click', () => {
-    state.timeframe = b.dataset.tf;
-    state.selectedIdx = DATA.trade[state.timeframe].length - 1;
-    render();
+    state.timeframe = b.dataset.tf; state.selectedIdx = DATA.trade[state.timeframe].length - 1; render();
   }));
 
   const scopeBar = document.getElementById('scopeBar');
-  scopeBar.innerHTML = [
-    { id: 'all', label: 'All (M+S)' },
-    { id: 'goods', label: 'Goods' },
-    { id: 'services', label: 'Services' },
-    { id: 'core', label: 'Core' }
-  ].map(s => `<button class="pill ${state.scope === s.id ? 'active' : ''}" data-sc="${s.id}">${s.label}</button>`).join('');
+  scopeBar.innerHTML = [{ id: 'all', label: 'All (M+S)' }, { id: 'goods', label: 'Goods' }, { id: 'services', label: 'Services' }, { id: 'core', label: 'Core' }]
+    .map(s => `<button class="pill ${state.scope === s.id ? 'active' : ''}" data-sc="${s.id}">${s.label}</button>`).join('');
   scopeBar.querySelectorAll('.pill').forEach(p => p.addEventListener('click', () => { state.scope = p.dataset.sc; render(); }));
 
   if (state.tab === 'overview') {
-    if (state.timeframe === 'monthly') {
-      const rows = DATA.trade.monthly.map(r => {
-        let exp = r.mExp + r.sExp, imp = r.mImp + r.sImp;
-        if (state.scope === 'goods') { exp = r.mExp; imp = r.mImp; }
-        else if (state.scope === 'services') { exp = r.sExp; imp = r.sImp; }
-        else if (state.scope === 'core') { exp = r.cExp; imp = r.cImp; }
-        return { ...r, exp: +exp.toFixed(2), imp: +imp.toFixed(2), bal: +(exp - imp).toFixed(2), vol: +(exp + imp).toFixed(2) };
-      });
-      const cur = rows[Math.min(state.selectedIdx, rows.length - 1)];
-      main.innerHTML = `
-        <div class="pill-row">${rows.map((r, i) => `<button class="pill dark-active ${i === state.selectedIdx ? 'active' : ''}" data-idx="${i}">${r.period}</button>`).join('')}</div>
-        <div class="kpi-grid">
-          <div class="card"><div class="kpi-label">Exports <span class="badge ${cur.yoy < 0 ? 'neg' : ''}">${cur.yoy > 0 ? '+' : ''}${cur.yoy}% YoY</span></div><div class="kpi-val green">$${cur.exp}B</div><div class="kpi-sub">${cur.period} · PIB ${cur.pr}</div></div>
-          <div class="card"><div class="kpi-label">Imports</div><div class="kpi-val amber">$${cur.imp}B</div><div class="kpi-sub">Inward flow</div></div>
-          <div class="card"><div class="kpi-label">Trade Balance</div><div class="kpi-val ${cur.bal < 0 ? 'red' : 'green'}">${cur.bal < 0 ? '-' : '+'}$${Math.abs(cur.bal)}B</div><div class="kpi-sub">${cur.bal < 0 ? 'Net Deficit' : 'Net Surplus'}</div></div>
-          <div class="card"><div class="kpi-label">Total Volume</div><div class="kpi-val">$${cur.vol}B</div><div class="kpi-sub">Exports + Imports</div></div>
-        </div>
-        <div class="card section-card">
-          <div class="section-head"><div><div class="section-title">Exports vs Imports Trend</div><div class="section-sub">US$ Billion · Tap bars for details</div></div><span class="source-tag">PIB / MoC&amp;I</span></div>
-          ${buildBarChartSVG(rows, 'exp', 'imp', 'Exports ($B)', 'Imports ($B)', '#10b981', '#f59e0b', '$', 'B')}
-          <div class="tooltip-box"><span><strong>${cur.period}</strong></span><span>Exp $${cur.exp}B · Imp $${cur.imp}B · Bal ${cur.bal < 0 ? '-' : '+'}$${Math.abs(cur.bal)}B</span></div>
-        </div>`;
-    } else {
-      const rows = DATA.trade[state.timeframe].map(r => {
-        const exp = r.exp ?? +(r.mExp + r.sExp).toFixed(2);
-        const imp = r.imp ?? +(r.mImp + r.sImp).toFixed(2);
-        return { ...r, exp, imp, bal: +(exp - imp).toFixed(2), vol: +(exp + imp).toFixed(2) };
-      });
-      const cur = rows[Math.min(state.selectedIdx, rows.length - 1)];
-      main.innerHTML = `
-        <div class="pill-row">${rows.map((r, i) => `<button class="pill dark-active ${i === state.selectedIdx ? 'active' : ''}" data-idx="${i}">${r.period}</button>`).join('')}</div>
-        <div class="kpi-grid">
-          <div class="card"><div class="kpi-label">Exports <span class="badge">+${cur.yoy}% YoY</span></div><div class="kpi-val green">$${cur.exp}B</div><div class="kpi-sub">${cur.pr}</div></div>
-          <div class="card"><div class="kpi-label">Imports</div><div class="kpi-val amber">$${cur.imp}B</div><div class="kpi-sub">Total inward flow</div></div>
-          <div class="card"><div class="kpi-label">Trade Balance</div><div class="kpi-val red">-$${Math.abs(cur.bal)}B</div><div class="kpi-sub">Net Deficit</div></div>
-          <div class="card"><div class="kpi-label">Total Volume</div><div class="kpi-val">$${cur.vol}B</div><div class="kpi-sub">Exports + Imports</div></div>
-        </div>
-        <div class="card section-card">
-          <div class="section-head"><div><div class="section-title">Exports vs Imports (${state.timeframe})</div></div><span class="source-tag">PIB / NITI</span></div>
-          ${buildBarChartSVG(rows, 'exp', 'imp', 'Exports ($B)', 'Imports ($B)', '#10b981', '#f59e0b', '$', 'B')}
-        </div>`;
-    }
+    const rows = state.timeframe === 'monthly'
+      ? DATA.trade.monthly.map(r => {
+          let exp = r.mExp + r.sExp, imp = r.mImp + r.sImp;
+          if (state.scope === 'goods') { exp = r.mExp; imp = r.mImp; }
+          else if (state.scope === 'services') { exp = r.sExp; imp = r.sImp; }
+          else if (state.scope === 'core') { exp = r.cExp; imp = r.cImp; }
+          return { ...r, exp: +exp.toFixed(2), imp: +imp.toFixed(2), bal: +(exp - imp).toFixed(2) };
+        })
+      : DATA.trade[state.timeframe].map(r => {
+          const exp = r.exp ?? +(r.mExp + r.sExp).toFixed(2);
+          const imp = r.imp ?? +(r.mImp + r.sImp).toFixed(2);
+          return { ...r, exp, imp, bal: +(exp - imp).toFixed(2) };
+        });
+    const cur = rows[Math.min(state.selectedIdx, rows.length - 1)];
+    main.innerHTML = `
+      <div class="pill-row">${rows.map((r, i) => `<button class="pill dark-active ${i === state.selectedIdx ? 'active' : ''}" data-idx="${i}">${r.period}</button>`).join('')}</div>
+      <div class="kpi-grid">
+        <div class="card"><div class="kpi-label">Exports <span class="badge ${cur.yoy < 0 ? 'neg' : ''}">${cur.yoy > 0 ? '+' : ''}${cur.yoy}% YoY</span></div><div class="kpi-val green">$${cur.exp}B</div><div class="kpi-sub">${cur.period} · ${cur.pr}</div></div>
+        <div class="card"><div class="kpi-label">Imports</div><div class="kpi-val amber">$${cur.imp}B</div><div class="kpi-sub">Inward flow</div></div>
+        <div class="card"><div class="kpi-label">Trade Balance</div><div class="kpi-val red">-$${Math.abs(cur.bal)}B</div><div class="kpi-sub">Net Deficit</div></div>
+        <div class="card"><div class="kpi-label">Total Volume</div><div class="kpi-val">$${(cur.exp + cur.imp).toFixed(2)}B</div><div class="kpi-sub">Exports + Imports</div></div>
+      </div>
+      <div class="card section-card">
+        <div class="section-head"><div class="section-title">Exports vs Imports Trend</div><span class="source-tag">PIB / MoC&I</span></div>
+        ${buildBarChartSVG(rows, 'exp', 'imp', 'Exports ($B)', 'Imports ($B)', '#10b981', '#f59e0b', '$', 'B')}
+      </div>`;
   } else if (state.tab === 'ledger') {
-    main.innerHTML = `<div class="card"><div class="section-head"><div class="section-title">Monthly EXIM Ledger (US$ Bn)</div></div><table><thead><tr><th>Month</th><th class="num">Merch Exp</th><th class="num">Serv Exp</th><th class="num">Tot Exp</th><th class="num">Tot Imp</th></tr></thead><tbody>${DATA.trade.monthly.map(r => `<tr><td><strong>${r.period}</strong></td><td class="num">$${r.mExp}</td><td class="num">$${r.sExp}</td><td class="num">$${(r.mExp+r.sExp).toFixed(2)}</td><td class="num">$${(r.mImp+r.sImp).toFixed(2)}</td></tr>`).join('')}</tbody></table></div>`;
+    main.innerHTML = `<div class="card"><div class="section-head"><div class="section-title">Monthly EXIM Ledger (US$ Bn)</div></div>
+      <table><thead><tr><th>Month</th><th class="num">Merch Exp</th><th class="num">Serv Exp</th><th class="num">Tot Exp</th><th class="num">Tot Imp</th></tr></thead>
+      <tbody>${DATA.trade.monthly.map(r => `<tr><td><strong>${r.period}</strong></td><td class="num">$${r.mExp}</td><td class="num">$${r.sExp}</td><td class="num">$${(r.mExp+r.sExp).toFixed(2)}</td><td class="num">$${(r.mImp+r.sImp).toFixed(2)}</td></tr>`).join('')}</tbody></table></div>`;
   } else if (state.tab === 'drivers') {
-    main.innerHTML = `<div class="card"><div class="section-head"><div class="section-title">Top Export Drivers (Oct 2026)</div></div>${DATA.trade.drivers.map(d => `<div class="driver-row"><div style="flex:1"><div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600"><span>${d.name}</span><span style="color:var(--accent)">${d.val}</span></div><div class="bar-track"><div class="bar-fill" style="width:${d.pct}%"></div></div></div></div>`).join('')}</div>`;
-  } else if (state.tab === 'fresh') {
+    main.innerHTML = `<div class="card"><div class="section-head"><div class="section-title">Top Export Drivers (Oct 2026)</div></div>
+      ${DATA.trade.drivers.map(d => `<div class="driver-row"><div style="flex:1"><div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600"><span>${d.name}</span><span style="color:var(--accent)">${d.val}</span></div><div class="bar-track"><div class="bar-fill" style="width:${d.pct}%"></div></div></div></div>`).join('')}</div>`;
+  } else {
     const wb = state.wbLive.trade;
-    main.innerHTML = `<div class="card"><div class="section-head"><div class="section-title">Official Trade Feeds</div></div>${DATA.trade.feeds.map(f => `<div class="feed-item"><div><div class="feed-title">${f.name}</div><div class="feed-sub">${f.sub}</div></div><a class="feed-link" href="${f.url}" target="_blank" rel="noopener">Open &nearr;</a></div>`).join('')}</div><div class="card section-card"><div class="section-head"><div><div class="section-title">World Bank Live Annual Feed</div><div class="section-sub">NE.EXP.GNFS.CD &amp; NE.IMP.GNFS.CD (mrv=4)</div></div><button class="btn-refresh" id="btnInlineFetch">Fetch Live</button></div><div class="status-banner"><span>${state.wbLive.status}</span></div>${wb ? `<div class="kpi-grid" style="margin-top:10px"><div class="card"><div class="kpi-label">WB Exports (${wb.exp?.date || '—'})</div><div class="kpi-val green">$${wb.exp ? (wb.exp.value/1e9).toFixed(1)+'B' : '—'}</div></div><div class="card"><div class="kpi-label">WB Imports (${wb.imp?.date || '—'})</div><div class="kpi-val amber">$${wb.imp ? (wb.imp.value/1e9).toFixed(1)+'B' : '—'}</div></div></div>` : ''}</div>`;
+    main.innerHTML = `<div class="card"><div class="section-head"><div class="section-title">Official Trade Feeds</div></div>
+      ${DATA.trade.feeds.map(f => `<div class="feed-item"><div><div class="feed-title">${f.name}</div><div class="feed-sub">${f.sub}</div></div><a class="feed-link" href="${f.url}" target="_blank" rel="noopener">Open ↗</a></div>`).join('')}</div>
+      <div class="card section-card"><div class="section-head"><div><div class="section-title">World Bank Live Annual Feed</div><div class="section-sub">NE.EXP.GNFS.CD & NE.IMP.GNFS.CD (mrv=4)</div></div><button class="btn-refresh" id="btnInlineFetch">Fetch Live</button></div>
+      <div class="status-banner">${state.wbLive.status}</div>
+      ${wb ? `<div class="kpi-grid" style="margin-top:10px"><div class="card"><div class="kpi-label">WB Exports (${wb.exp?.date || '—'})</div><div class="kpi-val green">$${wb.exp ? (wb.exp.value/1e9).toFixed(1)+'B' : '—'}</div></div><div class="card"><div class="kpi-label">WB Imports (${wb.imp?.date || '—'})</div><div class="kpi-val amber">$${wb.imp ? (wb.imp.value/1e9).toFixed(1)+'B' : '—'}</div></div></div>` : ''}</div>`;
     document.getElementById('btnInlineFetch')?.addEventListener('click', fetchWorldBankLive);
   }
   main.querySelectorAll('.pill[data-idx]').forEach(p => p.addEventListener('click', () => { state.selectedIdx = Number(p.dataset.idx); render(); }));
   attachChartClicks();
 }
 
-function renderOtherSector(main) {
+function renderRichSector(main) {
   const tfBar = document.getElementById('timeframeBar');
   tfBar.innerHTML = ['monthly', 'quarterly', 'annual'].map(tf =>
     `<button class="seg-btn ${state.timeframe === tf ? 'active' : ''}" data-tf="${tf}">${tf.charAt(0).toUpperCase() + tf.slice(1)}</button>`
@@ -931,28 +1049,33 @@ function renderOtherSector(main) {
   tfBar.querySelectorAll('.seg-btn').forEach(b => b.addEventListener('click', () => { state.timeframe = b.dataset.tf; render(); }));
   document.getElementById('scopeBar').innerHTML = '';
 
-  const s = state.sector;
-  const rows = DATA[s][state.timeframe] || [];
-  let extra = '';
-  if (s === 'automobile' && DATA.automobile.companies) {
-    extra = `<div class="card section-card"><div class="section-head"><div class="section-title">Company-wise Passenger Vehicle Sales (Oct 2026)</div></div>${DATA.automobile.companies.map(c => `<div class="driver-row"><div style="flex:1"><div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600"><span>${c.name}</span><span>${c.val}</span></div><div class="bar-track"><div class="bar-fill" style="width:${c.pct}%"></div></div></div></div>`).join('')}</div>`;
-  } else if (s === 'it' && DATA.it.companies) {
-    extra = `<div class="card section-card"><div class="section-head"><div class="section-title">IT Majors (Q2 FY27 Results)</div></div>${DATA.it.companies.map(c => `<div class="driver-row"><div style="flex:1"><div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600"><span>${c.name}</span><span>${c.val}</span></div><div class="bar-track"><div class="bar-fill" style="width:${c.pct}%"></div></div></div></div>`).join('')}</div>`;
-  } else if (s === 'upi' && DATA.upi.apps) {
-    extra = `<div class="card section-card"><div class="section-head"><div class="section-title">UPI App Market Share</div></div>${DATA.upi.apps.map(c => `<div class="driver-row"><div style="flex:1"><div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600"><span>${c.name}</span><span>${c.val}</span></div><div class="bar-track"><div class="bar-fill" style="width:${c.pct}%"></div></div></div></div>`).join('')}</div>`;
-  }
+  const cfg = DATA[state.sector];
+  const tfKey = state.timeframe === 'states' ? 'annual' : state.timeframe;
 
-  main.innerHTML = `
-    <div class="card">
-      <div class="section-head"><div class="section-title">${SECTORS.find(x => x.id === s).label} — ${state.timeframe.toUpperCase()}</div></div>
-      <table>
-        <thead><tr><th>Period</th><th>Metric 1</th><th>Metric 2</th></tr></thead>
-        <tbody>
-          ${rows.map(r => `<tr><td><strong>${r.period}</strong></td><td>${r.kpi1 || r.prod || (r.gross ? (typeof r.gross === 'number' ? '₹' + r.gross.toLocaleString('en-IN') + ' Cr' : r.gross) : '') || (r.vol ? r.vol + ' Bn' : '') || r.pv}</td><td>${r.kpi2 || r.rev || (r.yoy ? '+' + r.yoy + '%' : '') || (r.val ? '₹' + r.val + 'L Cr' : '') || r.total || ''}</td></tr>`).join('')}
-        </tbody>
-      </table>
-    </div>
-    ${extra}`;
+  if (state.tab === 'overview') {
+    const kpis = cfg.kpis[tfKey];
+    const idx = Math.min(state.selectedIdx, cfg.chartData.length - 1);
+    const cur = cfg.chartData[idx];
+    main.innerHTML = `
+      <div class="kpi-grid">${kpis.map(k => `<div class="card"><div class="kpi-label">${k.label} ${k.badge ? `<span class="badge">${k.badge}</span>` : ''}</div><div class="kpi-val ${k.tone || ''}">${k.val}</div><div class="kpi-sub">${k.sub}</div></div>`).join('')}</div>
+      <div class="card section-card">
+        <div class="section-head"><div><div class="section-title">${cfg.chartTitle}</div><div class="section-sub">${cfg.chartSub}</div></div><span class="source-tag">${cfg.sourceTag}</span></div>
+        ${buildBarChartSVG(cfg.chartData, 'valA', cfg.labelB ? 'valB' : null, cfg.labelA, cfg.labelB || '', '#10b981', '#6366f1', cfg.prefix || '', cfg.suffix || '')}
+        ${cur ? `<div class="tooltip-box"><span><strong>${cur.period}</strong></span><span>${cfg.prefix || ''}${cur.valA}${cfg.suffix || ''}${cur.valB !== undefined ? ` · ${cfg.labelB}: ${cur.valB}` : ''}</span></div>` : ''}
+      </div>`;
+  } else if (state.tab === 'ledger') {
+    const rows = cfg[tfKey];
+    main.innerHTML = `<div class="card"><div class="section-head"><div><div class="section-title">${SECTORS.find(x => x.id === state.sector).label} — ${tfKey.toUpperCase()} Ledger</div></div></div>
+      <table><thead><tr><th>${cfg.ledgerHeaders[0]}</th><th>${cfg.ledgerHeaders[1]}</th><th>${cfg.ledgerHeaders[2]}</th></tr></thead>
+      <tbody>${rows.map(r => `<tr><td><strong>${r.period}</strong></td><td>${r.col1}</td><td>${r.col2}</td></tr>`).join('')}</tbody></table></div>`;
+  } else if (state.tab === 'drivers') {
+    main.innerHTML = `<div class="card"><div class="section-head"><div><div class="section-title">${cfg.driversTitle}</div><div class="section-sub">${cfg.driversSub}</div></div></div>
+      ${cfg.drivers.map(d => `<div class="driver-row"><div style="flex:1"><div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600"><span>${d.name}</span><span style="color:var(--accent)">${d.val}</span></div><div class="bar-track"><div class="bar-fill" style="width:${d.pct}%"></div></div></div></div>`).join('')}</div>`;
+  } else {
+    main.innerHTML = `<div class="card"><div class="section-head"><div><div class="section-title">Official ${SECTORS.find(x => x.id === state.sector).label} Feeds</div><div class="section-sub">Verified primary sources</div></div></div>
+      ${cfg.feeds.map(f => `<div class="feed-item"><div><div class="feed-title">${f.name}</div><div class="feed-sub">${f.sub}</div></div><a class="feed-link" href="${f.url}" target="_blank" rel="noopener">Open ↗</a></div>`).join('')}</div>`;
+  }
+  attachChartClicks();
 }
 
 function render() {
@@ -965,7 +1088,7 @@ function render() {
   const main = document.getElementById('appMain');
   if (state.sector === 'gdp') renderGDP(main);
   else if (state.sector === 'trade') renderTrade(main);
-  else renderOtherSector(main);
+  else renderRichSector(main);
 }
 
 render();
