@@ -4,57 +4,79 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="IndExo" />
-  <meta name="theme-color" content="#0b1120" media="(prefers-color-scheme: dark)" />
-  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#070b14" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#eef4fb" media="(prefers-color-scheme: light)" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <title>IndExo</title>
   <style>
     :root {
-      --bg: #f8fafc;
-      --surface: #ffffff;
-      --surface-2: #f1f5f9;
-      --border: #e2e8f0;
+      --bg: #eef4fb;
+      --bg-mesh:
+        radial-gradient(at 12% 8%, rgba(16, 185, 129, 0.18) 0px, transparent 48%),
+        radial-gradient(at 88% 14%, rgba(99, 102, 241, 0.16) 0px, transparent 46%),
+        radial-gradient(at 50% 92%, rgba(56, 189, 248, 0.14) 0px, transparent 52%);
+      --header-bg: #eef4fb;
+      --glass: rgba(255, 255, 255, 0.68);
+      --glass-strong: rgba(255, 255, 255, 0.84);
+      --glass-2: rgba(241, 245, 249, 0.66);
+      --glass-border: rgba(255, 255, 255, 0.72);
+      --border: rgba(15, 23, 42, 0.08);
+      --specular: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
       --text: #0f172a;
-      --muted: #64748b;
-      --accent: #10b981;
-      --accent-2: #6366f1;
-      --warn: #f59e0b;
-      --danger: #ef4444;
-      --shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
-      --nav-bg: rgba(255, 255, 255, 0.92);
+      --muted: #52627a;
+      --accent: #059669;
+      --accent-soft: rgba(16, 185, 129, 0.16);
+      --accent-2: #4f46e5;
+      --warn: #d97706;
+      --danger: #dc2626;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #0b1120;
-        --surface: #111827;
-        --surface-2: #1e293b;
-        --border: #1f2937;
+        --bg: #070b14;
+        --bg-mesh:
+          radial-gradient(at 15% 10%, rgba(16, 185, 129, 0.20) 0px, transparent 48%),
+          radial-gradient(at 88% 16%, rgba(99, 102, 241, 0.20) 0px, transparent 46%),
+          radial-gradient(at 50% 90%, rgba(14, 165, 233, 0.14) 0px, transparent 54%);
+        --header-bg: #070b14;
+        --glass: rgba(17, 25, 44, 0.62);
+        --glass-strong: rgba(20, 29, 50, 0.86);
+        --glass-2: rgba(30, 41, 59, 0.56);
+        --glass-border: rgba(255, 255, 255, 0.13);
+        --border: rgba(255, 255, 255, 0.09);
+        --specular: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        --shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
         --text: #f8fafc;
         --muted: #94a3b8;
         --accent: #10b981;
+        --accent-soft: rgba(16, 185, 129, 0.20);
         --accent-2: #818cf8;
         --warn: #fbbf24;
         --danger: #f87171;
-        --shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-        --nav-bg: rgba(17, 24, 39, 0.94);
       }
     }
+
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     html, body {
-      margin: 0; padding: 0;
-      background: var(--bg); color: var(--text);
+      margin: 0; padding: 0; min-height: 100%;
+      background-color: var(--bg);
+      background-image: var(--bg-mesh);
+      background-attachment: fixed;
+      color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
       font-size: 14px; line-height: 1.45;
       overscroll-behavior-y: contain;
     }
+
+    /* Crisp non-blurry top header */
     .app-header {
       position: sticky; top: 0; z-index: 40;
-      background: var(--nav-bg);
-      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      background: var(--header-bg);
       border-bottom: 1px solid var(--border);
       padding: max(12px, env(safe-area-inset-top)) 14px 10px;
+      transform: translateZ(0);
     }
     .header-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
     .menu-trigger {
@@ -63,70 +85,93 @@
       padding: 4px 6px 4px 0; cursor: pointer; text-align: left;
     }
     .brand-icon {
-      width: 34px; height: 34px; border-radius: 10px;
-      background: linear-gradient(135deg, #10b981, #059669);
+      width: 36px; height: 36px; border-radius: 12px;
+      background: linear-gradient(145deg, #34d399, #059669);
       display: flex; align-items: center; justify-content: center;
-      color: #fff; font-weight: 700; flex-shrink: 0;
-      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+      color: #fff; flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35), inset 0 1px 0 rgba(255,255,255,0.45);
     }
     .brand-title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; }
+
     .btn-refresh {
       display: inline-flex; align-items: center; gap: 6px;
-      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      background: linear-gradient(145deg, #6366f1, #4f46e5);
       color: #fff; border: none; border-radius: 999px;
-      padding: 7px 14px; font-size: 12px; font-weight: 600;
+      padding: 8px 15px; font-size: 12.5px; font-weight: 600;
       cursor: pointer; flex-shrink: 0;
-      box-shadow: 0 2px 10px rgba(79, 70, 229, 0.3);
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35), inset 0 1px 0 rgba(255,255,255,0.35);
+      transition: transform 0.15s ease;
     }
+    .btn-refresh:active { transform: scale(0.96); }
     .btn-refresh.spinning svg { animation: spin 0.9s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
     .seg-bar {
       display: flex; gap: 4px; margin-top: 10px;
-      background: var(--surface-2); padding: 3px; border-radius: 12px;
+      background: var(--glass-2);
+      border: 1px solid var(--border);
+      padding: 4px; border-radius: 14px;
     }
     .seg-btn {
       flex: 1; border: none; background: transparent; color: var(--muted);
-      padding: 7px 6px; border-radius: 9px; font-size: 12px; font-weight: 600;
-      cursor: pointer; transition: all 0.15s ease;
+      padding: 7px 6px; border-radius: 10px; font-size: 12.5px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .seg-btn.active {
-      background: var(--surface); color: var(--accent);
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      background: var(--glass-strong); color: var(--accent);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08), var(--specular);
     }
+
     .pill-row {
-      display: flex; gap: 6px; overflow-x: auto; padding: 10px 0 2px;
+      display: flex; gap: 7px; overflow-x: auto; padding: 10px 0 4px;
       scrollbar-width: none;
     }
     .pill-row::-webkit-scrollbar { display: none; }
     .pill {
-      white-space: nowrap; border: 1px solid var(--border);
-      background: var(--surface); color: var(--muted);
-      padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 600;
-      cursor: pointer;
+      white-space: nowrap;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      box-shadow: var(--specular);
+      color: var(--muted);
+      padding: 6px 13px; border-radius: 999px; font-size: 12px; font-weight: 600;
+      cursor: pointer; transition: all 0.18s ease;
     }
-    .pill.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-    .pill.dark-active.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+    .pill.active {
+      background: var(--accent); color: #fff; border-color: transparent;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+    .pill.dark-active.active {
+      background: var(--text); color: var(--bg); border-color: transparent;
+    }
 
     main {
-      padding: 12px 14px calc(86px + env(safe-area-inset-bottom));
+      padding: 12px 14px calc(106px + env(safe-area-inset-bottom));
       max-width: 720px; margin: 0 auto;
     }
-    .kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+
+    /* Apple Liquid Glass Cards */
+    .kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 8px; }
     .card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 16px; padding: 13px; box-shadow: var(--shadow);
+      background: var(--glass);
+      backdrop-filter: blur(22px) saturate(180%);
+      -webkit-backdrop-filter: blur(22px) saturate(180%);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow), var(--specular);
+      border-radius: 20px; padding: 14px;
+      transform: translateZ(0);
     }
     .kpi-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 0.05em;
+      font-size: 10.5px; font-weight: 700; letter-spacing: 0.04em;
       text-transform: uppercase; color: var(--muted);
       display: flex; align-items: center; justify-content: space-between; gap: 4px;
     }
     .badge {
-      font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 6px;
-      background: rgba(16, 185, 129, 0.14); color: var(--accent);
+      font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 999px;
+      background: var(--accent-soft); color: var(--accent);
     }
-    .badge.neg { background: rgba(239, 68, 68, 0.14); color: var(--danger); }
+    .badge.neg { background: rgba(239, 68, 68, 0.16); color: var(--danger); }
     .kpi-val { font-size: 21px; font-weight: 800; letter-spacing: -0.02em; margin: 5px 0 2px; }
     .kpi-val.green { color: var(--accent); }
     .kpi-val.amber { color: var(--warn); }
@@ -135,75 +180,99 @@
 
     .section-card { margin-top: 12px; }
     .section-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
-    .section-title { font-size: 14px; font-weight: 700; }
+    .section-title { font-size: 14.5px; font-weight: 700; letter-spacing: -0.01em; }
     .section-sub { font-size: 11px; color: var(--muted); }
     .source-tag {
-      font-size: 10px; font-weight: 600; color: var(--muted);
-      background: var(--surface-2); padding: 4px 8px; border-radius: 8px; white-space: nowrap;
+      font-size: 10px; font-weight: 700; color: var(--muted);
+      background: var(--glass-2); border: 1px solid var(--border);
+      padding: 4px 9px; border-radius: 999px; white-space: nowrap;
     }
     .chart-wrap { width: 100%; overflow-x: auto; }
     .chart-legend {
       display: flex; gap: 14px; justify-content: center;
       font-size: 11px; color: var(--muted); margin-bottom: 6px; flex-wrap: wrap;
     }
-    .legend-dot { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px; }
+    .legend-dot { display: inline-block; width: 9px; height: 9px; border-radius: 3px; margin-right: 5px; }
     .tooltip-box {
-      margin-top: 8px; padding: 8px 10px; border-radius: 10px;
-      background: var(--surface-2); font-size: 12px; color: var(--text);
+      margin-top: 8px; padding: 9px 12px; border-radius: 12px;
+      background: var(--glass-2); border: 1px solid var(--border);
+      font-size: 12px; color: var(--text);
       display: flex; justify-content: space-between; align-items: center; gap: 8px;
     }
 
-    table { width: 100%; border-collapse: collapse; font-size: 12px; }
-    th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    th, td { text-align: left; padding: 9px 6px; border-bottom: 1px solid var(--border); }
     th { font-size: 10px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em; }
     td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 
     .driver-row {
       display: flex; align-items: center; justify-content: space-between; gap: 10px;
-      padding: 9px 0; border-bottom: 1px solid var(--border);
+      padding: 10px 0; border-bottom: 1px solid var(--border);
     }
     .driver-row:last-child { border-bottom: none; }
-    .bar-track { height: 6px; background: var(--surface-2); border-radius: 999px; overflow: hidden; margin-top: 4px; }
-    .bar-fill { height: 100%; border-radius: 999px; background: var(--accent); }
+    .bar-track { height: 7px; background: var(--glass-2); border-radius: 999px; overflow: hidden; margin-top: 5px; }
+    .bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #10b981, #34d399); }
 
     .feed-item {
       display: flex; align-items: center; justify-content: space-between; gap: 10px;
-      padding: 11px 12px; border: 1px solid var(--border); border-radius: 12px;
-      margin-bottom: 8px; background: var(--surface-2);
+      padding: 12px 13px; border: 1px solid var(--border); border-radius: 14px;
+      margin-bottom: 8px; background: var(--glass-2);
     }
     .feed-title { font-size: 13px; font-weight: 700; }
     .feed-sub { font-size: 11px; color: var(--muted); }
-    .feed-link { color: var(--accent); font-size: 12px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .feed-link { color: var(--accent); font-size: 12.5px; font-weight: 700; text-decoration: none; white-space: nowrap; }
     .notice-box {
-      padding: 10px 12px; border-radius: 12px; background: var(--surface-2);
+      padding: 11px 13px; border-radius: 14px; background: var(--glass-2);
       border: 1px dashed var(--border); font-size: 12px; color: var(--muted); margin-top: 10px;
     }
 
+    /* Floating Apple Liquid Glass Bottom Dock */
+    .bottom-dock-wrap {
+      position: fixed; bottom: max(10px, env(safe-area-inset-bottom));
+      left: 12px; right: 12px; z-index: 40;
+      display: flex; justify-content: center; pointer-events: none;
+    }
     .bottom-nav {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 40;
-      background: var(--nav-bg);
-      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-      border-top: 1px solid var(--border);
-      display: flex; justify-content: space-around;
-      padding: 6px 8px calc(6px + env(safe-area-inset-bottom));
+      pointer-events: auto;
+      width: 100%; max-width: 540px;
+      background: var(--glass-strong);
+      backdrop-filter: blur(26px) saturate(190%);
+      -webkit-backdrop-filter: blur(26px) saturate(190%);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 12px 34px rgba(15, 23, 42, 0.16), var(--specular);
+      border-radius: 26px;
+      display: flex; justify-content: space-between; gap: 4px;
+      padding: 6px;
     }
     .nav-btn {
       flex: 1; background: transparent; border: none; color: var(--muted);
-      display: flex; flex-direction: column; align-items: center; gap: 3px;
-      font-size: 10px; font-weight: 600; padding: 4px 0; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      font-size: 12px; font-weight: 600; padding: 7px 4px; border-radius: 20px;
+      cursor: pointer; transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .nav-btn.active { color: var(--accent); }
+    .nav-btn svg { width: 20px; height: 20px; }
+    .nav-btn.active {
+      color: var(--accent);
+      background: var(--accent-soft);
+      font-weight: 700;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.35);
+    }
 
+    /* Slide-out Liquid Glass Drawer */
     .drawer-backdrop {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.45);
-      z-index: 60; opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
+      position: fixed; inset: 0; background: rgba(0,0,0,0.38);
+      z-index: 60; opacity: 0; pointer-events: none; transition: opacity 0.24s ease;
     }
     .drawer-backdrop.open { opacity: 1; pointer-events: auto; }
     .drawer {
-      position: fixed; top: 0; bottom: 0; left: 0; width: 260px; z-index: 70;
-      background: var(--surface); border-right: 1px solid var(--border);
+      position: fixed; top: 0; bottom: 0; left: 0; width: 265px; z-index: 70;
+      background: var(--glass-strong);
+      backdrop-filter: blur(28px) saturate(190%);
+      -webkit-backdrop-filter: blur(28px) saturate(190%);
+      border-right: 1px solid var(--glass-border);
+      box-shadow: 12px 0 36px rgba(0, 0, 0, 0.18), var(--specular);
       padding: max(20px, env(safe-area-inset-top)) 14px max(24px, env(safe-area-inset-bottom));
-      transform: translateX(-100%); transition: transform 0.22s ease;
+      transform: translateX(-100%); transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1);
       display: flex; flex-direction: column; overflow-y: auto;
     }
     .drawer.open { transform: translateX(0); }
@@ -211,19 +280,23 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 4px 6px 12px; border-bottom: 1px solid var(--border); margin-bottom: 10px;
     }
-    .drawer-title { font-size: 17px; font-weight: 800; letter-spacing: -0.02em; }
+    .drawer-title { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
     .drawer-close {
-      background: var(--surface-2); border: none; color: var(--text);
-      width: 30px; height: 30px; border-radius: 8px; font-size: 17px; cursor: pointer;
+      background: var(--glass-2); border: 1px solid var(--border); color: var(--text);
+      width: 30px; height: 30px; border-radius: 10px; font-size: 17px; cursor: pointer;
     }
     #sectorList { display: flex; flex-direction: column; gap: 6px; }
     .sector-item {
       display: flex; align-items: center; width: 100%;
-      padding: 13px 14px; border-radius: 12px; border: none;
+      padding: 13px 14px; border-radius: 14px; border: none;
       background: transparent; color: var(--text);
       font-size: 17px; font-weight: 600; text-align: left; cursor: pointer;
+      transition: background 0.16s ease;
     }
-    .sector-item.active { background: rgba(16, 185, 129, 0.14); color: var(--accent); }
+    .sector-item.active {
+      background: var(--accent-soft); color: var(--accent);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+    }
     .drawer-footer {
       margin-top: auto; padding: 14px 8px 4px;
       border-top: 1px solid var(--border);
@@ -232,9 +305,7 @@
       font-size: 10px; font-weight: 700; text-transform: uppercase;
       letter-spacing: 0.06em; color: var(--muted); margin-bottom: 4px;
     }
-    .drawer-footer-text {
-      font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.4;
-    }
+    .drawer-footer-text { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.4; }
     .status-banner { font-size: 11px; color: var(--muted); margin-top: 6px; }
   </style>
 </head>
@@ -272,24 +343,26 @@
 
 <main id="appMain"></main>
 
-<nav class="bottom-nav" id="bottomNav">
-  <button class="nav-btn active" data-tab="overview">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-    <span>Overview</span>
-  </button>
-  <button class="nav-btn" data-tab="ledger">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
-    <span>Ledger</span>
-  </button>
-  <button class="nav-btn" data-tab="drivers">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-    <span>Drivers</span>
-  </button>
-  <button class="nav-btn" data-tab="fresh">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-    <span>Fresh Data</span>
-  </button>
-</nav>
+<div class="bottom-dock-wrap">
+  <nav class="bottom-nav" id="bottomNav">
+    <button class="nav-btn active" data-tab="overview">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><rect x="3" y="3" width="7" height="7" rx="1.8"/><rect x="14" y="3" width="7" height="7" rx="1.8"/><rect x="3" y="14" width="7" height="7" rx="1.8"/><rect x="14" y="14" width="7" height="7" rx="1.8"/></svg>
+      <span>Overview</span>
+    </button>
+    <button class="nav-btn" data-tab="ledger">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+      <span>Ledger</span>
+    </button>
+    <button class="nav-btn" data-tab="drivers">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      <span>Drivers</span>
+    </button>
+    <button class="nav-btn" data-tab="fresh">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      <span>Fresh Data</span>
+    </button>
+  </nav>
+</div>
 
 <script>
 const SECTORS = [
@@ -303,27 +376,28 @@ const SECTORS = [
   { id: 'upi', label: 'UPI', sub: 'NPCI Product Statistics' }
 ];
 
+/* Latest-first (left-to-right descending) across all calendar arrays */
 const DATA = {
   gdp: {
     monthly: [
-      { period: 'Apr 2026', iip: 4.9, mfg: 6.2, cap: 16.0, core: 1.7, note: 'PIB PRID 2267531 · Base 2022-23' },
-      { period: 'May 2026', iip: 5.1, mfg: 5.5, cap: 12.9, core: 4.1, note: 'PIB PRID 2278961 · Output PPI' },
-      { period: 'Jun 2026', iip: 7.3, mfg: 7.8, cap: 14.2, core: 4.8, note: 'PIB PRID 2290419 · Quick Est.' },
-      { period: 'Jul 2026', iip: 6.7, mfg: 7.4, cap: 16.1, core: 5.4, note: 'PIB PRID 2304222 · Quick Est.' },
+      { period: 'Sep 2026', iip: 6.7, mfg: 7.6, cap: 13.8, core: 4.6, note: 'PIB PRID 2329475 · Quick Est.' },
       { period: 'Aug 2026', iip: 8.0, mfg: 8.4, cap: 15.6, core: 5.1, note: 'PIB PRID 2315957 · Final Rev.' },
-      { period: 'Sep 2026', iip: 6.7, mfg: 7.6, cap: 13.8, core: 4.6, note: 'PIB PRID 2329475 · Quick Est.' }
+      { period: 'Jul 2026', iip: 6.7, mfg: 7.4, cap: 16.1, core: 5.4, note: 'PIB PRID 2304222 · Quick Est.' },
+      { period: 'Jun 2026', iip: 7.3, mfg: 7.8, cap: 14.2, core: 4.8, note: 'PIB PRID 2290419 · Quick Est.' },
+      { period: 'May 2026', iip: 5.1, mfg: 5.5, cap: 12.9, core: 4.1, note: 'PIB PRID 2278961 · Output PPI' },
+      { period: 'Apr 2026', iip: 4.9, mfg: 6.2, cap: 16.0, core: 1.7, note: 'PIB PRID 2267531 · Base 2022-23' }
     ],
     quarterly: [
-      { period: 'Q1 FY26', real: 75.47, nom: 80.03, realG: 6.9, nomG: 8.1, gva: 7.0, note: 'MoSPI Base 2022-23' },
-      { period: 'Q3 FY26', real: 84.54, nom: 90.91, realG: 7.8, nomG: 8.9, gva: 7.8, note: 'PIB PRID 2233518' },
+      { period: 'Q1 FY27', real: 81.36, nom: 88.27, realG: 7.8, nomG: 10.3, gva: 8.2, note: 'PIB PRID 2305422' },
       { period: 'Q4 FY26', real: 87.77, nom: 94.65, realG: 7.8, nomG: 9.1, gva: 7.9, note: 'MoSPI PE Jun 2026' },
-      { period: 'Q1 FY27', real: 81.36, nom: 88.27, realG: 7.8, nomG: 10.3, gva: 8.2, note: 'PIB PRID 2305422' }
+      { period: 'Q3 FY26', real: 84.54, nom: 90.91, realG: 7.8, nomG: 8.9, gva: 7.8, note: 'PIB PRID 2233518' },
+      { period: 'Q1 FY26', real: 75.47, nom: 80.03, realG: 6.9, nomG: 8.1, gva: 7.0, note: 'MoSPI Base 2022-23' }
     ],
     annual: [
-      { period: 'FY24', realInr: 279.75, nomInr: 296.70, realG: 7.3, nomUsd: 3.64, pcUsd: 2547, pppUsd: 14.60, pcPpp: 10180, tag: 'MoSPI Revised' },
-      { period: 'FY25', realInr: 299.89, nomInr: 318.07, realG: 7.2, nomUsd: 3.81, pcUsd: 2610, pppUsd: 15.89, pcPpp: 10940, tag: 'MoSPI FRE' },
+      { period: 'FY27E', realInr: 346.06, nomInr: 381.00, realG: 7.0, nomUsd: 4.06, pcUsd: 2750, pppUsd: 19.19, pcPpp: 13000, tag: 'IMF Oct 2026 / RBI 7.1%' },
       { period: 'FY26', realInr: 323.12, nomInr: 346.36, realG: 7.8, nomUsd: 3.96, pcUsd: 2703, pppUsd: 17.20, pcPpp: 11748, tag: 'MoSPI / WB 2025' },
-      { period: 'FY27E', realInr: 346.06, nomInr: 381.00, realG: 7.0, nomUsd: 4.06, pcUsd: 2750, pppUsd: 19.19, pcPpp: 13000, tag: 'IMF Oct 2026 / RBI 7.1%' }
+      { period: 'FY25', realInr: 299.89, nomInr: 318.07, realG: 7.2, nomUsd: 3.81, pcUsd: 2610, pppUsd: 15.89, pcPpp: 10940, tag: 'MoSPI FRE' },
+      { period: 'FY24', realInr: 279.75, nomInr: 296.70, realG: 7.3, nomUsd: 3.64, pcUsd: 2547, pppUsd: 14.60, pcPpp: 10180, tag: 'MoSPI Revised' }
     ],
     states: [
       { state: 'Maharashtra', gsdp: 45.32, year: '2024-25' },
@@ -369,25 +443,25 @@ const DATA = {
 
   trade: {
     monthly: [
-      { period: 'Mar 2026', mExp: 38.92, mImp: 59.59, sExp: 35.20, sImp: 16.96, cExp: 31.69, cImp: 41.87, yoy: -4.58, pr: 'PRID 2252272' },
-      { period: 'Apr 2026', mExp: 43.56, mImp: 71.94, sExp: 37.24, sImp: 16.66, cExp: 31.64, cImp: 45.87, yoy: 13.59, pr: 'PRID 2261383' },
-      { period: 'May 2026', mExp: 45.20, mImp: 73.41, sExp: 36.76, sImp: 19.06, cExp: 34.24, cImp: 46.09, yoy: 15.83, pr: 'PRID 2273044' },
-      { period: 'Jun 2026', mExp: 40.41, mImp: 70.84, sExp: 33.03, sImp: 17.92, cExp: 33.13, cImp: 48.25, yoy: 9.48, pr: 'PRID 2284139' },
-      { period: 'Jul 2026', mExp: 44.24, mImp: 76.22, sExp: 35.89, sImp: 18.94, cExp: 35.00, cImp: 51.82, yoy: 13.31, pr: 'PRID 2298878' },
-      { period: 'Aug 2026', mExp: 43.81, mImp: 70.67, sExp: 38.87, sImp: 21.42, cExp: 34.68, cImp: 49.22, yoy: 25.41, pr: 'PRID 2310636' },
+      { period: 'Oct 2026', mExp: 49.47, mImp: 89.35, sExp: 40.51, sImp: 20.72, cExp: 37.38, cImp: 57.37, yoy: 29.90, pr: 'PRID 2335914' },
       { period: 'Sep 2026', mExp: 44.40, mImp: 74.61, sExp: 36.35, sImp: 19.44, cExp: 34.81, cImp: 51.64, yoy: 10.99, pr: 'PRID 2323944' },
-      { period: 'Oct 2026', mExp: 49.47, mImp: 89.35, sExp: 40.51, sImp: 20.72, cExp: 37.38, cImp: 57.37, yoy: 29.90, pr: 'PRID 2335914' }
+      { period: 'Aug 2026', mExp: 43.81, mImp: 70.67, sExp: 38.87, sImp: 21.42, cExp: 34.68, cImp: 49.22, yoy: 25.41, pr: 'PRID 2310636' },
+      { period: 'Jul 2026', mExp: 44.24, mImp: 76.22, sExp: 35.89, sImp: 18.94, cExp: 35.00, cImp: 51.82, yoy: 13.31, pr: 'PRID 2298878' },
+      { period: 'Jun 2026', mExp: 40.41, mImp: 70.84, sExp: 33.03, sImp: 17.92, cExp: 33.13, cImp: 48.25, yoy: 9.48, pr: 'PRID 2284139' },
+      { period: 'May 2026', mExp: 45.20, mImp: 73.41, sExp: 36.76, sImp: 19.06, cExp: 34.24, cImp: 46.09, yoy: 15.83, pr: 'PRID 2273044' },
+      { period: 'Apr 2026', mExp: 43.56, mImp: 71.94, sExp: 37.24, sImp: 16.66, cExp: 31.64, cImp: 45.87, yoy: 13.59, pr: 'PRID 2261383' },
+      { period: 'Mar 2026', mExp: 38.92, mImp: 59.59, sExp: 35.20, sImp: 16.96, cExp: 31.69, cImp: 41.87, yoy: -4.58, pr: 'PRID 2252272' }
     ],
     quarterly: [
-      { period: 'Q3 FY26', mExp: 110.48, mImp: 202.33, sExp: 111.20, sImp: 53.70, yoy: 6.4, pr: 'NITI Trade Watch' },
-      { period: 'Q4 FY26', mExp: 112.03, mImp: 195.56, sExp: 111.10, sImp: 50.70, yoy: 7.2, pr: 'NITI Trade Watch' },
+      { period: 'H1 FY27', mExp: 261.62, mImp: 437.69, sExp: 214.58, sImp: 113.44, yoy: 13.84, pr: 'PRID 2323944' },
       { period: 'Q1 FY27', mExp: 129.17, mImp: 216.19, sExp: 103.56, sImp: 53.96, yoy: 11.37, pr: 'PRID 2284139' },
-      { period: 'H1 FY27', mExp: 261.62, mImp: 437.69, sExp: 214.58, sImp: 113.44, yoy: 13.84, pr: 'PRID 2323944' }
+      { period: 'Q4 FY26', mExp: 112.03, mImp: 195.56, sExp: 111.10, sImp: 50.70, yoy: 7.2, pr: 'NITI Trade Watch' },
+      { period: 'Q3 FY26', mExp: 110.48, mImp: 202.33, sExp: 111.20, sImp: 53.70, yoy: 6.4, pr: 'NITI Trade Watch' }
     ],
     annual: [
-      { period: 'FY24-25', exp: 825.26, imp: 919.92, yoy: 6.1, pr: 'PIB PRID 2252272' },
+      { period: 'FY27 YTD', exp: 568.84, imp: 662.19, yoy: 16.66, pr: 'PIB PRID 2335914' },
       { period: 'FY25-26', exp: 860.09, imp: 979.40, yoy: 4.22, pr: 'PIB PRID 2252272' },
-      { period: 'FY27 YTD', exp: 568.84, imp: 662.19, yoy: 16.66, pr: 'PIB PRID 2335914' }
+      { period: 'FY24-25', exp: 825.26, imp: 919.92, yoy: 6.1, pr: 'PIB PRID 2252272' }
     ],
     drivers: [
       { name: 'Engineering Goods (Oct 2026)', val: '$12.74B (+36.0%)', pct: 100 },
@@ -410,10 +484,10 @@ const DATA = {
     sourceTag: 'SIAM',
     labelA: 'PV Sales (Lakhs)', suffix: 'L',
     chartData: [
-      { period: 'Q3 FY26', valA: 12.76 },
-      { period: 'Q4 FY26', valA: 13.16 },
+      { period: 'Q2 FY27', valA: 13.60 },
       { period: 'Q1 FY27', valA: 12.70 },
-      { period: 'Q2 FY27', valA: 13.60 }
+      { period: 'Q4 FY26', valA: 13.16 },
+      { period: 'Q3 FY26', valA: 12.76 }
     ],
     kpis: {
       monthly: [
@@ -444,14 +518,14 @@ const DATA = {
       { period: 'Hyundai India', col1: '62,799 PVs', col2: 'Domestic Dispatches' }
     ],
     quarterly: [
-      { period: 'Q3 FY26', col1: '12.76L PVs (+20.6%)', col2: 'Festive Demand' },
-      { period: 'Q4 FY26', col1: '13.16L PVs (+13.2%)', col2: '57.73L 2W · 3.25L CV' },
+      { period: 'Q2 FY27', col1: '13.60L PVs', col2: '9M CY26: 23.44M (+21%)' },
       { period: 'Q1 FY27', col1: '12.70L PVs (+25.9%)', col2: '9.36M Prod · 8.67L EV' },
-      { period: 'Q2 FY27', col1: '13.60L PVs', col2: '9M CY26: 23.44M (+21%)' }
+      { period: 'Q4 FY26', col1: '13.16L PVs (+13.2%)', col2: '57.73L 2W · 3.25L CV' },
+      { period: 'Q3 FY26', col1: '12.76L PVs (+20.6%)', col2: 'Festive Demand' }
     ],
     annual: [
-      { period: 'FY24-25', col1: '31.03M Produced', col2: '$143.0B · 2.05M EVs' },
-      { period: 'FY25-26', col1: '34.71M Produced', col2: '28.26M Dom · 6.65M Exp' }
+      { period: 'FY25-26', col1: '34.71M Produced', col2: '28.26M Dom · 6.65M Exp' },
+      { period: 'FY24-25', col1: '31.03M Produced', col2: '$143.0B · 2.05M EVs' }
     ],
     driversTitle: 'Company-wise PV Performance (Oct 2026)',
     driversSub: 'Domestic Passenger Vehicle Dispatches',
@@ -474,8 +548,8 @@ const DATA = {
     sourceTag: 'MoT / PIB',
     labelA: 'Exports (₹L Cr)', prefix: '₹', suffix: 'L',
     chartData: [
-      { period: 'FY20', valA: 2.49 },
-      { period: 'FY26', valA: 3.25 }
+      { period: 'FY26', valA: 3.25 },
+      { period: 'FY20', valA: 2.49 }
     ],
     kpis: {
       monthly: [
@@ -501,8 +575,8 @@ const DATA = {
     monthly: [{ period: 'Jul–Oct 2026', col1: 'RMG & Cotton Tracked', col2: 'Exports +2.1% FY26' }],
     quarterly: [{ period: 'FY25-26 Q1–Q4', col1: '₹3,25,339 Cr Exports', col2: '4.5% CAGR since FY20' }],
     annual: [
-      { period: 'FY2019-20', col1: 'Baseline Year', col2: '₹2,49,250 Cr Exports' },
-      { period: 'FY2025-26', col1: '$179B Market Size', col2: '₹3,25,339 Cr (+2.1% YoY)' }
+      { period: 'FY2025-26', col1: '$179B Market Size', col2: '₹3,25,339 Cr (+2.1% YoY)' },
+      { period: 'FY2019-20', col1: 'Baseline Year', col2: '₹2,49,250 Cr Exports' }
     ],
     driversTitle: 'Textile Macro Contribution',
     driversSub: 'Ministry of Textiles Official Shares',
@@ -524,8 +598,8 @@ const DATA = {
     sourceTag: 'MoAFW / PIB',
     labelA: 'Foodgrain (MMT)', suffix: 'M',
     chartData: [
-      { period: 'AY24-25', valA: 357.73 },
-      { period: 'AY25-26', valA: 376.56 }
+      { period: 'AY25-26', valA: 376.56 },
+      { period: 'AY24-25', valA: 357.73 }
     ],
     kpis: {
       monthly: [
@@ -551,8 +625,8 @@ const DATA = {
     monthly: [{ period: 'AY 2025-26', col1: '376.56 MMT (3rd Adv.)', col2: '+5.3% YoY Record' }],
     quarterly: [{ period: 'Q1 FY27', col1: '+3.6% Agri & Allied GVA', col2: '+2.9% Primary Sector' }],
     annual: [
-      { period: 'AY 2024-25', col1: '357.73 MMT Foodgrain', col2: '362.08 MMT Horticulture' },
-      { period: 'AY 2025-26', col1: '376.56 MMT Foodgrain', col2: 'Record +5.3% YoY' }
+      { period: 'AY 2025-26', col1: '376.56 MMT Foodgrain', col2: 'Record +5.3% YoY' },
+      { period: 'AY 2024-25', col1: '357.73 MMT Foodgrain', col2: '362.08 MMT Horticulture' }
     ],
     driversTitle: 'Agricultural Output & Credit Drivers',
     driversSub: 'MoAFW & RBI Sectoral Indicators',
@@ -574,8 +648,8 @@ const DATA = {
     sourceTag: 'NASSCOM',
     labelA: 'Revenue ($B)', prefix: '$', suffix: 'B',
     chartData: [
-      { period: 'FY25', valA: 282.6 },
-      { period: 'FY26', valA: 315.0 }
+      { period: 'FY26', valA: 315.0 },
+      { period: 'FY25', valA: 282.6 }
     ],
     kpis: {
       monthly: [
@@ -599,11 +673,11 @@ const DATA = {
     },
     ledgerHeaders: ['Company / Period', 'Revenue', 'Margin / Growth'],
     monthly: [
-      { period: 'Jun 2026 Serv.', col1: '$33.03B Exports', col2: '$17.92B Imports' },
-      { period: 'Jul 2026 Serv.', col1: '$35.89B Exports', col2: '$18.94B Imports' },
-      { period: 'Aug 2026 Serv.', col1: '$38.87B Exports', col2: '$21.42B Imports' },
+      { period: 'Oct 2026 Serv.', col1: '$40.51B Exports', col2: '$20.72B Imports' },
       { period: 'Sep 2026 Serv.', col1: '$36.35B Exports', col2: '$19.44B Imports' },
-      { period: 'Oct 2026 Serv.', col1: '$40.51B Exports', col2: '$20.72B Imports' }
+      { period: 'Aug 2026 Serv.', col1: '$38.87B Exports', col2: '$21.42B Imports' },
+      { period: 'Jul 2026 Serv.', col1: '$35.89B Exports', col2: '$18.94B Imports' },
+      { period: 'Jun 2026 Serv.', col1: '$33.03B Exports', col2: '$17.92B Imports' }
     ],
     quarterly: [
       { period: 'TCS (Q2 FY27)', col1: '$7,642M (+2.4%)', col2: '24.0% OPM · $9.6B TCV' },
@@ -613,8 +687,8 @@ const DATA = {
       { period: 'Tech Mahindra', col1: '₹16,180 Cr (+15.6%)', col2: '14.8% EBIT' }
     ],
     annual: [
-      { period: 'FY24-25', col1: '$282.6B Tech Rev', col2: '+5.1% YoY (NASSCOM)' },
-      { period: 'FY25-26', col1: '$315.0B Tech Rev', col2: '+6.1% YoY (NASSCOM)' }
+      { period: 'FY25-26', col1: '$315.0B Tech Rev', col2: '+6.1% YoY (NASSCOM)' },
+      { period: 'FY24-25', col1: '$282.6B Tech Rev', col2: '+5.1% YoY (NASSCOM)' }
     ],
     driversTitle: 'IT Majors — Q2 FY27 Revenue & Margins',
     driversSub: 'Quarterly Financial Results',
@@ -635,17 +709,17 @@ const DATA = {
 
   gst: {
     chartTitle: 'Monthly Gross GST Collection (₹ Thousand Cr)',
-    chartSub: 'Apr–Oct 2026 (FY26-27)',
+    chartSub: 'Oct–Apr 2026 (FY26-27)',
     sourceTag: 'GSTN / PIB',
     labelA: 'Gross GST (₹000 Cr)', prefix: '₹', suffix: 'k',
     chartData: [
-      { period: 'Apr', valA: 243.3 },
-      { period: 'May', valA: 194.8 },
-      { period: 'Jun', valA: 194.8 },
-      { period: 'Jul', valA: 211.2 },
-      { period: 'Aug', valA: 199.9 },
+      { period: 'Oct', valA: 231.3 },
       { period: 'Sep', valA: 203.5 },
-      { period: 'Oct', valA: 231.3 }
+      { period: 'Aug', valA: 199.9 },
+      { period: 'Jul', valA: 211.2 },
+      { period: 'Jun', valA: 194.8 },
+      { period: 'May', valA: 194.8 },
+      { period: 'Apr', valA: 243.3 }
     ],
     kpis: {
       monthly: [
@@ -655,36 +729,36 @@ const DATA = {
         { label: 'Active GSTINs', val: '1.72 Cr', sub: '1,72,38,566 Registered' }
       ],
       quarterly: [
-        { label: 'Q1 FY27 Gross', val: '₹6,32,909 Cr', sub: 'Apr–Jun 2026', badge: '+14.2% YoY', tone: 'green' },
-        { label: 'Q2 FY27 Gross', val: '₹6,14,579 Cr', sub: 'Jul–Sep 2026', badge: '+15.0% YoY', tone: 'amber' },
+        { label: 'Q2 FY27 Gross', val: '₹6,14,579 Cr', sub: 'Jul–Sep 2026', badge: '+15.0% YoY', tone: 'green' },
+        { label: 'Q1 FY27 Gross', val: '₹6,32,909 Cr', sub: 'Apr–Jun 2026', badge: '+14.2% YoY', tone: 'amber' },
         { label: 'Jul 2026 Net', val: '₹1,81,237 Cr', sub: 'Gross ₹2,11,205 Cr' },
         { label: 'Oct 2026 Start Q3', val: '₹2,31,290 Cr', sub: '+22.9% YoY' }
       ],
       annual: [
-        { label: 'FY25-26 Gross', val: '₹23.32L Cr', sub: 'Incl. Cess (₹22.27L Cr ex)', tone: 'green' },
-        { label: 'FY24-25 Gross', val: '₹22.08L Cr', sub: 'Full Fiscal Year', tone: 'amber' },
-        { label: 'FY27 7M Gross', val: '₹14.78L Cr', sub: '+13.2% YoY Pace' },
+        { label: 'FY27 7M Gross', val: '₹14.78L Cr', sub: '+13.2% YoY Pace', tone: 'green' },
+        { label: 'FY25-26 Gross', val: '₹23.32L Cr', sub: 'Incl. Cess (₹22.27L Cr ex)', tone: 'amber' },
+        { label: 'FY24-25 Gross', val: '₹22.08L Cr', sub: 'Full Fiscal Year' },
         { label: 'FY27 7M Net', val: '₹12.69L Cr', sub: '+12.6% YoY Pace' }
       ]
     },
     ledgerHeaders: ['Period', 'Gross Collection', 'YoY / Net'],
     monthly: [
-      { period: 'Apr 2026', col1: '₹2,43,286 Cr', col2: '+12.6% YoY' },
-      { period: 'May 2026', col1: '₹1,94,811 Cr', col2: '+16.4% YoY' },
-      { period: 'Jun 2026', col1: '₹1,94,812 Cr', col2: '+13.9% YoY' },
-      { period: 'Jul 2026', col1: '₹2,11,205 Cr', col2: '+15.4% (Net ₹1,81,237 Cr)' },
-      { period: 'Aug 2026', col1: '₹1,99,853 Cr', col2: '+14.8% YoY' },
+      { period: 'Oct 2026', col1: '₹2,31,290 Cr', col2: '+22.9% YoY' },
       { period: 'Sep 2026', col1: '₹2,03,521 Cr', col2: '+14.7% YoY' },
-      { period: 'Oct 2026', col1: '₹2,31,290 Cr', col2: '+22.9% YoY' }
+      { period: 'Aug 2026', col1: '₹1,99,853 Cr', col2: '+14.8% YoY' },
+      { period: 'Jul 2026', col1: '₹2,11,205 Cr', col2: '+15.4% (Net ₹1,81,237 Cr)' },
+      { period: 'Jun 2026', col1: '₹1,94,812 Cr', col2: '+13.9% YoY' },
+      { period: 'May 2026', col1: '₹1,94,811 Cr', col2: '+16.4% YoY' },
+      { period: 'Apr 2026', col1: '₹2,43,286 Cr', col2: '+12.6% YoY' }
     ],
     quarterly: [
-      { period: 'Q1 FY27', col1: '₹6,32,909 Cr', col2: '+14.2% YoY' },
-      { period: 'Q2 FY27', col1: '₹6,14,579 Cr', col2: '+15.0% YoY' }
+      { period: 'Q2 FY27', col1: '₹6,14,579 Cr', col2: '+15.0% YoY' },
+      { period: 'Q1 FY27', col1: '₹6,32,909 Cr', col2: '+14.2% YoY' }
     ],
     annual: [
-      { period: 'FY24-25', col1: '₹22.08L Cr', col2: '+9.4% YoY' },
+      { period: 'FY27 7M (Apr-Oct)', col1: '₹14,77,569 Cr', col2: 'Net ₹12,69,486 Cr (+12.6%)' },
       { period: 'FY25-26', col1: '₹23.32L Cr (incl. cess)', col2: '₹22.27L Cr ex-cess' },
-      { period: 'FY27 7M (Apr-Oct)', col1: '₹14,77,569 Cr', col2: 'Net ₹12,69,486 Cr (+12.6%)' }
+      { period: 'FY24-25', col1: '₹22.08L Cr', col2: '+9.4% YoY' }
     ],
     driversTitle: 'GST Collection & Compliance Drivers',
     driversSub: 'FY26-27 Revenue Momentum',
@@ -703,17 +777,17 @@ const DATA = {
 
   upi: {
     chartTitle: 'UPI Monthly Volume (Bn) vs Value (₹ Lakh Cr)',
-    chartSub: 'NPCI Official Product Statistics (Apr–Oct 2026)',
+    chartSub: 'NPCI Official Product Statistics (Oct–Apr 2026)',
     sourceTag: 'NPCI',
     labelA: 'Volume (Bn Txns)', labelB: 'Value (₹L Cr)',
     chartData: [
-      { period: 'Apr', valA: 22.35, valB: 29.03 },
-      { period: 'May', valA: 23.20, valB: 29.90 },
-      { period: 'Jun', valA: 22.72, valB: 28.92 },
-      { period: 'Jul', valA: 23.66, valB: 29.88 },
-      { period: 'Aug', valA: 24.51, valB: 29.82 },
+      { period: 'Oct', valA: 25.47, valB: 31.53 },
       { period: 'Sep', valA: 24.07, valB: 29.37 },
-      { period: 'Oct', valA: 25.47, valB: 31.53 }
+      { period: 'Aug', valA: 24.51, valB: 29.82 },
+      { period: 'Jul', valA: 23.66, valB: 29.88 },
+      { period: 'Jun', valA: 22.72, valB: 28.92 },
+      { period: 'May', valA: 23.20, valB: 29.90 },
+      { period: 'Apr', valA: 22.35, valB: 29.03 }
     ],
     kpis: {
       monthly: [
@@ -729,29 +803,29 @@ const DATA = {
         { label: 'Q1 FY27 Value', val: '₹87.85L Cr', sub: 'NPCI Quarterly' }
       ],
       annual: [
-        { label: 'FY25-26 Volume', val: '241.62 Bn', sub: 'Full Year Txns', tone: 'green' },
-        { label: 'FY25-26 Value', val: '₹314.23L Cr', sub: 'Full Year Value', tone: 'amber' },
-        { label: 'FY27 7M Volume', val: '165.97 Bn', sub: 'Apr–Oct 2026' },
-        { label: 'FY27 7M Value', val: '₹208.46L Cr', sub: 'Apr–Oct 2026' }
+        { label: 'FY27 7M Volume', val: '165.97 Bn', sub: 'Apr–Oct 2026', tone: 'green' },
+        { label: 'FY27 7M Value', val: '₹208.46L Cr', sub: 'Apr–Oct 2026', tone: 'amber' },
+        { label: 'FY25-26 Volume', val: '241.62 Bn', sub: 'Full Year Txns' },
+        { label: 'FY25-26 Value', val: '₹314.23L Cr', sub: 'Full Year Value' }
       ]
     },
     ledgerHeaders: ['Period', 'Volume (Txns)', 'Value & Banks'],
     monthly: [
-      { period: 'Apr 2026', col1: '22.35 Bn', col2: '₹29.03L Cr · 713 Banks' },
-      { period: 'May 2026', col1: '23.20 Bn', col2: '₹29.90L Cr · 720 Banks' },
-      { period: 'Jun 2026', col1: '22.72 Bn', col2: '₹28.92L Cr · 731 Banks' },
-      { period: 'Jul 2026', col1: '23.66 Bn', col2: '₹29.88L Cr · 741 Banks' },
-      { period: 'Aug 2026', col1: '24.51 Bn', col2: '₹29.82L Cr · 752 Banks' },
+      { period: 'Oct 2026', col1: '25.47 Bn', col2: '₹31.53L Cr · 758 Banks' },
       { period: 'Sep 2026', col1: '24.07 Bn', col2: '₹29.37L Cr · 756 Banks' },
-      { period: 'Oct 2026', col1: '25.47 Bn', col2: '₹31.53L Cr · 758 Banks' }
+      { period: 'Aug 2026', col1: '24.51 Bn', col2: '₹29.82L Cr · 752 Banks' },
+      { period: 'Jul 2026', col1: '23.66 Bn', col2: '₹29.88L Cr · 741 Banks' },
+      { period: 'Jun 2026', col1: '22.72 Bn', col2: '₹28.92L Cr · 731 Banks' },
+      { period: 'May 2026', col1: '23.20 Bn', col2: '₹29.90L Cr · 720 Banks' },
+      { period: 'Apr 2026', col1: '22.35 Bn', col2: '₹29.03L Cr · 713 Banks' }
     ],
     quarterly: [
-      { period: 'Q1 FY27', col1: '68.27 Bn', col2: '₹87.85L Cr' },
-      { period: 'Q2 FY27', col1: '72.24 Bn', col2: '₹89.07L Cr' }
+      { period: 'Q2 FY27', col1: '72.24 Bn', col2: '₹89.07L Cr' },
+      { period: 'Q1 FY27', col1: '68.27 Bn', col2: '₹87.85L Cr' }
     ],
     annual: [
-      { period: 'FY25-26', col1: '241.62 Bn', col2: '₹314.23L Cr' },
-      { period: 'FY27 7M (Apr-Oct)', col1: '165.97 Bn', col2: '₹208.46L Cr' }
+      { period: 'FY27 7M (Apr-Oct)', col1: '165.97 Bn', col2: '₹208.46L Cr' },
+      { period: 'FY25-26', col1: '241.62 Bn', col2: '₹314.23L Cr' }
     ],
     driversTitle: 'UPI App Market Share',
     driversSub: 'NPCI Ecosystem Distribution',
@@ -771,7 +845,7 @@ const state = {
   sector: 'gdp',
   timeframe: 'quarterly',
   scope: 'all',
-  selectedIdx: 3,
+  selectedIdx: 0,
   tab: 'overview',
   wbLive: { status: 'Not synced yet', gdp: null, trade: null }
 };
@@ -788,13 +862,8 @@ function initDrawer() {
       state.sector = btn.dataset.sector;
       state.tab = 'overview';
       state.scope = 'all';
-      if (state.sector === 'gdp') {
-        state.timeframe = 'quarterly'; state.selectedIdx = DATA.gdp.quarterly.length - 1;
-      } else if (state.sector === 'trade') {
-        state.timeframe = 'monthly'; state.selectedIdx = DATA.trade.monthly.length - 1;
-      } else {
-        state.timeframe = 'monthly'; state.selectedIdx = Math.max(0, DATA[state.sector].chartData.length - 1);
-      }
+      state.selectedIdx = 0;
+      state.timeframe = state.sector === 'gdp' ? 'quarterly' : 'monthly';
       closeDrawer();
       render();
     });
@@ -813,6 +882,27 @@ function closeDrawer() {
 document.getElementById('btnOpenDrawer').addEventListener('click', openDrawer);
 document.getElementById('btnCloseDrawer').addEventListener('click', closeDrawer);
 document.getElementById('drawerBackdrop').addEventListener('click', closeDrawer);
+
+/* Swipe left-to-right to open drawer, right-to-left to close */
+let touchStartX = 0, touchStartY = 0, skipSwipe = false;
+document.addEventListener('touchstart', (e) => {
+  const t = e.touches[0];
+  touchStartX = t.clientX;
+  touchStartY = t.clientY;
+  skipSwipe = !!(e.target && e.target.closest('.pill-row, .chart-wrap, table'));
+}, { passive: true });
+
+document.addEventListener('touchend', (e) => {
+  if (skipSwipe) return;
+  const t = e.changedTouches[0];
+  const dx = t.clientX - touchStartX;
+  const dy = t.clientY - touchStartY;
+  if (Math.abs(dx) > 55 && Math.abs(dy) < 45) {
+    const isOpen = document.getElementById('sectorDrawer').classList.contains('open');
+    if (dx > 0 && !isOpen) openDrawer();
+    else if (dx < 0 && isOpen) closeDrawer();
+  }
+}, { passive: true });
 
 document.getElementById('bottomNav').querySelectorAll('.nav-btn').forEach(btn => {
   btn.addEventListener('click', () => { state.tab = btn.dataset.tab; render(); });
@@ -898,10 +988,7 @@ function renderGDP(main) {
     `<button class="seg-btn ${state.timeframe === tf ? 'active' : ''}" data-tf="${tf}">${tf.charAt(0).toUpperCase() + tf.slice(1)}</button>`
   ).join('');
   tfBar.querySelectorAll('.seg-btn').forEach(b => b.addEventListener('click', () => {
-    state.timeframe = b.dataset.tf;
-    const arr = DATA.gdp[state.timeframe];
-    state.selectedIdx = arr ? arr.length - 1 : 0;
-    render();
+    state.timeframe = b.dataset.tf; state.selectedIdx = 0; render();
   }));
   document.getElementById('scopeBar').innerHTML = '';
 
@@ -998,7 +1085,7 @@ function renderTrade(main) {
     `<button class="seg-btn ${state.timeframe === tf ? 'active' : ''}" data-tf="${tf}">${tf.charAt(0).toUpperCase() + tf.slice(1)}</button>`
   ).join('');
   tfBar.querySelectorAll('.seg-btn').forEach(b => b.addEventListener('click', () => {
-    state.timeframe = b.dataset.tf; state.selectedIdx = DATA.trade[state.timeframe].length - 1; render();
+    state.timeframe = b.dataset.tf; state.selectedIdx = 0; render();
   }));
 
   const scopeBar = document.getElementById('scopeBar');
@@ -1058,7 +1145,7 @@ function renderRichSector(main) {
   tfBar.innerHTML = ['monthly', 'quarterly', 'annual'].map(tf =>
     `<button class="seg-btn ${state.timeframe === tf ? 'active' : ''}" data-tf="${tf}">${tf.charAt(0).toUpperCase() + tf.slice(1)}</button>`
   ).join('');
-  tfBar.querySelectorAll('.seg-btn').forEach(b => b.addEventListener('click', () => { state.timeframe = b.dataset.tf; render(); }));
+  tfBar.querySelectorAll('.seg-btn').forEach(b => b.addEventListener('click', () => { state.timeframe = b.dataset.tf; state.selectedIdx = 0; render(); }));
   document.getElementById('scopeBar').innerHTML = '';
 
   const cfg = DATA[state.sector];
