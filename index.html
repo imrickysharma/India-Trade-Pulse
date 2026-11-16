@@ -69,8 +69,7 @@
       color: #fff; font-weight: 700; flex-shrink: 0;
       box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
     }
-    .brand-title { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
-    .brand-sub { font-size: 11px; color: var(--muted); display: block; }
+    .brand-title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; }
     .btn-refresh {
       display: inline-flex; align-items: center; gap: 6px;
       background: linear-gradient(135deg, #4f46e5, #6366f1);
@@ -201,29 +200,41 @@
     }
     .drawer-backdrop.open { opacity: 1; pointer-events: auto; }
     .drawer {
-      position: fixed; top: 0; bottom: 0; left: 0; width: 250px; z-index: 70;
+      position: fixed; top: 0; bottom: 0; left: 0; width: 260px; z-index: 70;
       background: var(--surface); border-right: 1px solid var(--border);
-      padding: max(20px, env(safe-area-inset-top)) 14px 24px;
+      padding: max(20px, env(safe-area-inset-top)) 14px max(24px, env(safe-area-inset-bottom));
       transform: translateX(-100%); transition: transform 0.22s ease;
-      display: flex; flex-direction: column; gap: 6px; overflow-y: auto;
+      display: flex; flex-direction: column; overflow-y: auto;
     }
     .drawer.open { transform: translateX(0); }
     .drawer-head {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 4px 6px 12px; border-bottom: 1px solid var(--border); margin-bottom: 6px;
+      padding: 4px 6px 12px; border-bottom: 1px solid var(--border); margin-bottom: 10px;
     }
-    .drawer-title { font-size: 15px; font-weight: 800; }
+    .drawer-title { font-size: 17px; font-weight: 800; letter-spacing: -0.02em; }
     .drawer-close {
       background: var(--surface-2); border: none; color: var(--text);
-      width: 28px; height: 28px; border-radius: 8px; font-size: 16px; cursor: pointer;
+      width: 30px; height: 30px; border-radius: 8px; font-size: 17px; cursor: pointer;
     }
+    #sectorList { display: flex; flex-direction: column; gap: 6px; }
     .sector-item {
-      display: flex; align-items: center; gap: 10px;
-      padding: 11px 12px; border-radius: 12px; border: none;
+      display: flex; align-items: center; width: 100%;
+      padding: 13px 14px; border-radius: 12px; border: none;
       background: transparent; color: var(--text);
-      font-size: 14px; font-weight: 600; text-align: left; cursor: pointer;
+      font-size: 17px; font-weight: 600; text-align: left; cursor: pointer;
     }
     .sector-item.active { background: rgba(16, 185, 129, 0.14); color: var(--accent); }
+    .drawer-footer {
+      margin-top: auto; padding: 14px 8px 4px;
+      border-top: 1px solid var(--border);
+    }
+    .drawer-footer-label {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--muted); margin-bottom: 4px;
+    }
+    .drawer-footer-text {
+      font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.4;
+    }
     .status-banner { font-size: 11px; color: var(--muted); margin-top: 6px; }
   </style>
 </head>
@@ -236,6 +247,10 @@
     <button class="drawer-close" id="btnCloseDrawer" aria-label="Close menu">×</button>
   </div>
   <div id="sectorList"></div>
+  <div class="drawer-footer">
+    <div class="drawer-footer-label">Sources</div>
+    <div class="drawer-footer-text" id="drawerSources">MoSPI · RBI · IMF · World Bank</div>
+  </div>
 </aside>
 
 <header class="app-header">
@@ -244,10 +259,7 @@
       <div class="brand-icon">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="14" y2="18"/></svg>
       </div>
-      <div>
-        <div class="brand-title" id="headerTitle">IndExo · GDP</div>
-        <span class="brand-sub" id="headerSub">MoSPI · RBI · IMF · World Bank</span>
-      </div>
+      <div class="brand-title" id="headerTitle">IndExo · GDP</div>
     </button>
     <button class="btn-refresh" id="btnRefresh">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
@@ -282,13 +294,13 @@
 <script>
 const SECTORS = [
   { id: 'gdp', label: 'GDP', sub: 'MoSPI · RBI · IMF · World Bank' },
-  { id: 'trade', label: 'Trade', sub: 'Merchandise & Services EXIM (US$ Bn)' },
-  { id: 'automobile', label: 'Automobile', sub: 'SIAM · Production, Sales & OEMs' },
-  { id: 'textile', label: 'Textile', sub: 'Ministry of Textiles · Output & Exports' },
-  { id: 'agriculture', label: 'Agriculture', sub: 'MoAFW · Crop Output & Agri Exports' },
-  { id: 'it', label: 'IT', sub: 'NASSCOM · Tech Revenue & IT Majors' },
-  { id: 'gst', label: 'GST', sub: 'GSTN · Gross & Net Revenue' },
-  { id: 'upi', label: 'UPI', sub: 'NPCI · Volume, Value & Apps' }
+  { id: 'trade', label: 'Trade', sub: 'PIB · DGCI&S · NITI Aayog · World Bank' },
+  { id: 'automobile', label: 'Automobile', sub: 'SIAM · IBEF · OEM Dispatches' },
+  { id: 'textile', label: 'Textile', sub: 'Ministry of Textiles · PIB · DGCI&S' },
+  { id: 'agriculture', label: 'Agriculture', sub: 'MoAFW · PIB · MoSPI' },
+  { id: 'it', label: 'IT', sub: 'NASSCOM · PIB · Corporate Filings' },
+  { id: 'gst', label: 'GST', sub: 'GSTN · Ministry of Finance · PIB' },
+  { id: 'upi', label: 'UPI', sub: 'NPCI Product Statistics' }
 ];
 
 const DATA = {
@@ -1082,7 +1094,7 @@ function render() {
   initDrawer();
   const sec = SECTORS.find(s => s.id === state.sector);
   document.getElementById('headerTitle').textContent = `IndExo · ${sec.label}`;
-  document.getElementById('headerSub').textContent = sec.sub;
+  document.getElementById('drawerSources').textContent = sec.sub;
   document.getElementById('bottomNav').querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === state.tab));
 
   const main = document.getElementById('appMain');
